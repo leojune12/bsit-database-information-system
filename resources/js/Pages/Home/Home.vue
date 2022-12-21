@@ -1,5 +1,5 @@
 <template>
-    <div class="tw-min-h-screen">
+    <div class="tw-min-h-screen tw-bg-white dark:tw-bg-gray-900">
         <Header />
         <Hero />
     </div>
