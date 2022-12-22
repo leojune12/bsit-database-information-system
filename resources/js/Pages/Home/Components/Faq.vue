@@ -1,5 +1,5 @@
 <template>
-    <section class="tw-bg-white dark:tw-bg-gray-900">
+    <section id="faq" class="tw-bg-white dark:tw-bg-gray-900">
         <div class="tw-py-8 tw-px-4 tw-mx-auto tw-max-w-screen-xl sm:tw-py-16 lg:tw-px-6">
             <h2 class="tw-mb-8 tw-text-4xl tw-tracking-tight tw-font-extrabold tw-text-gray-900 dark:tw-text-white">Frequently asked questions</h2>
             <div class="tw-grid pt-8 tw-text-left tw-border-t tw-border-gray-200 md:tw-gap-16 dark:tw-border-gray-700 md:tw-grid-cols-2">

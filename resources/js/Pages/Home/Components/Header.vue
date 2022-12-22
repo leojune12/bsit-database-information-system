@@ -21,7 +21,7 @@
                             v-for="item in navigation"
                             :key="item.namespace"
                         >
-                            <a href="#" class="tw-block tw-py-2 tw-pr-4 tw-pl-3 tw-text-gray-700 tw-border-b tw-border-gray-100 hover:tw-bg-gray-50 lg:hover:tw-bg-transparent lg:tw-border-0 lg:hover:tw-text-blue-700 lg:tw-p-0 dark:tw-text-gray-400 lg:dark:hover:tw-text-white dark:hover:tw-bg-gray-700 dark:hover:tw-text-white lg:dark:hover:tw-bg-transparent dark:tw-border-gray-700">
+                            <a :href="item.href" class="tw-block tw-py-2 tw-pr-4 tw-pl-3 tw-text-gray-700 tw-border-b tw-border-gray-100 hover:tw-bg-gray-50 lg:hover:tw-bg-transparent lg:tw-border-0 lg:hover:tw-text-blue-700 lg:tw-p-0 dark:tw-text-gray-400 lg:dark:hover:tw-text-white dark:hover:tw-bg-gray-700 dark:hover:tw-text-white lg:dark:hover:tw-bg-transparent dark:tw-border-gray-700">
                                 {{ item.name }}
                             </a>
                         </li>
@@ -61,7 +61,7 @@
         { name: 'Services', href: '#services' },
         { name: 'FAQ', href: '#faq' },
         { name: 'Contact', href: '#contact' },
-        { name: 'Cooments', href: '#comment' },
+        { name: 'Cooments', href: '#comments' },
     ]
 
     const mobileMenuOpen = ref(false)

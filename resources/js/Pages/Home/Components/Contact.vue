@@ -1,5 +1,5 @@
 <template>
-    <section class="tw-bg-white dark:tw-bg-gray-900">
+    <section id="contact" class="tw-bg-white dark:tw-bg-gray-900">
         <div class="tw-py-8 lg:tw-py-16 tw-px-4 tw-mx-auto tw-max-w-screen-md">
             <h2 class="tw-mb-4 tw-text-4xl tw-tracking-tight tw-font-extrabold tw-text-center tw-text-gray-900 dark:tw-text-white">Contact Us</h2>
             <p class="tw-mb-8 lg:tw-mb-16 tw-font-light tw-text-center tw-text-gray-500 dark:tw-text-gray-400 sm:tw-text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>

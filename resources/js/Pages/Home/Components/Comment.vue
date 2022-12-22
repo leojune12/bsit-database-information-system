@@ -1,5 +1,5 @@
 <template>
-    <section class="tw-bg-white dark:tw-bg-gray-900 tw-py-8 lg:tw-py-16">
+    <section id="comments" class="tw-bg-white dark:tw-bg-gray-900 tw-py-8 lg:tw-py-16">
         <div class="tw-max-w-2xl tw-mx-auto tw-px-4">
             <div class="tw-flex tw-justify-between tw-items-center tw-mb-6">
                 <h2 class="tw-text-lg lg:tw-text-2xl tw-font-bold tw-text-gray-900 dark:tw-text-white">Discussion (20)</h2>
@@ -7,7 +7,7 @@
             <form class="tw-mb-6">
                 <div class="tw-py-2 tw-px-4 tw-mb-4 tw-bg-white tw-rounded-lg tw-rounded-t-lg tw-border tw-border-gray-200 dark:tw-bg-gray-800 dark:tw-border-gray-700">
                     <label for="comment" class="tw-sr-only">Your comment</label>
-                    <textarea id="comment" rows="6"
+                    <textarea rows="6"
                         class="tw-px-0 tw-w-full tw-text-sm tw-text-gray-900 tw-border-0 focus:tw-ring-0 focus:tw-outline-none dark:tw-text-white dark:tw-placeholder-gray-400 dark:tw-bg-gray-800"
                         placeholder="Write a comment..." required></textarea>
                 </div>
