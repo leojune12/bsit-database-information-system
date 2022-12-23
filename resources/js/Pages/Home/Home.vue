@@ -1,8 +1,6 @@
 <template>
-    <div class="tw-min-h-screen tw-bg-white dark:tw-bg-gray-900">
-        <Header />
-        <Hero />
-    </div>
+    <Header />
+    <Hero />
     <About />
     <Services />
     <Faq />
@@ -12,7 +10,6 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue'
     import Header from '@/Pages/Home/Components/Header.vue'
     import Hero from '@/Pages/Home/Components/Hero.vue'
     import About from '@/Pages/Home/Components/About.vue'
