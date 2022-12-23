@@ -2,10 +2,10 @@
     <header class="tw-sticky tw-top-0 tw-border-b tw-shadow">
         <nav class="tw-bg-white tw-border-gray-200 tw-px-4 lg:tw-px-6 tw-py-2.5 dark:tw-bg-gray-800">
             <div class="tw-flex tw-flex-wrap tw-justify-between tw-items-center tw-mx-auto tw-max-w-screen-xl">
-                <a href="https://flowbite.com" class="tw-flex tw-items-center">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="tw-mr-3 tw-h-6 sm:tw-h-9" alt="Flowbite Logo" />
-                    <span class="tw-self-center tw-text-xl tw-font-semibold tw-whitespace-nowrap dark:tw-text-white">Flowbite</span>
-                </a>
+                <Link href="/" class="tw-flex tw-items-center">
+                    <img src="/capsu_logo.png" class="tw-mr-3 tw-h-6 sm:tw-h-9" alt="Flowbite Logo" />
+                    <span class="tw-self-center tw-text-xl tw-font-semibold tw-whitespace-nowrap dark:tw-text-white">Capsu Pilar DRRM</span>
+                </Link>
                 <div class="tw-flex tw-items-center lg:tw-order-2">
                     <Link href="/login" class="tw-text-white tw-bg-blue-700 hover:tw-bg-blue-800 focus:tw-ring-4 focus:tw-ring-blue-300 tw-font-medium tw-rounded-lg tw-text-sm tw-px-4 lg:tw-px-5 tw-py-2 lg:tw-py-2.5 tw-mr-2 dark:tw-bg-blue-600 dark:hover:tw-bg-blue-700 focus:tw-outline-none dark:focus:tw-ring-blue-800">Login</Link>
                     <button
@@ -68,7 +68,6 @@
 <script setup>
     import { ref } from 'vue'
     import { Link } from '@inertiajs/inertia-vue3'
-    import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
     import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/solid'
 
     const navigation = [
