@@ -52,7 +52,6 @@ const submit = () => {
                     class="tw-mt-1 tw-block tw-w-full"
                     v-model="form.last_name"
                     required
-                    autofocus
                     autocomplete="last_name"
                 />
 
