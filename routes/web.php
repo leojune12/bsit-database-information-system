@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ use Inertia\Inertia;
 // });
 
 Route::resource('/', HomeController::class);
+
+Route::post('contact-us', [ContactUsController::class, 'index']);
 
 Route::group(['middleware' => ['auth', 'role:Admin']], function () {
 
