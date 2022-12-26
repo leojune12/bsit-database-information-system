@@ -91,7 +91,7 @@
         { name: 'Services', href: '#services' },
         { name: 'FAQ', href: '#faq' },
         { name: 'Contact', href: '#contact' },
-        { name: 'Cooments', href: '#comments' },
+        { name: 'Comments', href: '#comments' },
     ]
 
     const mobileMenuOpen = ref(false)
