@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactUsController;
 
 /*
@@ -29,6 +30,10 @@ use App\Http\Controllers\ContactUsController;
 Route::resource('/', HomeController::class);
 
 Route::post('contact-us', [ContactUsController::class, 'index']);
+// Route::post('comment', [CommentController::class, 'store']);
+// Route::get('comment', [CommentController::class, 'index']);
+
+Route::resource('comments', CommentController::class);
 
 Route::group(['middleware' => ['auth', 'role:Admin']], function () {
 
