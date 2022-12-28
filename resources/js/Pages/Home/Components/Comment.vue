@@ -39,7 +39,7 @@
             >
                 <CommentComponent
                     :comment="comment"
-                    v-on:refresh-comments="getComments(comments.path + '?page=' + comments.page)"
+                    v-on:refresh-comments="getComments(comments.path + '?page=' + comments.current_page)"
                 />
             </div>
 
@@ -174,6 +174,7 @@
     }
 
     function getComments(pageUrl = null) {
+        console.log(pageUrl)
         axios.get(pageUrl ?? '/comments')
         .then(function (response) {
 
