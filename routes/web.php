@@ -27,6 +27,10 @@ use App\Http\Controllers\ContactUsController;
 //     ]);
 // });
 
+if (App::environment('production')) {
+    URL::forceScheme('https');
+}
+
 Route::resource('/', HomeController::class);
 
 Route::post('contact-us', [ContactUsController::class, 'index']);
