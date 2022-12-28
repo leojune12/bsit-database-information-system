@@ -174,7 +174,6 @@
     }
 
     function getComments(pageUrl = null) {
-        console.log(pageUrl)
         axios.get(pageUrl ?? '/comments')
         .then(function (response) {
 
