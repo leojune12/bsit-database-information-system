@@ -33,6 +33,8 @@ Route::post('contact-us', [ContactUsController::class, 'index']);
 // Route::post('comment', [CommentController::class, 'store']);
 // Route::get('comment', [CommentController::class, 'index']);
 
+Route::post('comments/{id}/reply', [CommentController::class, 'reply']);
+
 Route::resource('comments', CommentController::class);
 
 Route::group(['middleware' => ['auth', 'role:Admin']], function () {

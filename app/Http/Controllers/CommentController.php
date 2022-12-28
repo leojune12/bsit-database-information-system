@@ -22,11 +22,18 @@ class CommentController extends Controller
 
     private function getData($request)
     {
-        $query = DB::table('comments');
+        // $query = DB::table('comments');
 
-        $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC');
+        // $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC');
 
-        return $query->paginate($request->perPage ?? 5);
+        // return $query->paginate($request->perPage ?? 5);
+
+        $comments = Comment::whereNull('parentable_id')
+            ->with('replies')
+            ->orderByDesc('id')
+            ->paginate(5);
+
+        return $comments;
     }
 
     /**
@@ -101,5 +108,22 @@ class CommentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function reply(Request $request, $id)
+    {
+        $reply = new Comment;
+
+        $reply->user_name = $request->username;
+
+        $reply->comment = $request->reply;
+
+        $reply->parentable_id = $id;
+
+        $reply->parentable_type = 'App\Models\Comment';
+
+        $reply->save();
+
+        return back();
     }
 }
