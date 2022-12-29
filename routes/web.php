@@ -41,11 +41,11 @@ Route::post('comments/{id}/reply', [CommentController::class, 'reply']);
 
 Route::resource('comments', CommentController::class);
 
-Route::group(['middleware' => ['auth', 'role:Admin']], function () {
+Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
 
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    })->name('dashboard');
 });
 
 require __DIR__.'/auth.php';
