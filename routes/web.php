@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactUsController;
 
@@ -34,8 +35,6 @@ if (App::environment('production')) {
 Route::resource('/', HomeController::class);
 
 Route::post('contact-us', [ContactUsController::class, 'index']);
-// Route::post('comment', [CommentController::class, 'store']);
-// Route::get('comment', [CommentController::class, 'index']);
 
 Route::post('comments/{id}/reply', [CommentController::class, 'reply']);
 
@@ -46,6 +45,8 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::resource('users', UserController::class);
 });
 
 require __DIR__.'/auth.php';

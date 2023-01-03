@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             // CategoryDatabaseSeeder::class,
             // SubcategoryDatabaseSeeder::class,
             // AddressDatabaseSeeder::class,
-            // UserDatabaseSeeder::class,
+            UserDatabaseSeeder::class,
         ]);
     }
 }
