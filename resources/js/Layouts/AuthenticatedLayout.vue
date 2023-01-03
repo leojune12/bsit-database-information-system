@@ -9,7 +9,7 @@
                 <div class="tw-grow">
                     <DashboardHeader />
                     <!-- Page Content -->
-                    <main>
+                    <main class="tw-px-4 sm:tw-px-6 lg:tw-px-12 tw-py-10">
                         <slot />
                     </main>
                 </div>
