@@ -81,13 +81,13 @@
                 </li>
             </ul>
             <div class="tw-flex tw-items-center tw-justify-center tw-gap-x-2">
-                <label for="per_page" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-whitespace-nowrap">Per Page</label>
+                <label for="per_page" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700 dark:tw-text-white tw-whitespace-nowrap">Per Page</label>
                 <select
                     v-model="currentPerPage.value"
                     id="per_page"
                     name="per_page"
                     autocomplete="per_page"
-                    class="tw-block tw-w-full tw-rounded-md tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-h-10 tw-pl-3 tw-pr-8 tw-shadow-sm focus:tw-border-blue-500 focus:tw-outline-none focus:tw-ring-blue-500 sm:tw-text-sm tw-text-gray-700 tw-w-16"
+                    class="tw-block tw-w-full tw-rounded-md tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-h-10 tw-pl-3 tw-pr-8 tw-shadow-sm focus:tw-border-blue-500 focus:tw-outline-none focus:tw-ring-blue-500 sm:tw-text-sm tw-text-gray-700 dark:tw-text-white md:tw-w-16"
                     @change="queryTable(false, true)"
                 >
                     <option value="10">10</option>

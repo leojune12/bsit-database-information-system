@@ -53,7 +53,7 @@
                                     type="button"
                                     @click="getComments(comments.first_page_url)"
                                     :disabled="comments.current_page == 1"
-                                    :class="[comments.current_page == 1 ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-l-md tw-border tw-border-gray-300 tw-bg-white tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                                    :class="[comments.current_page == 1 ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-l-md tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
                                     title="Last"
                                 >
                                     <ChevronDoubleLeftIcon
@@ -68,7 +68,7 @@
                                     type="button"
                                     @click="getComments(comments.prev_page_url)"
                                     :disabled="comments.current_page == 1"
-                                    :class="[comments.current_page == 1 ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 tw-bg-white tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                                    :class="[comments.current_page == 1 ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
                                     title="Previous"
                                 >
                                     <ChevronLeftIcon
@@ -83,7 +83,7 @@
                                     type="button"
                                     @click="getComments(comments.next_page_url)"
                                     :disabled="comments.current_page == comments.last_page"
-                                    :class="[comments.current_page == comments.last_page ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 tw-bg-white tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                                    :class="[comments.current_page == comments.last_page ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
                                     title="Next"
                                 >
                                     <ChevronRightIcon
@@ -98,7 +98,7 @@
                                     type="button"
                                     @click="getComments(comments.last_page_url)"
                                     :disabled="comments.current_page == comments.last_page"
-                                    :class="[comments.current_page == comments.last_page ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-r-md tw-border tw-border-gray-300 tw-bg-white tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                                    :class="[comments.current_page == comments.last_page ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-r-md tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
                                     title="Last"
                                 >
                                     <ChevronDoubleRightIcon
@@ -110,22 +110,22 @@
                         </ul>
                     </div>
                     <div>
-                        <p class="text-sm text-gray-700">
+                        <p class="tw-text-sm tw-text-gray-700 dark:tw-text-white">
                             Showing
                             {{ ' ' }}
-                            <span class="font-medium">
+                            <span class="tw-font-medium">
                                 {{ comments.from }}
                             </span>
                             {{ ' ' }}
                             to
                             {{ ' ' }}
-                            <span class="font-medium">
+                            <span class="tw-font-medium">
                                 {{ comments.to }}
                             </span>
                             {{ ' ' }}
                             of
                             {{ ' ' }}
-                            <span class="font-medium">
+                            <span class="tw-font-medium">
                                 {{ comments.total }}
                             </span>
                             {{ ' ' }}
