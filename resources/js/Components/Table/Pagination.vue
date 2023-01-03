@@ -7,7 +7,7 @@
                         type="button"
                         @click="onClickFirstPage"
                         :disabled="isInFirstPage"
-                        :class="[isInFirstPage ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-l-md tw-border tw-border-gray-300 tw-bg-white tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                        :class="[isInFirstPage ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-l-md tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
                         title="Last"
                     >
                         <ChevronDoubleLeftIcon
@@ -22,7 +22,7 @@
                         type="button"
                         @click="onClickPreviousPage"
                         :disabled="isInFirstPage"
-                        :class="[isInFirstPage ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 tw-bg-white tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                        :class="[isInFirstPage ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
                         title="Previous"
                     >
                         <ChevronLeftIcon
@@ -42,7 +42,7 @@
                         type="button"
                         :disabled="page.isDisabled"
                         @click="onClickPage(page.name)"
-                        :class="[page.isDisabled ? 'tw-border-blue-500 tw-bg-blue-50 tw-text-blue-600 tw-z-20' : 'tw-bg-white tw-text-gray-700 hover:tw-bg-gray-100 tw-border-gray-300', 'tw-relative tw-inline-flex tw-items-center tw-border tw-px-4 tw-h-10 tw-text-sm tw-font-medium tw-m-0']"
+                        :class="[page.isDisabled ? 'tw-border-blue-500 tw-bg-blue-50 tw-text-blue-600 tw-z-20' : 'tw-bg-white dark:tw-bg-gray-700 tw-text-gray-700 hover:tw-bg-gray-100 tw-border-gray-300', 'tw-relative tw-inline-flex tw-items-center tw-border tw-px-4 tw-h-10 tw-text-sm tw-font-medium tw-m-0']"
                     >
                         {{ page.name }}
                     </button>
@@ -55,7 +55,7 @@
                         type="button"
                         @click="onClickNextPage"
                         :disabled="isInLastPage"
-                        :class="[isInLastPage ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 tw-bg-white tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                        :class="[isInLastPage ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
                         title="Next"
                     >
                         <ChevronRightIcon
@@ -70,7 +70,7 @@
                         type="button"
                         @click="onClickLastPage"
                         :disabled="isInLastPage"
-                        :class="[isInLastPage ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-r-md tw-border tw-border-gray-300 tw-bg-white tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                        :class="[isInLastPage ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-r-md tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
                         title="Last"
                     >
                         <ChevronDoubleRightIcon
@@ -87,7 +87,7 @@
                     id="per_page"
                     name="per_page"
                     autocomplete="per_page"
-                    class="tw-block tw-w-full tw-rounded-md tw-border tw-border-gray-300 tw-bg-white tw-h-10 tw-pl-3 tw-pr-8 tw-shadow-sm focus:tw-border-blue-500 focus:tw-outline-none focus:tw-ring-blue-500 sm:tw-text-sm tw-text-gray-700 tw-w-16"
+                    class="tw-block tw-w-full tw-rounded-md tw-border tw-border-gray-300 tw-bg-white dark:tw-bg-gray-700 tw-h-10 tw-pl-3 tw-pr-8 tw-shadow-sm focus:tw-border-blue-500 focus:tw-outline-none focus:tw-ring-blue-500 sm:tw-text-sm tw-text-gray-700 tw-w-16"
                     @change="queryTable(false, true)"
                 >
                     <option value="10">10</option>
@@ -97,7 +97,7 @@
             </div>
         </div>
         <div>
-            <p class="tw-text-sm tw-text-gray-700">
+            <p class="tw-text-sm tw-text-gray-700 dark:tw-text-white">
                 Showing
                 {{ ' ' }}
                 <span class="tw-font-medium">
