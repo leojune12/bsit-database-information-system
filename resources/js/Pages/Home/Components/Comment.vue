@@ -44,94 +44,92 @@
             </div>
 
             <!-- Pagination -->
-            <div class="tw-px-6">
-                <div class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between tw-gap-y-3">
-                    <div class="tw-flex tw-gap-x-6 tw-flex-col md:tw-flex-row tw-gap-y-3">
-                        <ul class="tw-flex tw-items-center">
-                            <li class="tw-flex tw-items-center">
-                                <button
-                                    type="button"
-                                    @click="getComments(comments.first_page_url)"
-                                    :disabled="comments.current_page == 1"
-                                    :class="[comments.current_page == 1 ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-l-md tw-border tw-border-gray-300 dark:tw-border-gray-500 dark:tw-border-gray-500 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
-                                    title="Last"
-                                >
-                                    <ChevronDoubleLeftIcon
-                                        class="tw-block tw-h-4 tw-w-4"
-                                        aria-hidden="true"
-                                    />
-                                </button>
-                            </li>
+            <div class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between tw-gap-y-3">
+                <div class="tw-flex tw-gap-x-6 tw-flex-col md:tw-flex-row tw-gap-y-3">
+                    <ul class="tw-flex tw-items-center">
+                        <li class="tw-flex tw-items-center">
+                            <button
+                                type="button"
+                                @click="getComments(comments.first_page_url)"
+                                :disabled="comments.current_page == 1"
+                                :class="[comments.current_page == 1 ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-l-md tw-border tw-border-gray-300 dark:tw-border-gray-500 dark:tw-border-gray-500 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                                title="Last"
+                            >
+                                <ChevronDoubleLeftIcon
+                                    class="tw-block tw-h-4 tw-w-4"
+                                    aria-hidden="true"
+                                />
+                            </button>
+                        </li>
 
-                            <li class="tw-flex tw-items-center">
-                                <button
-                                    type="button"
-                                    @click="getComments(comments.prev_page_url)"
-                                    :disabled="comments.current_page == 1"
-                                    :class="[comments.current_page == 1 ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 dark:tw-border-gray-500 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
-                                    title="Previous"
-                                >
-                                    <ChevronLeftIcon
-                                        class="tw-block tw-h-4 tw-w-4"
-                                        aria-hidden="true"
-                                    />
-                                </button>
-                            </li>
+                        <li class="tw-flex tw-items-center">
+                            <button
+                                type="button"
+                                @click="getComments(comments.prev_page_url)"
+                                :disabled="comments.current_page == 1"
+                                :class="[comments.current_page == 1 ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 dark:tw-border-gray-500 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                                title="Previous"
+                            >
+                                <ChevronLeftIcon
+                                    class="tw-block tw-h-4 tw-w-4"
+                                    aria-hidden="true"
+                                />
+                            </button>
+                        </li>
 
-                            <li class="tw-flex tw-items-center">
-                                <button
-                                    type="button"
-                                    @click="getComments(comments.next_page_url)"
-                                    :disabled="comments.current_page == comments.last_page"
-                                    :class="[comments.current_page == comments.last_page ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 dark:tw-border-gray-500 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
-                                    title="Next"
-                                >
-                                    <ChevronRightIcon
-                                        class="tw-block tw-h-4 tw-w-4"
-                                        aria-hidden="true"
-                                    />
-                                </button>
-                            </li>
+                        <li class="tw-flex tw-items-center">
+                            <button
+                                type="button"
+                                @click="getComments(comments.next_page_url)"
+                                :disabled="comments.current_page == comments.last_page"
+                                :class="[comments.current_page == comments.last_page ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-border tw-border-gray-300 dark:tw-border-gray-500 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                                title="Next"
+                            >
+                                <ChevronRightIcon
+                                    class="tw-block tw-h-4 tw-w-4"
+                                    aria-hidden="true"
+                                />
+                            </button>
+                        </li>
 
-                            <li class="tw-flex tw-items-center">
-                                <button
-                                    type="button"
-                                    @click="getComments(comments.last_page_url)"
-                                    :disabled="comments.current_page == comments.last_page"
-                                    :class="[comments.current_page == comments.last_page ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-r-md tw-border tw-border-gray-300 dark:tw-border-gray-500 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
-                                    title="Last"
-                                >
-                                    <ChevronDoubleRightIcon
-                                        class="tw-block tw-h-4 tw-w-4"
-                                        aria-hidden="true"
-                                    />
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p class="tw-text-sm tw-text-gray-700 dark:tw-text-white">
-                            Showing
-                            {{ ' ' }}
-                            <span class="tw-font-medium">
-                                {{ comments.from }}
-                            </span>
-                            {{ ' ' }}
-                            to
-                            {{ ' ' }}
-                            <span class="tw-font-medium">
-                                {{ comments.to }}
-                            </span>
-                            {{ ' ' }}
-                            of
-                            {{ ' ' }}
-                            <span class="tw-font-medium">
-                                {{ comments.total }}
-                            </span>
-                            {{ ' ' }}
-                            results
-                        </p>
-                    </div>
+                        <li class="tw-flex tw-items-center">
+                            <button
+                                type="button"
+                                @click="getComments(comments.last_page_url)"
+                                :disabled="comments.current_page == comments.last_page"
+                                :class="[comments.current_page == comments.last_page ? 'tw-pointer-events-none tw-text-gray-500' : 'tw-text-gray-700', 'tw-relative tw-inline-flex tw-items-center tw-rounded-r-md tw-border tw-border-gray-300 dark:tw-border-gray-500 tw-bg-white dark:tw-bg-gray-700 tw-px-3 tw-h-10 tw-text-sm tw-font-medium hover:tw-bg-gray-100 focus:tw-z-20']"
+                                title="Last"
+                            >
+                                <ChevronDoubleRightIcon
+                                    class="tw-block tw-h-4 tw-w-4"
+                                    aria-hidden="true"
+                                />
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="tw-text-sm tw-text-gray-700 dark:tw-text-white">
+                        Showing
+                        {{ ' ' }}
+                        <span class="tw-font-medium">
+                            {{ comments.from ?? '0' }}
+                        </span>
+                        {{ ' ' }}
+                        to
+                        {{ ' ' }}
+                        <span class="tw-font-medium">
+                            {{ comments.to ?? '0' }}
+                        </span>
+                        {{ ' ' }}
+                        of
+                        {{ ' ' }}
+                        <span class="tw-font-medium">
+                            {{ comments.total }}
+                        </span>
+                        {{ ' ' }}
+                        results
+                    </p>
                 </div>
             </div>
         </div>
