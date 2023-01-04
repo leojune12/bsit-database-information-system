@@ -43,7 +43,6 @@
                     </button>
                 </div>
                 <div
-                    id="mobile-menu-2"
                     class="tw-hidden tw-justify-between tw-items-center tw-w-full lg:tw-flex lg:tw-w-auto lg:tw-order-1"
                 >
                     <ul class="tw-flex tw-flex-col tw-mt-4 tw-font-medium lg:tw-flex-row lg:tw-space-x-8 lg:tw-mt-0">
@@ -62,7 +61,7 @@
                     id="mobile-menu-2"
                     class="lg:tw-hidden tw-justify-between tw-items-center tw-w-full tw-flex lg:tw-w-auto lg:tw-order-1"
                 >
-                    <ul class="tw-flex tw-flex-col tw-mt-4 tw-font-medium lg:tw-flex-row lg:tw-space-x-8 lg:tw-mt-0">
+                    <ul class="tw-flex tw-flex-col tw-mt-4 tw-font-medium lg:tw-flex-row lg:tw-space-x-8 lg:tw-mt-0 tw-w-full">
                         <li
                             v-for="item in navigation"
                             :key="item.namespace"
