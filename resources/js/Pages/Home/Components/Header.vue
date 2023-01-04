@@ -4,7 +4,7 @@
             <div class="tw-flex tw-flex-wrap tw-justify-between tw-items-center tw-mx-auto tw-max-w-screen-xl">
                 <Link href="/" class="tw-flex tw-items-center">
                     <img src="/capsu_logo.png" class="tw-mr-3 tw-h-6 sm:tw-h-9" alt="Flowbite Logo" />
-                    <span class="tw-self-center tw-text-xl tw-font-semibold tw-whitespace-nowrap dark:tw-text-white">Capsu Pilar DRRM</span>
+                    <span class="tw-hidden sm:tw-block tw-self-center tw-text-xl tw-font-semibold tw-whitespace-nowrap dark:tw-text-white">Capsu Pilar DRRM</span>
                 </Link>
                 <div class="tw-flex tw-items-center lg:tw-order-2">
                     <Link
