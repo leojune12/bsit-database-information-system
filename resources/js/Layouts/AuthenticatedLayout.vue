@@ -4,7 +4,7 @@
             <SideNav />
         </div>
         <div class="tw-flex">
-            <div class="tw-hidden md:tw-block tw-w-72"></div>
+            <div class="tw-hidden md:tw-block tw-w-72 tw-shrink-0"></div>
             <div class="tw-grow">
                 <DashboardHeader />
                 <!-- Page Content -->
