@@ -21,7 +21,15 @@ class UserFactory extends Factory
         return [
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
+            'middle_name' => fake()->lastName(),
+            'date_of_birth' => fake()->dateTimeBetween('-30 years', '-20 years'),
+
             'email' => fake()->unique()->safeEmail(),
+            'contact_number' => fake()->phoneNumber(),
+            'guardian_name' => fake()->name(),
+            'guardian_relationship' => fake()->word(),
+            'guardian_contact_number' => fake()->phoneNumber(),
+
             'email_verified_at' => now(),
             'password' => Hash::make("pw@12345"),
             'remember_token' => Str::random(10),

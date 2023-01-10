@@ -5,7 +5,11 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use App\Models\Address\City;
 use Illuminate\Database\Seeder;
+use App\Models\Address\Barangay;
+use App\Models\Address\Province;
+use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Model;
 
 class UserDatabaseSeeder extends Seeder
@@ -21,9 +25,25 @@ class UserDatabaseSeeder extends Seeder
 
         app()['cache']->forget('spatie.permission.cache');
 
-        User::factory(100)->create()->each(function($user) {
+        $roles = Role::all()->pluck('name');
 
-            $user->assignRole('Admin');
+        User::factory(100)->create()->each(function($user) use ($roles) {
+
+            $user->assignRole($roles[rand(0, 2)]);
+
+            $provinces = Province::where('regCode', 6)->get();
+            $province = $provinces->random();
+            $user->province_id = $province->provCode;
+
+            $cities = City::where('provCode', 619)->get();
+            $city = $cities->random();
+            $user->city_id = $city->citymunCode;
+
+            $barangays = Barangay::where('citymunCode', $city->citymunCode)->get();
+            $barangay = $barangays->random();
+            $user->barangay_id = $barangay->brgyCode;
+
+            $user->save();
         });
     }
 }
