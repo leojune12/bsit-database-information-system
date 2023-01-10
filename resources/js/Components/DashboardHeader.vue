@@ -45,14 +45,14 @@
                                 v-for="item in navigation"
                                 :key="item.name" as="a"
                                 :href="item.href"
-                                :class="[$page.url.startsWith(item.href) ? 'tw-bg-blue-500 tw-text-white' : 'tw-text-gray-700 hover:tw-bg-blue-50', 'tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-flex tw-items-center']"
+                                :class="[$page.url.startsWith(item.href) ? 'tw-bg-rose-800 tw-text-white' : 'tw-text-gray-700 hover:tw-bg-rose-50', 'tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-flex tw-items-center']"
                                 :aria-current="item.current ? 'page' : undefined"
                             >
-                                <component
+                                <!-- <component
                                     :is="item.icon"
                                     class="tw-block tw-h-6 tw-w-6 tw-mr-3"
                                     aria-hidden="true"
-                                />
+                                /> -->
                                 {{ item.name }}
                             </Link>
                         </div>
@@ -101,23 +101,28 @@
             icon: PresentationChartBarIcon,
         },
         {
-            name: 'Chats',
-            href: '/chats',
-            icon: ChatBubbleLeftEllipsisIcon,
-        },
-        {
-            name: 'Comments',
-            href: '/comments',
-            icon: ChatBubbleLeftRightIcon,
-        },
-        {
-            name: 'Replies',
-            href: '/replies',
-            icon: ChatBubbleBottomCenterTextIcon,
-        },
-        {
             name: 'Users',
             href: '/users',
+            icon: UsersIcon,
+        },
+        {
+            name: 'Students',
+            href: '/students',
+            icon: UsersIcon,
+        },
+        {
+            name: 'Subjects',
+            href: '/students',
+            icon: UsersIcon,
+        },
+        {
+            name: 'Certificates and Awards',
+            href: '/certificates-and-awards',
+            icon: UsersIcon,
+        },
+        {
+            name: 'Alumni',
+            href: '/alumni',
             icon: UsersIcon,
         },
     ]
