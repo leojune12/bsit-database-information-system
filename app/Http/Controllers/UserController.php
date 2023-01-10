@@ -23,13 +23,20 @@ class UserController extends Controller
     {
         $query = DB::table('users');
 
+        $query->where('deleted_at', null);
+
         $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC');
 
+        $query->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id');
+
+        $query->join('roles', 'model_has_roles.role_id', '=', 'roles.id');
+
         $query->select(
-            'id',
-            'first_name',
-            'last_name',
-            'email',
+            'users.id',
+            'users.first_name',
+            'users.last_name',
+            'users.email',
+            'roles.name as role'
         );
 
         return $query->paginate($request->perPage ?? 10);
@@ -78,6 +85,8 @@ class UserController extends Controller
     public function show($id)
     {
         $model = User::find($id);
+
+        $model->load('province', 'city', 'barangay');
 
         // $model->load('roles:id,name');
         $model['date_added'] = DateService::viewDate($model->created_at);
