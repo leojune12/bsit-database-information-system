@@ -35,7 +35,7 @@ class UserDatabaseSeeder extends Seeder
             $province = $provinces->random();
             $user->province_id = $province->provCode;
 
-            $cities = City::where('provCode', 619)->get();
+            $cities = City::where('provCode', $province->provCode)->get();
             $city = $cities->random();
             $user->city_id = $city->citymunCode;
 
