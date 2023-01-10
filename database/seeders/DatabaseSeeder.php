@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             CommentSeeder::class,
             // CategoryDatabaseSeeder::class,
             // SubcategoryDatabaseSeeder::class,
-            // AddressDatabaseSeeder::class,
+            AddressDatabaseSeeder::class,
             UserDatabaseSeeder::class,
         ]);
     }
