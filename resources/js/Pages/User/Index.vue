@@ -17,7 +17,7 @@
         </div>
         <div class="tw-overflow-x-auto tw-mb-4">
             <table class="tw-min-w-full">
-                <thead class="tw-border tw-bg-gray-600 tw-text-sm tw-font-medium tw-text-white">
+                <thead class="tw-border tw-bg-rose-800 tw-text-sm tw-font-medium tw-text-white">
                     <tr>
                         <th
                             v-for="header in tableHeader"
@@ -53,14 +53,16 @@
                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                     title="View"
                                 >
-                                    <EyeIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" />
+                                    <!-- <EyeIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" /> -->
+                                    View
                                 </Link>
                                 <Link
                                     :href="url + '/' + item.id + '/edit'"
                                     class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
                                     title="Edit"
                                 >
-                                    <PencilSquareIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" />
+                                    <!-- <PencilSquareIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" /> -->
+                                    Edit
                                 </Link>
                                 <a
                                     href="#"
@@ -68,7 +70,8 @@
                                     title="Delete"
                                     @click="confirmDelete(item.id)"
                                 >
-                                    <TrashIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" />
+                                    <!-- <TrashIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" /> -->
+                                    Delete
                                 </a>
                             </div>
                         </td>
