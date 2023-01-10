@@ -1,6 +1,6 @@
 <template>
     <header>
-        <nav class="tw-bg-white tw-border-gray-200 tw-px-4 lg:tw-px-6 tw-py-2.5 dark:tw-bg-gray-800 md:tw-h-16 tw-h-auto tw-flex tw-flex-wrap tw-justify-between tw-items-center">
+        <nav class="tw-bg-white tw-border-gray-200 tw-px-4 lg:tw-px-6 tw-py-2.5 dark:tw-bg-gray-800 md:tw-h-16 tw-h-auto tw-flex tw-flex-wrap tw-justify-between tw-items-center tw-shadow">
             <div class="md:tw-hidden tw-flex tw-justify-start tw-items-center tw-w-full">
                 <Disclosure as="div" class="tw-bg-white tw-w-full" v-slot="{ open }">
                     <div class="tw-px-2s sm:tw-px-6 lg:tw-px-8 tw-w-full">
