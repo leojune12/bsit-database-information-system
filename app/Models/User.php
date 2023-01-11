@@ -19,9 +19,20 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
 
     protected $fillable = [
+        'id_number',
         'first_name',
+        'middle_name',
         'last_name',
+        'suffix_name',
+        'date_of_birth',
         'email',
+        'contact_number',
+        'guardian_name',
+        'guardian_relationship',
+        'guardian_contact_number',
+        'province_id',
+        'city_id',
+        'barangay_id',
         'password',
     ];
 

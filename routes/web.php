@@ -1,6 +1,7 @@
 <?php
 
 use Inertia\Inertia;
+use App\Services\AddressService;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\HomeController;
@@ -36,11 +37,22 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Route::post('contact-us', [ContactUsController::class, 'index']);
+Route::get('address/get-provinces', function() {
 
-Route::post('comments/{id}/reply', [CommentController::class, 'reply']);
+    return AddressService::getProvinces();
+});
 
-Route::resource('comments', CommentController::class);
+Route::get('address/get-barangays-per-city-muniicpality/{city_code}', function($city_code) {
+
+    return AddressService::getBarangaysPerCity($city_code);
+});
+
+Route::get('address/get-cities-municipalities-per-province/{province_code}', function($province_code) {
+
+    return AddressService::getCityPerProvince($province_code);
+});
+
+Route::post('/users/store/student', [UserController::class, 'storeStudent']);
 
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
 

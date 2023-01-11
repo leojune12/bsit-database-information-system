@@ -4248,7 +4248,7 @@ class AddressDatabaseSeeder extends Seeder
             [34,60600000,6,606,"ANTIQUE"],
             [35,61900000,6,619,"CAPIZ"],
             [36,63000000,6,630,"ILOILO"],
-            [37,64500000,6,645,"NEGROS OCCIDENTAL"],
+            // [37,64500000,6,645,"NEGROS OCCIDENTAL"],
             [38,67900000,6,679,"GUIMARAS"],
             [39,71200000,7,712,"BOHOL"],
             [40,72200000,7,722,"CEBU"],

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\DateService;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -69,6 +70,59 @@ class UserController extends Controller
             $user = User::create($request->except(['role']));
 
             $user->syncRoles(['Admin']);
+
+            DB::commit();
+
+            return back();
+        } catch (Throwable $e) {
+
+            DB::rollBack();
+
+            return $e;
+            // return back();
+        }
+    }
+
+    public function storeStudent(Request $request)
+    {
+        $request->validate([
+            'id_number' => [
+                'required',
+                'numeric',
+                'max_digits:10',
+                Rule::unique('users'),
+            ],
+            'first_name' => 'required|max:255',
+            'middle_name' => 'nullable|max:255',
+            'last_name' => 'required|max:255',
+            'suffix_name' => 'required|max:255',
+            'date_of_birth' => 'required|max:10|date',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users'),
+            ],
+            'contact_number' => 'nullable|max:255',
+            'guardian_name' => 'nullable|max:255',
+            'guardian_relationship' => 'nullable|max:255',
+            'guardian_contact_number' => 'nullable|max:255',
+            'province_id' => 'nullable',
+            'city_id' => 'nullable',
+            'barangay_id' => 'nullable',
+            'password' => ['required', 'confirmed', Password::defaults()],
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+
+            $request['password'] = Hash::make($request->password);
+
+            $user = User::create($request->all());
+
+            $user->save();
+
+            $user->syncRoles(['Student']);
 
             DB::commit();
 
