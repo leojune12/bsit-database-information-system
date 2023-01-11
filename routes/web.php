@@ -54,7 +54,7 @@ Route::get('address/get-cities-municipalities-per-province/{province_code}', fun
 
 Route::post('/users/store/student', [UserController::class, 'storeStudent']);
 
-Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
+Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Student']], function () {
 
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');

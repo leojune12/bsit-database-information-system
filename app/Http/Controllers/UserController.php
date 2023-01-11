@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Services\DateService;
 use Illuminate\Validation\Rule;
+use App\Models\Address\Province;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -53,13 +54,23 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required|max:255',
+            'middle_name' => 'nullable|max:255',
+            'last_name' => 'required|max:255',
+            'suffix_name' => 'nullable|max:255',
+            'date_of_birth' => 'required|max:10|date',
             'email' => [
                 'required',
                 'email',
                 Rule::unique('users'),
             ],
+            'contact_number' => 'nullable|max:255',
+            'guardian_name' => 'nullable|max:255',
+            'guardian_relationship' => 'nullable|max:255',
+            'guardian_contact_number' => 'nullable|max:255',
+            'province_id' => 'nullable',
+            'city_id' => 'nullable',
+            'barangay_id' => 'nullable',
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
@@ -67,7 +78,11 @@ class UserController extends Controller
 
         try {
 
-            $user = User::create($request->except(['role']));
+            $request['password'] = Hash::make($request->password);
+
+            $user = User::create($request->all());
+
+            $user->save();
 
             $user->syncRoles(['Admin']);
 
@@ -95,7 +110,7 @@ class UserController extends Controller
             'first_name' => 'required|max:255',
             'middle_name' => 'nullable|max:255',
             'last_name' => 'required|max:255',
-            'suffix_name' => 'required|max:255',
+            'suffix_name' => 'nullable|max:255',
             'date_of_birth' => 'required|max:10|date',
             'email' => [
                 'required',
@@ -163,21 +178,56 @@ class UserController extends Controller
     {
         $model = User::find($id);
 
+        if ($model->roles[0]->name == "Student") {
+
+            $request->validate([
+                'id_number' => [
+                    'required',
+                    'numeric',
+                    'max_digits:10',
+                    Rule::unique('users')->ignore($model),
+                ],
+            ]);
+        } else {
+
+            $request->validate([
+                'id_number' => 'nullable'
+            ]);
+        }
+
         $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required|max:255',
+            'middle_name' => 'nullable|max:255',
+            'last_name' => 'required|max:255',
+            'suffix_name' => 'nullable|max:255',
+            'date_of_birth' => 'required|max:10|date',
             'email' => [
                 'required',
                 'email',
                 Rule::unique('users')->ignore($model),
             ],
+            'contact_number' => 'nullable|max:255',
+            'guardian_name' => 'nullable|max:255',
+            'guardian_relationship' => 'nullable|max:255',
+            'guardian_contact_number' => 'nullable|max:255',
+            'province_id' => 'nullable',
+            'city_id' => 'nullable',
+            'barangay_id' => 'nullable',
+            'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
 
         DB::beginTransaction();
 
         try {
 
-            $model->update($request->all());
+            if ($request->filled('password')) {
+                $request['password'] = Hash::make($request->password);
+
+                $model->update($request->all());
+            } else {
+
+                $model->update($request->except('password'));
+            }
 
             DB::commit();
 
