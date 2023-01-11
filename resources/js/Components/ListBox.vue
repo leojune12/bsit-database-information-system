@@ -54,7 +54,7 @@
         resetIndex: {
             type: Boolean,
             default: false,
-        }
+        },
     })
 
     const emit = defineEmits(['update:modelValue', 'update:resetIndex'])
@@ -76,6 +76,16 @@
 
         selected.value = selectedIndex < 1 ? listboxItems.value[0] : listboxItems.value[selectedIndex]
     }
+
+    watch(() => _.cloneDeep(props.items), (newValue, oldValue) => {
+
+        if (!!props.modelValue) {
+
+        const selectedIndex = listboxItems.value.findIndex(item => item.id == parseInt(props.modelValue))
+
+        selected.value = selectedIndex < 1 ? listboxItems.value[0] : listboxItems.value[selectedIndex]
+        }
+    })
 
     watch(() => _.cloneDeep(props.resetIndex), (newValue, oldValue) => {
         selected.value = listboxItems.value[0]
