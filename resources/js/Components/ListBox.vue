@@ -5,7 +5,7 @@
         @update:modelValue="value => emit('update:modelValue', value)"
     >
         <div class="tw-relative tw-mt-1">
-            <ListboxButton class="tw-relative tw-w-full tw-cursor-default tw-rounded-md tw-border tw-border-gray-300 tw-bg-white tw-h-10 tw-pl-3 tw-pr-10 tw-text-left tw-shadow-sm focus:tw-border-indigo-500 focus:tw-outline-none focus:tw-ring-1 focus:tw-ring-indigo-500 sm:tw-text-sm">
+            <ListboxButton class="tw-relative tw-w-full tw-cursor-default tw-rounded-md tw-border tw-border-gray-300 tw-bg-white tw-pl-3 tw-pr-10 tw-text-left tw-shadow-sm focus:tw-border-pink-800 focus:tw-outline-none focus:tw-ring-1 focus:tw-ring-pink-800 sm:tw-text-sm tw-h-11">
                 <span class="tw-flex tw-items-center">
                     <span class="tw-block tw-truncate">{{ selected.name }}</span>
                 </span>
