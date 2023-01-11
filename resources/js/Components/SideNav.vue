@@ -2,8 +2,9 @@
     <aside class="tw-fixed md:tw-block tw-hidden tw-top-0 tw-left-0 tw-w-72 tw-h-full" aria-label="Sidenav">
         <div class="tw-overflow-y-auto tw-py-b tw-h-full tw-bg-gradient-to-b tw-from-pink-900 tw-to-pink-700 tw-border-r tw-border-gray-200 dark:tw-bg-gray-800 dark:tw-border-gray-700">
             <div class="tw-flex tw-justify-center tw-h-16">
-                <Link :href="route('dashboard')" class="tw-flex tw-items-center">
+                <Link :href="route('dashboard')" class="tw-flex tw-items-center tw-gap-x-3">
                     <img src="/capsu_logo.png" class="tw-h-6 sm:tw-h-12" alt="Flowbite Logo" />
+                    <img src="/it_logo.jpeg" class="tw-h-6 sm:tw-h-12" alt="Flowbite Logo" />
                     <!-- <span class="tw-self-center tw-text-xl tw-font-semibold tw-whitespace-nowrap dark:tw-text-white">Capsu Pilar</span> -->
                 </Link>
             </div>
