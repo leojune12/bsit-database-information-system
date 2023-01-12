@@ -7,6 +7,8 @@
     import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
     import ListBox from '@/Components/ListBox.vue'
     import { ref, onMounted, watch } from 'vue'
+    import Swal from 'sweetalert2'
+    import { Inertia } from '@inertiajs/inertia'
 
     const form = useForm({
         id_number: null,
@@ -56,8 +58,18 @@
     })
 
     const submit = () => {
-        form.post('/users/store/student', {
-            onFinish: () => form.reset('password', 'password_confirmation'),
+        form.post('students/store', {
+            // onFinish: () => form.reset('password', 'password_confirmation'),
+            onSuccess: () => {
+                Swal.fire({
+                    title: 'Created successfully',
+                    // text: "Created successfully.",
+                    // icon: 'success',
+                    confirmButtonColor: '#16a34a',
+                }).then(() => {
+                    Inertia.get('/login')
+                })
+            },
         });
     }
 
@@ -301,11 +313,11 @@
                     </div>
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                         <div>
-                            <InputLabel for="date_of_birth" value="Birthday (yyyy-mm-dd)" />
+                            <InputLabel for="date_of_birth" value="Birthday" />
 
                             <TextInput
                                 id="date_of_birth"
-                                type="text"
+                                type="date"
                                 class="tw-mt-1 tw-block tw-w-full"
                                 v-model="form.date_of_birth"
                                 required

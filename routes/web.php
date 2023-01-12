@@ -7,6 +7,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\IdNumberController;
 use App\Http\Controllers\ContactUsController;
 
@@ -53,7 +54,7 @@ Route::get('address/get-cities-municipalities-per-province/{province_code}', fun
     return AddressService::getCityPerProvince($province_code);
 });
 
-Route::post('/users/store/student', [UserController::class, 'storeStudent']);
+Route::post('/students/store', [StudentController::class, 'store']);
 
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Student']], function () {
 
