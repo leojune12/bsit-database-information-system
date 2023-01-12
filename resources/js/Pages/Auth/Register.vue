@@ -62,7 +62,7 @@
             // onFinish: () => form.reset('password', 'password_confirmation'),
             onSuccess: () => {
                 Swal.fire({
-                    title: 'Created successfully',
+                    title: 'Welcome, ' + form.first_name,
                     // text: "Created successfully.",
                     // icon: 'success',
                     confirmButtonColor: '#16a34a',

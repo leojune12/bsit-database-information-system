@@ -12,6 +12,7 @@
                 <li
                     v-for="item in navigation"
                     :key="item.name"
+                    :class="item.for == null || item.for == $page.props.auth.user.roles[0].name ? '' : 'tw-hidden'"
                 >
                     <Link
                         :href="item.href"
@@ -37,40 +38,47 @@
     import { PresentationChartBarIcon, ChatBubbleLeftEllipsisIcon, ChatBubbleLeftRightIcon, ChatBubbleBottomCenterTextIcon, UsersIcon } from '@heroicons/vue/24/outline'
 
     const navigation = [
-    {
+        {
             name: 'Dashboard',
             href: '/dashboard',
             icon: PresentationChartBarIcon,
+            for: null
         },
         {
             name: 'Users',
             href: '/users',
             icon: UsersIcon,
+            for: 'Admin'
         },
         {
             name: 'Students',
             href: '/students',
             icon: UsersIcon,
+            for: 'Admin'
         },
         {
             name: 'Subjects',
             href: '/subjects',
             icon: UsersIcon,
+            for: 'Admin'
         },
         {
             name: 'Certificates and Awards',
             href: '/certificates-and-awards',
             icon: UsersIcon,
+            for: 'Admin'
         },
         {
             name: 'Alumni',
             href: '/alumni',
             icon: UsersIcon,
+            for: 'Admin'
         },
         {
             name: 'ID Numbers',
             href: '/id-numbers',
             icon: UsersIcon,
+            for: 'Admin'
         },
     ]
 </script>

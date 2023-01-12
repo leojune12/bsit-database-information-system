@@ -45,7 +45,7 @@
                                 v-for="item in navigation"
                                 :key="item.name" as="a"
                                 :href="item.href"
-                                :class="[$page.url.startsWith(item.href) ? 'tw-bg-rose-800 tw-text-white' : 'tw-text-gray-700 hover:tw-bg-rose-50', 'tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-flex tw-items-center']"
+                                :class="[$page.url.startsWith(item.href) ? 'tw-bg-rose-800 tw-text-white' : 'tw-text-gray-700 hover:tw-bg-rose-50', item.for == null || item.for == $page.props.auth.user.roles[0].name ? '' : 'tw-hidden', 'tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-flex tw-items-center']"
                                 :aria-current="item.current ? 'page' : undefined"
                             >
                                 <!-- <component
@@ -99,36 +99,43 @@
             name: 'Dashboard',
             href: '/dashboard',
             icon: PresentationChartBarIcon,
+            for: null
         },
         {
             name: 'Users',
             href: '/users',
             icon: UsersIcon,
+            for: 'Admin'
         },
         {
             name: 'Students',
             href: '/students',
             icon: UsersIcon,
+            for: 'Admin'
         },
         {
             name: 'Subjects',
             href: '/subjects',
             icon: UsersIcon,
+            for: 'Admin'
         },
         {
             name: 'Certificates and Awards',
             href: '/certificates-and-awards',
             icon: UsersIcon,
+            for: 'Admin'
         },
         {
             name: 'Alumni',
             href: '/alumni',
             icon: UsersIcon,
+            for: 'Admin'
         },
         {
             name: 'ID Numbers',
             href: '/id-numbers',
             icon: UsersIcon,
+            for: 'Admin'
         },
     ]
 </script>
