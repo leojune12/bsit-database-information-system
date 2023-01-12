@@ -105,7 +105,9 @@ class UserController extends Controller
                 'required',
                 'numeric',
                 'max_digits:10',
+                'min_digits:10',
                 Rule::unique('users'),
+                'exists:id_numbers',
             ],
             'first_name' => 'required|max:255',
             'middle_name' => 'nullable|max:255',
@@ -157,12 +159,11 @@ class UserController extends Controller
 
         $model->load('province', 'city', 'barangay');
 
-        // $model->load('roles:id,name');
         $model['date_added'] = DateService::viewDate($model->created_at);
 
-        $this->response_array["model"] = $model;
-
-        return Inertia::render('User/Show', $this->response_array);
+        return Inertia::render('User/Show', [
+            'model' => $model,
+        ]);
     }
 
     public function edit($id)
@@ -185,6 +186,7 @@ class UserController extends Controller
                     'required',
                     'numeric',
                     'max_digits:10',
+                    'min_digits:10',
                     Rule::unique('users')->ignore($model),
                 ],
             ]);
