@@ -7,6 +7,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\IdNumberController;
 use App\Http\Controllers\ContactUsController;
 
 /*
@@ -61,6 +62,8 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Student']], funct
     })->name('dashboard');
 
     Route::resource('users', UserController::class);
+
+    Route::resource('id-numbers', IdNumberController::class);
 });
 
 require __DIR__.'/auth.php';

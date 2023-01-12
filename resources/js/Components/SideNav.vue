@@ -67,5 +67,10 @@
             href: '/alumni',
             icon: UsersIcon,
         },
+        {
+            name: 'ID Numbers',
+            href: '/id-numbers',
+            icon: UsersIcon,
+        },
     ]
 </script>

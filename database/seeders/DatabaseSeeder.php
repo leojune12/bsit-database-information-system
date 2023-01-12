@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             // CategoryDatabaseSeeder::class,
             // SubcategoryDatabaseSeeder::class,
             AddressDatabaseSeeder::class,
+            IdNumberSeeder::class,
             UserDatabaseSeeder::class,
         ]);
     }
