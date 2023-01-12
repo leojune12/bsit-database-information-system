@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Services\DateService;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
@@ -99,6 +100,8 @@ class StudentController extends Controller
             $user->syncRoles(['Student']);
 
             DB::commit();
+
+            Auth::login($user);
 
             return back();
         } catch (Throwable $e) {
