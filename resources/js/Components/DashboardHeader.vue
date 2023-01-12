@@ -112,7 +112,7 @@
         },
         {
             name: 'Subjects',
-            href: '/students',
+            href: '/subjects',
             icon: UsersIcon,
         },
         {
