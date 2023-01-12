@@ -5,11 +5,7 @@
         <div class="tw-bg-white tw-shadow-lg sm:tw-rounded-lg tw-mb-5 tw-p-4 sm:tw-p-8">
             <div class="md:tw-grid md:tw-grid-cols-2">
                 <header>
-                    <h2 class="tw-text-lg tw-font-medium tw-text-gray-900">User Information</h2>
-
-                    <p class="tw-mt-1 tw-text-sm tw-text-gray-600">
-                        Update user's profile information and email address.
-                    </p>
+                    <h2 class="tw-text-lg tw-font-medium tw-text-gray-900">Update User</h2>
                 </header>
             </div>
             <form @submit.prevent="submitForm()" class="tw-mt-6 tw-space-y-6 md:tw-col-span-1">
@@ -96,11 +92,11 @@
                 </div>
                 <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                     <div>
-                        <InputLabel for="date_of_birth" value="Birthday (yyyy-mm-dd)" />
+                        <InputLabel for="date_of_birth" value="Birthday" />
 
                         <TextInput
                             id="date_of_birth"
-                            type="text"
+                            type="date"
                             class="tw-mt-1 tw-block tw-w-full"
                             v-model="form.date_of_birth"
                             required
@@ -254,7 +250,7 @@
 
                 <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-4">
                     <LinkComponent
-                        :href="url"
+                        :href="'/' + url"
                         type="secondary"
                     >
                         Back
@@ -286,7 +282,7 @@
         roles: Array,
     });
 
-    const url = '/users'
+    const url = 'users'
 
     const form = useForm({
         id_number: props.model.id_number,
@@ -338,13 +334,13 @@
     })
 
     function submitForm() {
-        form.patch(route('users.update', props.model.id), {
+        form.patch(route(url + '.update', props.model.id), {
             preserveScroll: true,
             onSuccess: () => {
                 Swal.fire({
-                    title: 'Success',
-                    text: "Updated successfully.",
-                    icon: 'success',
+                    title: 'Updated successfully',
+                    // text: "Updated successfully.",
+                    // icon: 'success',
                     confirmButtonColor: '#16a34a',
                 }).then(() => {
                     Inertia.get(url)

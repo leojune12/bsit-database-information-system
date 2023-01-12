@@ -5,7 +5,7 @@
         <div class="tw-bg-white tw-shadow sm:tw-rounded-lg tw-mb-5 tw-p-4 sm:tw-p-8">
             <div class="md:tw-grid md:tw-grid-cols-2">
                 <header>
-                    <h2 class="tw-text-lg tw-font-medium tw-text-gray-900">User Information</h2>
+                    <h2 class="tw-text-lg tw-font-medium tw-text-gray-900">Create User</h2>
                 </header>
             </div>
             <div class="">
@@ -73,11 +73,11 @@
                     </div>
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                         <div>
-                            <InputLabel for="date_of_birth" value="Birthday (yyyy-mm-dd)" />
+                            <InputLabel for="date_of_birth" value="Birthday" />
 
                             <TextInput
                                 id="date_of_birth"
-                                type="text"
+                                type="date"
                                 class="tw-mt-1 tw-block tw-w-full"
                                 v-model="form.date_of_birth"
                                 required
@@ -232,7 +232,7 @@
                     </div>
                     <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-4">
                         <LinkComponent
-                            :href="url"
+                            :href="'/' + url"
                             type="secondary"
                         >
                             Back
@@ -260,7 +260,7 @@
     import { ref, onMounted, watch } from 'vue'
     import ListBox from '@/Components/ListBox.vue'
 
-    const url = '/users'
+    const url = 'users'
 
     const form = useForm({
         id_number: null,
@@ -310,13 +310,13 @@
     })
 
     function submitForm() {
-        form.post(route('users.store'), {
+        form.post(route(url + '.store'), {
             preserveScroll: true,
             onSuccess: () => {
                 Swal.fire({
-                    title: 'Success',
-                    text: "Created successfully.",
-                    icon: 'success',
+                    title: 'Created successfully',
+                    // text: "Created successfully.",
+                    // icon: 'success',
                     confirmButtonColor: '#16a34a',
                 }).then(() => {
                     Inertia.get(url)

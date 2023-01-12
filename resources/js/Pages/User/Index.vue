@@ -37,6 +37,9 @@
                         <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
                             {{ item.id }}
                         </td>
+                        <!-- <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
+                            {{ item.id_number }}
+                        </td> -->
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.first_name }}
                         </td>
@@ -112,6 +115,10 @@
             title: 'ID',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
+        // {
+        //     title: 'ID Number',
+        //     class: 'tw-py-3 tw-px-6 tw-text-left',
+        // },
         {
             title: 'First Name',
             class: 'tw-py-3 tw-px-6 tw-text-left',
@@ -134,7 +141,7 @@
         },
     ])
 
-    const url = '/users'
+    const url = 'users'
 
     const form = useForm({
         //
@@ -166,7 +173,7 @@
                 id_array: id_array,
             }))
             .delete(
-            route('users.destroy', id),
+            route(url + '.destroy', id),
             {
                 preserveScroll: true,
                 onSuccess: () => {

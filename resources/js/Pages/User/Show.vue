@@ -84,13 +84,13 @@
             </div>
             <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-4 tw-py-6 sm:tw-px-6 tw-px-4">
                 <LinkComponent
-                    :href="url"
+                    :href="'/' + url"
                     type="secondary"
                 >
                     Back
                 </LinkComponent>
                 <LinkComponent
-                :href="url + '/' + props.model.id + '/edit'"
+                :href="'/' + url + '/' + props.model.id + '/edit'"
                     type="primary"
                 >
                     Update
@@ -110,7 +110,7 @@
         model: Object,
     })
 
-    const url = '/users'
+    const url = 'users'
 
     const address = computed(() => {
         return titleCase(props.model.barangay?.brgyDesc + ', ' + props.model.city?.citymunDesc + ', ' + props.model.province?.provDesc)

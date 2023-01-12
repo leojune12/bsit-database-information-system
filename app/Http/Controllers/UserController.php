@@ -35,6 +35,7 @@ class UserController extends Controller
 
         $query->select(
             'users.id',
+            'users.id_number',
             'users.first_name',
             'users.last_name',
             'users.email',
