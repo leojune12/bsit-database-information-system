@@ -66,9 +66,9 @@
             preserveScroll: true,
             onSuccess: () => {
                 Swal.fire({
-                    title: 'Success',
-                    text: "Created successfully.",
-                    icon: 'success',
+                    title: 'Created successfully',
+                    // text: "Created successfully.",
+                    // icon: 'success',
                     confirmButtonColor: '#16a34a',
                 }).then(() => {
                     Inertia.get('/' + url)

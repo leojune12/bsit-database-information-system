@@ -4,7 +4,7 @@
     <AuthenticatedLayout>
         <div class="tw-flex tw-flex-col md:tw-flex-row tw-mb-4 md:tw-justify-between md:tw-items-center tw-gap-y-4">
             <h3 class="tw-text-xl tw-font-bold tw-leading-6 tw-text-gray-700">
-                Users
+                ID Numbers
             </h3>
             <LinkComponent
                 :href="url + '/create'"
