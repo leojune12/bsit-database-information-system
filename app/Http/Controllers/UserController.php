@@ -99,60 +99,60 @@ class UserController extends Controller
         }
     }
 
-    public function storeStudent(Request $request)
-    {
-        $request->validate([
-            'id_number' => [
-                'required',
-                'numeric',
-                'max_digits:10',
-                'min_digits:10',
-                Rule::unique('users'),
-                'exists:id_numbers',
-            ],
-            'first_name' => 'required|max:255',
-            'middle_name' => 'nullable|max:255',
-            'last_name' => 'required|max:255',
-            'suffix_name' => 'nullable|max:255',
-            'date_of_birth' => 'required|max:10|date',
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('users'),
-            ],
-            'contact_number' => 'nullable|max:255',
-            'guardian_name' => 'nullable|max:255',
-            'guardian_relationship' => 'nullable|max:255',
-            'guardian_contact_number' => 'nullable|max:255',
-            'province_id' => 'nullable',
-            'city_id' => 'nullable',
-            'barangay_id' => 'nullable',
-            'password' => ['required', 'confirmed', Password::defaults()],
-        ]);
+    // public function storeStudent(Request $request)
+    // {
+    //     $request->validate([
+    //         'id_number' => [
+    //             'required',
+    //             'numeric',
+    //             'max_digits:10',
+    //             'min_digits:10',
+    //             Rule::unique('users'),
+    //             'exists:id_numbers',
+    //         ],
+    //         'first_name' => 'required|max:255',
+    //         'middle_name' => 'nullable|max:255',
+    //         'last_name' => 'required|max:255',
+    //         'suffix_name' => 'nullable|max:255',
+    //         'date_of_birth' => 'required|max:10|date',
+    //         'email' => [
+    //             'required',
+    //             'email',
+    //             Rule::unique('users'),
+    //         ],
+    //         'contact_number' => 'nullable|max:255',
+    //         'guardian_name' => 'nullable|max:255',
+    //         'guardian_relationship' => 'nullable|max:255',
+    //         'guardian_contact_number' => 'nullable|max:255',
+    //         'province_id' => 'nullable',
+    //         'city_id' => 'nullable',
+    //         'barangay_id' => 'nullable',
+    //         'password' => ['required', 'confirmed', Password::defaults()],
+    //     ]);
 
-        DB::beginTransaction();
+    //     DB::beginTransaction();
 
-        try {
+    //     try {
 
-            $request['password'] = Hash::make($request->password);
+    //         $request['password'] = Hash::make($request->password);
 
-            $user = User::create($request->all());
+    //         $user = User::create($request->all());
 
-            $user->save();
+    //         $user->save();
 
-            $user->syncRoles(['Student']);
+    //         $user->syncRoles(['Student']);
 
-            DB::commit();
+    //         DB::commit();
 
-            return back();
-        } catch (Throwable $e) {
+    //         return back();
+    //     } catch (Throwable $e) {
 
-            DB::rollBack();
+    //         DB::rollBack();
 
-            return $e;
-            // return back();
-        }
-    }
+    //         return $e;
+    //         // return back();
+    //     }
+    // }
 
     public function show($id)
     {
@@ -180,23 +180,23 @@ class UserController extends Controller
     {
         $model = User::find($id);
 
-        if ($model->roles[0]->name == "Student") {
+        // if ($model->roles[0]->name == "Student") {
 
-            $request->validate([
-                'id_number' => [
-                    'required',
-                    'numeric',
-                    'max_digits:10',
-                    'min_digits:10',
-                    Rule::unique('users')->ignore($model),
-                ],
-            ]);
-        } else {
+        //     $request->validate([
+        //         'id_number' => [
+        //             'required',
+        //             'numeric',
+        //             'max_digits:10',
+        //             'min_digits:10',
+        //             Rule::unique('users')->ignore($model),
+        //         ],
+        //     ]);
+        // } else {
 
-            $request->validate([
-                'id_number' => 'nullable'
-            ]);
-        }
+        //     $request->validate([
+        //         'id_number' => 'nullable'
+        //     ]);
+        // }
 
         $request->validate([
             'first_name' => 'required|max:255',
