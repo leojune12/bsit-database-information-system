@@ -319,7 +319,7 @@
                     // icon: 'success',
                     confirmButtonColor: '#16a34a',
                 }).then(() => {
-                    Inertia.get(url)
+                    Inertia.get('/' + url)
                 })
             },
         })
