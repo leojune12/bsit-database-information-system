@@ -6,6 +6,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Services\DateService;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use App\Models\Address\Province;
 use Illuminate\Support\Facades\DB;
@@ -161,6 +162,8 @@ class UserController extends Controller
         $model->load('province', 'city', 'barangay');
 
         $model['date_added'] = DateService::viewDate($model->created_at);
+
+        $model['age'] = Carbon::parse($model->date_of_birth)->age;
 
         return Inertia::render('User/Show', [
             'model' => $model,
