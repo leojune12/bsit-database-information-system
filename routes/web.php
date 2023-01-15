@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -66,6 +67,8 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Student']], funct
     Route::resource('users', UserController::class);
 
     Route::resource('students', StudentController::class);
+
+    Route::resource('alumni', AlumniController::class);
 
     Route::resource('id-numbers', IdNumberController::class);
 
