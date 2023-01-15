@@ -137,5 +137,10 @@
             icon: UsersIcon,
             for: 'Admin'
         },
+        {
+            name: 'Accout Settings',
+            href: '/profile',
+            for: null
+        },
     ]
 </script>

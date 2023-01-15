@@ -18,11 +18,6 @@
                         :href="item.href"
                         :class="[$page.url.startsWith(item.href) ? 'tw-bg-white hover:tw-bg-gray-50 tw-text-pink-900' : 'tw-text-white hover:tw-bg-pink-900', 'tw-flex tw-items-center tw-p-2 tw-text-base tw-font-normal tw-text-gray-900 tw-rounded-lg tw-transition tw-duration-75 hover:tw-bg-gray-100 dark:hover:tw-bg-gray-700 dark:tw-text-white tw-group']"
                     >
-                        <!-- <component
-                            :is="item.icon"
-                            class="tw-flex-shrink-0 tw-w-6 tw-h-6 tw-transition tw-duration-75"
-                            aria-hidden="true"
-                        /> -->
                         <span class="tw-ml-3">
                             {{ item.name }}
                         </span>
@@ -35,50 +30,47 @@
 
 <script setup>
     import { Link } from '@inertiajs/inertia-vue3';
-    import { PresentationChartBarIcon, ChatBubbleLeftEllipsisIcon, ChatBubbleLeftRightIcon, ChatBubbleBottomCenterTextIcon, UsersIcon } from '@heroicons/vue/24/outline'
 
     const navigation = [
         {
             name: 'Dashboard',
             href: '/dashboard',
-            icon: PresentationChartBarIcon,
             for: null
         },
         {
             name: 'Users',
             href: '/users',
-            icon: UsersIcon,
             for: 'Admin'
         },
         {
             name: 'Students',
             href: '/students',
-            icon: UsersIcon,
             for: 'Admin'
         },
         {
             name: 'Subjects',
             href: '/subjects',
-            icon: UsersIcon,
             for: 'Admin'
         },
         {
             name: 'Certificates and Awards',
             href: '/certificates-and-awards',
-            icon: UsersIcon,
             for: 'Admin'
         },
         {
             name: 'Alumni',
             href: '/alumni',
-            icon: UsersIcon,
             for: 'Admin'
         },
         {
             name: 'ID Numbers',
             href: '/id-numbers',
-            icon: UsersIcon,
             for: 'Admin'
+        },
+        {
+            name: 'Accout Settings',
+            href: '/profile',
+            for: null
         },
     ]
 </script>

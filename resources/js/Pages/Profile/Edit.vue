@@ -8,6 +8,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 defineProps({
     mustVerifyEmail: Boolean,
     status: String,
+    user: Object,
 });
 </script>
 
@@ -21,21 +22,21 @@ defineProps({
 
         <div class="tw-py-12">
             <div class="tw-max-w-7xl tw-mx-auto sm:tw-px-6 lg:tw-px-8 tw-space-y-6">
-                <div class="tw-p-4 sm:tw-p-8 tw-bg-white tw-shadow sm:tw-rounded-lg">
+                <!-- <div class="tw-p-4 sm:tw-p-8 tw-bg-white tw-shadow sm:tw-rounded-lg">
                     <UpdateProfileInformationForm
                         :must-verify-email="mustVerifyEmail"
                         :status="status"
                         class="tw-max-w-xl"
                     />
-                </div>
+                </div> -->
 
                 <div class="tw-p-4 sm:tw-p-8 tw-bg-white tw-shadow sm:tw-rounded-lg">
                     <UpdatePasswordForm class="tw-max-w-xl" />
                 </div>
 
-                <div class="tw-p-4 sm:tw-p-8 tw-bg-white tw-shadow sm:tw-rounded-lg">
+                <!-- <div class="tw-p-4 sm:tw-p-8 tw-bg-white tw-shadow sm:tw-rounded-lg">
                     <DeleteUserForm class="tw-max-w-xl" />
-                </div>
+                </div> -->
             </div>
         </div>
     </AuthenticatedLayout>
