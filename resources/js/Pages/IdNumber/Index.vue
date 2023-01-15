@@ -1,5 +1,5 @@
 <template>
-    <Head title="Users" />
+    <Head title="ID Number" />
 
     <AuthenticatedLayout>
         <div class="tw-flex tw-flex-col md:tw-flex-row tw-mb-4 md:tw-justify-between md:tw-items-center tw-gap-y-4">

@@ -1,5 +1,5 @@
 <template>
-    <Head title="Users" />
+    <Head title="ID Number" />
 
     <AuthenticatedLayout>
         <div class="tw-bg-white tw-shadow-lg sm:tw-rounded-lg tw-mb-5 tw-p-4 sm:tw-p-8">
