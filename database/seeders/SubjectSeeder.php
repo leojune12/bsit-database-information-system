@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\IdNumber;
+use App\Models\Subject;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class IdNumberSeeder extends Seeder
+class SubjectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class IdNumberSeeder extends Seeder
      */
     public function run()
     {
-        IdNumber::factory(200)->create();
+        Subject::factory(100)->create();
     }
 }

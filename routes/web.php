@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\IdNumberController;
 use App\Http\Controllers\ContactUsController;
 
@@ -67,6 +68,8 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Student']], funct
     Route::resource('students', StudentController::class);
 
     Route::resource('id-numbers', IdNumberController::class);
+
+    Route::resource('subjects', SubjectController::class);
 });
 
 require __DIR__.'/auth.php';
