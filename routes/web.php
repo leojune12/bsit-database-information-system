@@ -70,8 +70,6 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Student']], funct
 
     Route::resource('alumni', AlumniController::class);
 
-    Route::resource('id-numbers', IdNumberController::class);
-
     Route::resource('subjects', SubjectController::class);
 });
 

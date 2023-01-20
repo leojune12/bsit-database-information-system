@@ -132,12 +132,6 @@
             for: 'Admin'
         },
         {
-            name: 'ID Numbers',
-            href: '/id-numbers',
-            icon: UsersIcon,
-            for: 'Admin'
-        },
-        {
             name: 'Accout Settings',
             href: '/profile',
             for: null

@@ -19,6 +19,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'id_number' => date("Y") . fake()->regexify('[0-9]{6}'),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'middle_name' => fake()->lastName(),
