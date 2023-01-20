@@ -30,8 +30,13 @@ class UserDatabaseSeeder extends Seeder
 
         User::factory(100)->create()->each(function($user) use ($roles) {
 
-            $role_id = rand(0, 2);
+            $role_id = rand(0, 3);
             $user->assignRole($roles[$role_id]);
+
+            if ($role_id < 2) {
+
+                $user->id_number = null;
+            }
 
             $provinces = Province::where('regCode', 6)->get();
             $province = $provinces->random();
