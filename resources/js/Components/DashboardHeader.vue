@@ -120,12 +120,6 @@
             for: 'Admin'
         },
         {
-            name: 'Certificates and Awards',
-            href: '/certificates-and-awards',
-            icon: UsersIcon,
-            for: 'Admin'
-        },
-        {
             name: 'Alumni',
             href: '/alumni',
             icon: UsersIcon,

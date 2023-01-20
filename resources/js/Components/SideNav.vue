@@ -53,11 +53,6 @@
             for: 'Admin'
         },
         {
-            name: 'Certificates and Awards',
-            href: '/certificates-and-awards',
-            for: 'Admin'
-        },
-        {
             name: 'Alumni',
             href: '/alumni',
             for: 'Admin'
