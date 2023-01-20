@@ -87,7 +87,7 @@ const submit = () => {
                         Sign in
                     </PrimaryButton>
                     <p class="tw-text-sm tw-font-light tw-text-gray-500 dark:tw-text-gray-400">
-                        Don’t have an account yet? <Link href="/register" class="tw-font-medium tw-text-blue-600 hover:tw-underline dark:tw-text-blue-500">Sign up</Link>
+                        Don’t have an account yet? <Link href="/register" class="tw-font-medium tw-text-blue-600 hover:tw-underline dark:tw-text-blue-500">Register here</Link>
                     </p>
                 </form>
             </div>

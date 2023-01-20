@@ -1,3 +1,870 @@
+<template>
+    <GuestLayout>
+        <Head title="Register" />
+
+        <div class="tw-flex-grow tw-w-full tw-bg-white tw-rounded-lg dark:tw-border md:tw-mt-0 sm:tw-max-w-4xl tw-p-6 sm:tw-p-8 dark:tw-bg-gray-800 dark:tw-border-gray-700">
+            <header class="tw-text-center">
+                <h2 class="tw-text-2xl tw-font-bold tw-text-gray-900">Register</h2>
+            </header>
+            <div class="tw-mt-6">
+                <div class="tw-text-red-500">
+                    Note: Fields with asterisk (<span class="tw-text-lg">*</span>) are required
+                </div>
+                <form @submit.prevent="submit" class="tw-mt-3 tw-space-y-6">
+                    <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
+                        Student Information
+                    </h3>
+                    <div class="tw-space-y-6">
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="id_number" value="ID Number" required />
+
+                                <TextInput
+                                    id="id_number"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.id_number"
+                                    required
+                                    autofocus
+                                    autocomplete="id_number"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.id_number" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="first_name" value="First Name" required />
+
+                                <TextInput
+                                    id="first_name"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.first_name"
+                                    required
+                                    autocomplete="first_name"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.first_name" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="middle_name" value="Middle Name" />
+
+                                <TextInput
+                                    id="middle_name"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.middle_name"
+                                    autocomplete="middle_name"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.middle_name" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="last_name" value="Last Name" required />
+
+                                <TextInput
+                                    id="last_name"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.last_name"
+                                    required
+                                    autocomplete="last_name"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.last_name" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="suffix_name" value="Suffix Name" />
+
+                                <TextInput
+                                    id="suffix_name"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.suffix_name"
+                                    autocomplete="suffix_name"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.suffix_name" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="gender" value="Gender" required />
+
+                                <TextInput
+                                    id="gender"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.gender"
+                                    required
+                                    autocomplete="gender"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.gender" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="citizenship" value="Citizenship" required />
+
+                                <TextInput
+                                    id="citizenship"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.citizenship"
+                                    required
+                                    autocomplete="citizenship"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.citizenship" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="religion" value="Religion" />
+
+                                <TextInput
+                                    id="religion"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.religion"
+                                    required
+                                    autocomplete="religion"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.religion" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="civil_status" value="Civil Status" required />
+
+                                <TextInput
+                                    id="civil_status"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.civil_status"
+                                    required
+                                    autocomplete="civil_status"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.civil_status" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="date_of_birth" value="Birthday" required />
+
+                                <TextInput
+                                    id="date_of_birth"
+                                    type="date"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.date_of_birth"
+                                    required
+                                    autocomplete="date_of_birth"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.date_of_birth" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="place_of_birth" value="Place of Birth" />
+
+                                <TextInput
+                                    id="place_of_birth"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.place_of_birth"
+                                    autocomplete="place_of_birth"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.place_of_birth" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tw-border tw-border-gray-200"></div>
+                    <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
+                        Contact Information
+                    </h3>
+                    <div class="tw-space-y-6">
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="email" value="Email address" required />
+
+                                <TextInput
+                                    id="email"
+                                    type="email"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.email"
+                                    required
+                                    autocomplete="email"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.email" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="contact_number" value="Contact Number" required />
+
+                                <TextInput
+                                    id="contact_number"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    required
+                                    v-model="form.contact_number"
+                                    autocomplete="contact_number"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.contact_number" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tw-border tw-border-gray-200"></div>
+                    <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
+                        Family Information
+                    </h3>
+                    <div class="tw-space-y-6">
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="father_name" value="Father Name" />
+
+                                <TextInput
+                                    id="father_name"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.father_name"
+                                    autocomplete="father_name"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.father_name" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="father_highest_educational_attainment" value="Father Highest Educational Attainment" />
+
+                                <TextInput
+                                    id="father_highest_educational_attainment"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.father_highest_educational_attainment"
+                                    autocomplete="father_highest_educational_attainment"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.father_highest_educational_attainment" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="father_occupation" value="Father Occupation" />
+
+                                <TextInput
+                                    id="father_occupation"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.father_occupation"
+                                    autocomplete="father_occupation"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.father_occupation" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="father_contact_number" value="Father Contact Number" />
+
+                                <TextInput
+                                    id="father_contact_number"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.father_contact_number"
+                                    autocomplete="father_contact_number"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.father_contact_number" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="mother_name" value="Mother Name" />
+
+                                <TextInput
+                                    id="mother_name"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.mother_name"
+                                    autocomplete="mother_name"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.mother_name" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="mother_highest_educational_attainment" value="Mother Highest Educational Attainment" />
+
+                                <TextInput
+                                    id="mother_highest_educational_attainment"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.mother_highest_educational_attainment"
+                                    autocomplete="mother_highest_educational_attainment"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.mother_highest_educational_attainment" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="mother_occupation" value="Mother Occupation" />
+
+                                <TextInput
+                                    id="mother_occupation"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.mother_occupation"
+                                    autocomplete="mother_occupation"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.mother_occupation" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="mother_contact_number" value="Mother Contact Number" />
+
+                                <TextInput
+                                    id="mother_contact_number"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.mother_contact_number"
+                                    autocomplete="mother_contact_number"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.mother_contact_number" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="monthly_family_income" value="Monthly Family Income" />
+
+                                <TextInput
+                                    id="monthly_family_income"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.monthly_family_income"
+                                    autocomplete="monthly_family_income"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.monthly_family_income" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tw-border tw-border-gray-200"></div>
+                    <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
+                        Guardian Information
+                    </h3>
+                    <div class="tw-space-y-6">
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="guardian_name" value="Guardian Name" />
+
+                                <TextInput
+                                    id="guardian_name"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.guardian_name"
+                                    autocomplete="guardian_name"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.guardian_name" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="guardian_highest_educational_attainment" value="Guardian Highest Educational Attainment" />
+
+                                <TextInput
+                                    id="guardian_highest_educational_attainment"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.guardian_highest_educational_attainment"
+                                    autocomplete="guardian_highest_educational_attainment"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.guardian_highest_educational_attainment" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="guardian_occupation" value="Guardian Occupation" />
+
+                                <TextInput
+                                    id="guardian_occupation"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.guardian_occupation"
+                                    autocomplete="guardian_occupation"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.guardian_occupation" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="guardian_contact_number" value="Guardian Contact Number" />
+
+                                <TextInput
+                                    id="guardian_contact_number"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.guardian_contact_number"
+                                    autocomplete="guardian_contact_number"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.guardian_contact_number" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="guardian_relationship" value="Guardian Relationship" />
+
+                                <TextInput
+                                    id="guardian_relationship"
+                                    type="text"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.guardian_relationship"
+                                    autocomplete="guardian_relationship"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.guardian_relationship" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tw-border tw-border-gray-200"></div>
+                    <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
+                        Address Information
+                    </h3>
+                    <div class="tw-space-y-6">
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="province_id" value="Province" required />
+                                <ListBox
+                                    id="province_id"
+                                    :items="provinces"
+                                    v-on:update:model-value="form.province_id = $event.id"
+                                    :model-value="form.province_id"
+                                />
+                                <InputError class="mt-2" :message="form.errors.province_id" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="city_id" value="City/Municipality" required />
+                                <ListBox
+                                    id="city_id"
+                                    :items="citiesMunicipalities"
+                                    v-on:update:model-value="form.city_id = $event.id"
+                                    :model-value="form.city_id"
+                                    :reset-index="resetCityIndex"
+                                    v-on:update:reset-index="resetCityIndex = $event"
+                                />
+                                <InputError class="mt-2" :message="form.errors.city_id" />
+                            </div>
+                        </div>
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="barangay_id" value="Barangay" required />
+                                <ListBox
+                                    id="barangay_id"
+                                    :items="barangays"
+                                    v-on:update:model-value="form.barangay_id = $event.id"
+                                    :model-value="form.barangay_id"
+                                    :reset-index="resetBarangayIndex"
+                                    v-on:update:reset-index="resetBarangayIndex = $event"
+                                />
+                                <InputError class="mt-2" :message="form.errors.barangay_id" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tw-border tw-border-gray-200"></div>
+                    <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
+                        Educational Background Information
+                    </h3>
+                    <div class="tw-space-y-6">
+                        <div class="tw-space-y-6">
+                            <h3 class="tw-text-lg tw-font-bold tw-text-gray-500">
+                                Elementary
+                            </h3>
+                            <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                                <div>
+                                    <InputLabel for="elementary_school" value="School" />
+
+                                    <TextInput
+                                        id="elementary_school"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.elementary_school"
+                                        autocomplete="elementary_school"
+                                    />
+
+                                    <InputError class="tw-mt-2" :message="form.errors.elementary_school" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="elementary_address" value="Address" />
+
+                                    <TextInput
+                                        id="elementary_address"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.elementary_address"
+                                        autocomplete="elementary_address"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.elementary_address" />
+                                </div>
+                            </div>
+                            <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                                <div>
+                                    <InputLabel for="elementary_award" value="Award" />
+
+                                    <TextInput
+                                        id="elementary_award"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.elementary_award"
+                                        autocomplete="elementary_award"
+                                    />
+
+                                    <InputError class="tw-mt-2" :message="form.errors.elementary_award" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="elementary_school_type" value="School Type (Private/Public)" />
+
+                                    <TextInput
+                                        id="elementary_school_type"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.elementary_school_type"
+                                        autocomplete="elementary_school_type"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.elementary_school_type" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tw-space-y-6">
+                            <h3 class="tw-text-lg tw-font-bold tw-text-gray-500">
+                                Junior High School
+                            </h3>
+                            <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                                <div>
+                                    <InputLabel for="junior_high_school" value="School" />
+
+                                    <TextInput
+                                        id="junior_high_school"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.junior_high_school"
+                                        autocomplete="junior_high_school"
+                                    />
+
+                                    <InputError class="tw-mt-2" :message="form.errors.junior_high_school" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="junior_high_school_address" value="Address" />
+
+                                    <TextInput
+                                        id="junior_high_school_address"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.junior_high_school_address"
+                                        autocomplete="junior_high_school_address"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.junior_high_school_address" />
+                                </div>
+                            </div>
+                            <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                                <div>
+                                    <InputLabel for="junior_high_school_award" value="Award" />
+
+                                    <TextInput
+                                        id="junior_high_school_award"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.junior_high_school_award"
+                                        autocomplete="junior_high_school_award"
+                                    />
+
+                                    <InputError class="tw-mt-2" :message="form.errors.junior_high_school_award" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="junior_high_school_type" value="School Type (Private/Public)" />
+
+                                    <TextInput
+                                        id="junior_high_school_type"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.junior_high_school_type"
+                                        autocomplete="junior_high_school_type"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.junior_high_school_type" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tw-space-y-6">
+                            <h3 class="tw-text-lg tw-font-bold tw-text-gray-500">
+                                Senior High School
+                            </h3>
+                            <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                                <div>
+                                    <InputLabel for="senior_high_school" value="School" />
+
+                                    <TextInput
+                                        id="senior_high_school"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.senior_high_school"
+                                        autocomplete="senior_high_school"
+                                    />
+
+                                    <InputError class="tw-mt-2" :message="form.errors.senior_high_school" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="senior_high_school_address" value="Address" />
+
+                                    <TextInput
+                                        id="senior_high_school_address"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.senior_high_school_address"
+                                        autocomplete="senior_high_school_address"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.senior_high_school_address" />
+                                </div>
+                            </div>
+                            <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                                <div>
+                                    <InputLabel for="senior_high_school_award" value="Award" />
+
+                                    <TextInput
+                                        id="senior_high_school_award"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.senior_high_school_award"
+                                        autocomplete="senior_high_school_award"
+                                    />
+
+                                    <InputError class="tw-mt-2" :message="form.errors.senior_high_school_award" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="senior_high_school_type" value="School Type (Private/Public)" />
+
+                                    <TextInput
+                                        id="senior_high_school_type"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.senior_high_school_type"
+                                        autocomplete="senior_high_school_type"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.senior_high_school_type" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tw-space-y-6">
+                            <h3 class="tw-text-lg tw-font-bold tw-text-gray-500">
+                                Tertiary
+                            </h3>
+                            <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                                <div>
+                                    <InputLabel for="tertiary_school" value="School" />
+
+                                    <TextInput
+                                        id="tertiary_school"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.tertiary_school"
+                                        autocomplete="tertiary_school"
+                                    />
+
+                                    <InputError class="tw-mt-2" :message="form.errors.tertiary_school" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="tertiary_address" value="Address" />
+
+                                    <TextInput
+                                        id="tertiary_address"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.tertiary_address"
+                                        autocomplete="tertiary_address"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.tertiary_address" />
+                                </div>
+                            </div>
+                            <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                                <div>
+                                    <InputLabel for="tertiary_award" value="Award" />
+
+                                    <TextInput
+                                        id="tertiary_award"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.tertiary_award"
+                                        autocomplete="tertiary_award"
+                                    />
+
+                                    <InputError class="tw-mt-2" :message="form.errors.tertiary_award" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="tertiary_school_type" value="School Type (Private/Public)" />
+
+                                    <TextInput
+                                        id="tertiary_school_type"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.tertiary_school_type"
+                                        autocomplete="tertiary_school_type"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.tertiary_school_type" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tw-space-y-6">
+                            <h3 class="tw-text-lg tw-font-bold tw-text-gray-500">
+                                Special Courses
+                            </h3>
+                            <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                                <div>
+                                    <InputLabel for="special_courses_school" value="School" />
+
+                                    <TextInput
+                                        id="special_courses_school"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.special_courses_school"
+                                        autocomplete="special_courses_school"
+                                    />
+
+                                    <InputError class="tw-mt-2" :message="form.errors.special_courses_school" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="special_courses_address" value="Address" />
+
+                                    <TextInput
+                                        id="special_courses_address"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.special_courses_address"
+                                        autocomplete="special_courses_address"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.special_courses_address" />
+                                </div>
+                            </div>
+                            <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                                <div>
+                                    <InputLabel for="special_courses_award" value="Award" />
+
+                                    <TextInput
+                                        id="special_courses_award"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.special_courses_award"
+                                        autocomplete="special_courses_award"
+                                    />
+
+                                    <InputError class="tw-mt-2" :message="form.errors.special_courses_award" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="special_courses_school_type" value="School Type (Private/Public)" />
+
+                                    <TextInput
+                                        id="special_courses_school_type"
+                                        type="text"
+                                        class="tw-mt-1 tw-block tw-w-full"
+                                        v-model="form.special_courses_school_type"
+                                        autocomplete="special_courses_school_type"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.special_courses_school_type" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tw-border tw-border-gray-200"></div>
+                    <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
+                        Account Information
+                    </h3>
+                    <div class="tw-space-y-6">
+                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                            <div>
+                                <InputLabel for="password" value="Password" required />
+
+                                <TextInput
+                                    id="password"
+                                    type="password"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.password"
+                                    required
+                                    autocomplete="password"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.password" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="password_confirmation" value="Confirm Password" required />
+
+                                <TextInput
+                                    id="password_confirmation"
+                                    type="password"
+                                    class="tw-mt-1 tw-block tw-w-full"
+                                    v-model="form.password_confirmation"
+                                    required
+                                    autocomplete="password_confirmation"
+                                />
+
+                                <InputError class="tw-mt-2" :message="form.errors.password_confirmation" />
+                            </div>
+                        </div>
+                        <div class="tw-flex tw-items-center tw-justify-end tw-mt-4">
+                            <Link
+                                :href="route('login')"
+                                class="tw-underline tw-text-sm tw-text-gray-600 hover:tw-text-gray-900 tw-rounded-md focus:tw-outline-none"
+                            >
+                                Already registered?
+                            </Link>
+
+                            <PrimaryButton class="tw-ml-4" :class="{ 'tw-opacity-25': form.processing }" :disabled="form.processing">
+                                Register
+                            </PrimaryButton>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </GuestLayout>
+</template>
+
 <script setup>
     import GuestLayout from '@/Layouts/GuestLayout.vue';
     import InputError from '@/Components/InputError.vue';
@@ -12,19 +879,67 @@
 
     const form = useForm({
         id_number: null,
+
+        // Basic Information
         first_name: null,
         last_name: null,
         middle_name: null,
         suffix_name: null,
         date_of_birth: null,
+        gender: null,
+        citizenship: null,
+        religion: null,
+        civil_status: null,
+        place_of_birth: null,
+
+        // Contact Information
         email: null,
         contact_number: null,
+
+        // Family Information
+        father_name: null,
+        father_highest_educational_attainment: null,
+        father_occupation: null,
+        father_contact_number: null,
+        mother_name: null,
+        mother_highest_educational_attainment: null,
+        mother_occupation: null,
+        mother_contact_number: null,
         guardian_name: null,
+        guardian_highest_educational_attainment: null,
+        guardian_occupation: null,
         guardian_relationship: null,
         guardian_contact_number: null,
+        monthly_family_income: null,
+
+        // Address Information
         province_id: null,
         city_id: null,
         barangay_id: null,
+
+        // Edcational Background Information
+        elementary_school: null,
+        elementary_address: null,
+        elementary_award: null,
+        elementary_school_type: null,
+        junior_high_school: null,
+        junior_high_school_address: null,
+        junior_high_school_award: null,
+        junior_high_school_type: null,
+        senior_high_school: null,
+        senior_high_school_address: null,
+        senior_high_school_award: null,
+        senior_high_school_type: null,
+        tertiary_school: null,
+        tertiary_address: null,
+        tertiary_award: null,
+        tertiary_school_type: null,
+        special_courses_school: null,
+        special_courses_address: null,
+        special_courses_award: null,
+        special_courses_school_type: null,
+
+        // Account Information
         password: null,
         password_confirmation: null,
         terms: false,
@@ -131,359 +1046,3 @@
         })
     }
 </script>
-
-<template>
-    <GuestLayout>
-        <Head title="Register" />
-
-        <!-- <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="first_name" value="First Name" />
-
-                <TextInput
-                    id="first_name"
-                    type="text"
-                    class="tw-mt-1 tw-block tw-w-full"
-                    v-model="form.first_name"
-                    required
-                    autofocus
-                    autocomplete="first_name"
-                />
-
-                <InputError class="tw-mt-2" :message="form.errors.first_name" />
-            </div>
-
-            <div class="tw-mt-4">
-                <InputLabel for="last_name" value="Last Name" />
-
-                <TextInput
-                    id="last_name"
-                    type="text"
-                    class="tw-mt-1 tw-block tw-w-full"
-                    v-model="form.last_name"
-                    required
-                    autocomplete="last_name"
-                />
-
-                <InputError class="tw-mt-2" :message="form.errors.last_name" />
-            </div>
-
-            <div class="tw-mt-4">
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="tw-mt-1 tw-block tw-w-full"
-                    v-model="form.email"
-                    required
-                    autocomplete="username"
-                />
-
-                <InputError class="tw-mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="tw-mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="tw-mt-1 tw-block tw-w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError class="tw-mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="tw-mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-
-                <TextInput
-                    id="password_confirmation"
-                    type="password"
-                    class="tw-mt-1 tw-block tw-w-full"
-                    v-model="form.password_confirmation"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError class="tw-mt-2" :message="form.errors.password_confirmation" />
-            </div>
-
-            <div class="tw-flex tw-items-center tw-justify-end tw-mt-4">
-                <Link
-                    :href="route('login')"
-                    class="tw-underline tw-text-sm tw-text-gray-600 hover:tw-text-gray-900 tw-rounded-md focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
-                >
-                    Already registered?
-                </Link>
-
-                <PrimaryButton class="tw-ml-4" :class="{ 'tw-opacity-25': form.processing }" :disabled="form.processing">
-                    Register
-                </PrimaryButton>
-            </div>
-        </form> -->
-
-        <div class="tw-flex-grow tw-w-full tw-bg-white tw-rounded-lg dark:tw-border md:tw-mt-0 sm:tw-max-w-3xl tw-p-6 sm:tw-p-8 dark:tw-bg-gray-800 dark:tw-border-gray-700">
-            <header class="tw-text-center">
-                <h2 class="tw-text-2xl tw-font-bold tw-text-gray-900">Register</h2>
-            </header>
-            <div class="">
-                <form @submit.prevent="submit" class="tw-mt-6 tw-space-y-6">
-
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="id_number" value="ID Number" />
-
-                            <TextInput
-                                id="id_number"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.id_number"
-                                required
-                                autofocus
-                                autocomplete="id_number"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.id_number" />
-                        </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="first_name" value="First Name" />
-
-                            <TextInput
-                                id="first_name"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.first_name"
-                                required
-                                autocomplete="first_name"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.first_name" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="middle_name" value="Middle Name" />
-
-                            <TextInput
-                                id="middle_name"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.middle_name"
-                                autocomplete="middle_name"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.middle_name" />
-                        </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="last_name" value="Last Name" />
-
-                            <TextInput
-                                id="last_name"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.last_name"
-                                required
-                                autocomplete="last_name"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.last_name" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="suffix_name" value="Suffix Name" />
-
-                            <TextInput
-                                id="suffix_name"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.suffix_name"
-                                autocomplete="suffix_name"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.suffix_name" />
-                        </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="date_of_birth" value="Birthday" />
-
-                            <TextInput
-                                id="date_of_birth"
-                                type="date"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.date_of_birth"
-                                required
-                                autocomplete="date_of_birth"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.date_of_birth" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="email" value="Email address" />
-
-                            <TextInput
-                                id="email"
-                                type="email"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.email"
-                                required
-                                autocomplete="email"
-                            />
-
-                            <InputError class="mt-2" :message="form.errors.email" />
-                        </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="contact_number" value="Contact Number" />
-
-                            <TextInput
-                                id="contact_number"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.contact_number"
-                                autocomplete="contact_number"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.contact_number" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="guardian_name" value="Guardian Name" />
-
-                            <TextInput
-                                id="guardian_name"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.guardian_name"
-                                autocomplete="guardian_name"
-                            />
-
-                            <InputError class="mt-2" :message="form.errors.guardian_name" />
-                        </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="guardian_relationship" value="Guardian Relationship" />
-
-                            <TextInput
-                                id="guardian_relationship"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.guardian_relationship"
-                                autocomplete="guardian_relationship"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.guardian_relationship" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="guardian_contact_number" value="Guardian Contact Number" />
-
-                            <TextInput
-                                id="guardian_contact_number"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.guardian_contact_number"
-                                autocomplete="guardian_contact_number"
-                            />
-
-                            <InputError class="mt-2" :message="form.errors.guardian_contact_number" />
-                        </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="province_id" value="Province" />
-                            <ListBox
-                                id="province_id"
-                                :items="provinces"
-                                v-on:update:model-value="form.province_id = $event.id"
-                                :model-value="form.province_id"
-                            />
-                            <InputError class="mt-2" :message="form.errors.province_id" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="city_id" value="City/Municipality" />
-                            <ListBox
-                                id="city_id"
-                                :items="citiesMunicipalities"
-                                v-on:update:model-value="form.city_id = $event.id"
-                                :model-value="form.city_id"
-                                :reset-index="resetCityIndex"
-                                v-on:update:reset-index="resetCityIndex = $event"
-                            />
-                            <InputError class="mt-2" :message="form.errors.city_id" />
-                        </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="barangay_id" value="Barangay" />
-                            <ListBox
-                                id="barangay_id"
-                                :items="barangays"
-                                v-on:update:model-value="form.barangay_id = $event.id"
-                                :model-value="form.barangay_id"
-                                :reset-index="resetBarangayIndex"
-                                v-on:update:reset-index="resetBarangayIndex = $event"
-                            />
-                            <InputError class="mt-2" :message="form.errors.barangay_id" />
-                        </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="password" value="Password" />
-
-                            <TextInput
-                                id="password"
-                                type="password"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.password"
-                                required
-                                autocomplete="password"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.password" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="password_confirmation" value="Confirm Password" />
-
-                            <TextInput
-                                id="password_confirmation"
-                                type="password"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.password_confirmation"
-                                required
-                                autocomplete="password_confirmation"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.password_confirmation" />
-                        </div>
-                    </div>
-                    <div class="tw-flex tw-items-center tw-justify-end tw-mt-4">
-                        <Link
-                            :href="route('login')"
-                            class="tw-underline tw-text-sm tw-text-gray-600 hover:tw-text-gray-900 tw-rounded-md focus:tw-outline-none"
-                        >
-                            Already registered?
-                        </Link>
-
-                        <PrimaryButton class="tw-ml-4" :class="{ 'tw-opacity-25': form.processing }" :disabled="form.processing">
-                            Register
-                        </PrimaryButton>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </GuestLayout>
-</template>
