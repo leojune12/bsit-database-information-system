@@ -26,8 +26,7 @@
 
                         <InputError class="tw-mt-2" :message="form.errors.course_code" />
                     </div>
-                </div>
-                <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+
                     <div>
                         <InputLabel for="descriptive_title" value="Descriptive Title" />
 
@@ -41,6 +40,70 @@
                         />
 
                         <InputError class="tw-mt-2" :message="form.errors.descriptive_title" />
+                    </div>
+                </div>
+
+                <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                    <div>
+                        <InputLabel for="unit" value="Units" />
+
+                        <TextInput
+                            id="unit"
+                            type="text"
+                            class="tw-mt-1 tw-block tw-w-full"
+                            v-model="form.unit"
+                            required
+                            autocomplete="unit"
+                        />
+
+                        <InputError class="tw-mt-2" :message="form.errors.unit" />
+                    </div>
+
+                    <div>
+                        <InputLabel for="lecture" value="Lecture" />
+
+                        <TextInput
+                            id="lecture"
+                            type="text"
+                            class="tw-mt-1 tw-block tw-w-full"
+                            v-model="form.lecture"
+                            required
+                            autocomplete="lecture"
+                        />
+
+                        <InputError class="tw-mt-2" :message="form.errors.lecture" />
+                    </div>
+                </div>
+
+                <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                    <div>
+                        <InputLabel for="laboratory" value="Laboratory" />
+
+                        <TextInput
+                            id="laboratory"
+                            type="text"
+                            class="tw-mt-1 tw-block tw-w-full"
+                            v-model="form.laboratory"
+                            required
+                            autocomplete="laboratory"
+                        />
+
+                        <InputError class="tw-mt-2" :message="form.errors.laboratory" />
+                    </div>
+
+                    <div>
+                        <InputLabel for="prerequisite_subject_id" value="Prerequisite Subject ID" />
+
+                        <TextInput
+                            id="prerequisite_subject_id"
+                            type="text"
+                            class="tw-mt-1 tw-block tw-w-full"
+                            v-model="form.prerequisite_subject_id"
+                            required
+                            autocomplete="prerequisite_subject_id"
+                        />
+
+                        <InputError class="tw-mt-2" :message="form.errors.prerequisite_subject_id" />
                     </div>
                 </div>
 
@@ -81,6 +144,10 @@
     const form = useForm({
         course_code: props.model.course_code,
         descriptive_title: props.model.descriptive_title,
+        unit: props.model.unit,
+        lecture: props.model.lecture,
+        laboratory: props.model.laboratory,
+        prerequisite_subject_id: props.model.prerequisite_subject_id
     });
 
     function submitForm() {

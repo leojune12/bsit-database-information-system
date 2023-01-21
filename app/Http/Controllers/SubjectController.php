@@ -46,6 +46,14 @@ class SubjectController extends Controller
                 Rule::unique('subjects'),
             ],
             'descriptive_title' => 'required|max:255',
+            'unit' => 'nullable|integer|max:100',
+            'lecture' => 'nullable|integer|max:100',
+            'laboratory' => 'nullable|integer|max:100',
+            'prerequisite_subject_id' => [
+                'nullable',
+                'integer',
+                'exists:subjects',
+            ],
         ]);
 
         DB::beginTransaction();
@@ -97,6 +105,14 @@ class SubjectController extends Controller
                 Rule::unique('subjects')->ignore($model),
             ],
             'descriptive_title' => 'required|max:255',
+            'unit' => 'nullable|integer|max:100',
+            'lecture' => 'nullable|integer|max:100',
+            'laboratory' => 'nullable|integer|max:100',
+            'prerequisite_subject_id' => [
+                'nullable',
+                'integer',
+                'exists:subjects',
+            ],
         ]);
 
         DB::beginTransaction();

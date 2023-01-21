@@ -16,9 +16,16 @@ class SubjectFactory extends Factory
      */
     public function definition()
     {
+        $unit = rand(1, 6);
+        $laboratory = rand(1, $unit);
+
         return [
             'course_code' => fake()->jobTitle() . ' ' . rand(1, 4) . '0' . rand(1, 4),
             'descriptive_title' => fake()->catchPhrase(),
+            'unit' => $unit,
+            'laboratory' => $laboratory,
+            'lecture' => $unit - $laboratory,
+            'prerequisite_subject_id' => rand(1, 100),
         ];
     }
 }

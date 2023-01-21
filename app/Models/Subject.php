@@ -13,5 +13,9 @@ class Subject extends Model
     protected $fillable = [
         'course_code',
         'descriptive_title',
+        'unit',
+        'laboratory',
+        'lecture',
+        'prerequisite_subject_id',
     ];
 }

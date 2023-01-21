@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('course_code');
             $table->string('descriptive_title');
+            $table->tinyInteger('unit')->nullable();
+            $table->tinyInteger('lecture')->nullable();
+            $table->tinyInteger('laboratory')->nullable();
+            $table->foreignId('prerequisite_subject_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

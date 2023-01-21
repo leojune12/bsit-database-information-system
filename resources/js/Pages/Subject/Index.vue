@@ -43,6 +43,18 @@
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.descriptive_title }}
                         </td>
+                        <!-- <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                            {{ item.unit }}
+                        </td>
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                            {{ item.lecture }}
+                        </td>
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                            {{ item.laboratory }}
+                        </td> -->
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                            {{ item.prerequisite_subject_id }}
+                        </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             <div class="tw-flex tw-gap-2">
                                 <Link
@@ -112,6 +124,22 @@
         },
         {
             title: 'Descriptive Title',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
+        // {
+        //     title: 'Units',
+        //     class: 'tw-py-3 tw-px-6 tw-text-left',
+        // },
+        // {
+        //     title: 'Lec',
+        //     class: 'tw-py-3 tw-px-6 tw-text-left',
+        // },
+        // {
+        //     title: 'Lab',
+        //     class: 'tw-py-3 tw-px-6 tw-text-left',
+        // },
+        {
+            title: 'Prerequisite Subject ID',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
         {
