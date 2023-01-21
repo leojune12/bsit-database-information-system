@@ -188,6 +188,7 @@ class StudentController extends Controller
         $model = User::find($id);
 
         $request->validate([
+            // Basic Information
             'id_number' => [
                 'required',
                 'numeric',
@@ -199,19 +200,64 @@ class StudentController extends Controller
             'middle_name' => 'nullable|max:255',
             'last_name' => 'required|max:255',
             'suffix_name' => 'nullable|max:255',
+            'gender' => 'required|max:255',
+            'citizenship' => 'required|max:255',
+            'religion' => 'nullable|max:255',
+            'civil_status' => 'required|max:255',
             'date_of_birth' => 'required|max:10|date',
+            'place_of_birth' => 'nullable|max:255',
+
+            // Contact Information
             'email' => [
                 'required',
                 'email',
                 Rule::unique('users')->ignore($model),
             ],
             'contact_number' => 'nullable|max:255',
+
+            // Family Information
+            'father_name' => 'nullable|max:255',
+            'father_highest_educational_attainment' => 'nullable|max:255',
+            'father_occupation' => 'nullable|max:255',
+            'father_contact_number' => 'nullable|max:255',
+            'mother_name' => 'nullable|max:255',
+            'mother_highest_educational_attainment' => 'nullable|max:255',
+            'mother_occupation' => 'nullable|max:255',
+            'mother_contact_number' => 'nullable|max:255',
             'guardian_name' => 'nullable|max:255',
+            'guardian_highest_educational_attainment' => 'nullable|max:255',
+            'guardian_occupation' => 'nullable|max:255',
             'guardian_relationship' => 'nullable|max:255',
             'guardian_contact_number' => 'nullable|max:255',
-            'province_id' => 'nullable',
-            'city_id' => 'nullable',
-            'barangay_id' => 'nullable',
+            'monthly_family_income' => 'nullable|max:255',
+
+            // Address Information
+            'province_id' => 'required',
+            'city_id' => 'required',
+            'barangay_id' => 'required',
+
+            // Educational Background Information
+            'elementary_school' => 'nullable|max:255',
+            'elementary_address' => 'nullable|max:255',
+            'elementary_award' => 'nullable|max:255',
+            'elementary_school_type' => 'nullable|max:255',
+            'junior_high_school' => 'nullable|max:255',
+            'junior_high_school_address' => 'nullable|max:255',
+            'junior_high_school_award' => 'nullable|max:255',
+            'junior_high_school_type' => 'nullable|max:255',
+            'senior_high_school' => 'nullable|max:255',
+            'senior_high_school_address' => 'nullable|max:255',
+            'senior_high_school_award' => 'nullable|max:255',
+            'senior_high_school_type' => 'nullable|max:255',
+            'tertiary_school' => 'nullable|max:255',
+            'tertiary_address' => 'nullable|max:255',
+            'tertiary_award' => 'nullable|max:255',
+            'tertiary_school_type' => 'nullable|max:255',
+            'special_courses_school' => 'nullable|max:255',
+            'special_courses_address' => 'nullable|max:255',
+            'special_courses_award' => 'nullable|max:255',
+            'special_courses_school_type' => 'nullable|max:255',
+
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
 
