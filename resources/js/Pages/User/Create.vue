@@ -13,6 +13,17 @@
                     <h3 class="tw-text-lg tw-font-bold tw-text-gray-600">
                         User Information
                     </h3>
+
+                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                        <div>
+                            <InputLabel for="first_name" value="Photo" />
+
+                            <input type="file" @input="form.photo = $event.target.files[0]" />
+
+                            <InputError class="tw-mt-2" :message="form.errors.middle_name" />
+                        </div>
+                    </div>
+
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                         <div>
                             <InputLabel for="first_name" value="First Name" required />
@@ -333,6 +344,7 @@
     const url = 'users'
 
     const form = useForm({
+        photo: null,
         first_name: null,
         last_name: null,
         middle_name: null,

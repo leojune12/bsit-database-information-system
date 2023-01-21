@@ -57,6 +57,8 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->photo);
+
         $request->validate([
             'first_name' => 'required|max:255',
             'middle_name' => 'nullable|max:255',
@@ -94,6 +96,10 @@ class UserController extends Controller
 
             $user->syncRoles([$request->role]);
 
+            $user
+                ->addMedia($request->photo)
+                ->toMediaCollection();
+
             DB::commit();
 
             return back();
@@ -116,8 +122,11 @@ class UserController extends Controller
 
         $model['age'] = Carbon::parse($model->date_of_birth)->age;
 
+        $photo_url = $model->getFirstMediaUrl();
+
         return Inertia::render('User/Show', [
             'model' => $model,
+            'photo_url' => $photo_url,
         ]);
     }
 

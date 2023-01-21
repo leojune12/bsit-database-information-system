@@ -8,6 +8,16 @@
                     <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900">User Information</h3>
                 </dl>
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
+                    <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Photo</dt>
+                    <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
+                        <img
+                            :src="props.photo_url"
+                            alt="photo"
+                            class="tw-w-44 tw-h-44"
+                        >
+                    </dd>
+                </dl>
+                <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">First name</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
                         {{ props.model.first_name }}
@@ -130,6 +140,7 @@
 
     const props = defineProps({
         model: Object,
+        photo_url: String,
     })
 
     const url = 'users'
