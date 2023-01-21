@@ -46,9 +46,9 @@
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.last_name }}
                         </td>
-                        <!-- <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.email }}
-                        </td> -->
+                        </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.role }}
                         </td>
@@ -127,10 +127,10 @@
             title: 'Last Name',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
-        // {
-        //     title: 'Email',
-        //     class: 'tw-py-3 tw-px-6 tw-text-left',
-        // },
+        {
+            title: 'Email',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
         {
             title: 'Role',
             class: 'tw-py-3 tw-px-6 tw-text-left',

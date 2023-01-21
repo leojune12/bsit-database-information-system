@@ -2,18 +2,20 @@
     <Head title="Users" />
 
     <AuthenticatedLayout>
-        <div class="tw-bg-white tw-shadow sm:tw-rounded-lg tw-mb-5 tw-p-4 sm:tw-p-8">
+        <div class="tw-bg-white tw-shadow-lg tw-border sm:tw-rounded-lg tw-mb-5 tw-p-4 sm:tw-p-8">
             <div class="md:tw-grid md:tw-grid-cols-2">
                 <header>
-                    <h2 class="tw-text-lg tw-font-medium tw-text-gray-900">Create User</h2>
+                    <h2 class="tw-text-xl tw-font-bold tw-text-gray-900">Create User</h2>
                 </header>
             </div>
             <div class="">
                 <form @submit.prevent="submitForm()" class="tw-mt-6 tw-space-y-6">
-
+                    <h3 class="tw-text-lg tw-font-bold tw-text-gray-600">
+                        User Information
+                    </h3>
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                         <div>
-                            <InputLabel for="first_name" value="First Name" />
+                            <InputLabel for="first_name" value="First Name" required />
 
                             <TextInput
                                 id="first_name"
@@ -43,7 +45,7 @@
                     </div>
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                         <div>
-                            <InputLabel for="last_name" value="Last Name" />
+                            <InputLabel for="last_name" value="Last Name" required />
 
                             <TextInput
                                 id="last_name"
@@ -73,7 +75,69 @@
                     </div>
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                         <div>
-                            <InputLabel for="date_of_birth" value="Birthday" />
+                            <InputLabel for="gender" value="Gender" required />
+
+                            <TextInput
+                                id="gender"
+                                type="text"
+                                class="tw-mt-1 tw-block tw-w-full"
+                                v-model="form.gender"
+                                required
+                                autocomplete="gender"
+                            />
+
+                            <InputError class="tw-mt-2" :message="form.errors.gender" />
+                        </div>
+
+                        <div>
+                            <InputLabel for="citizenship" value="Citizenship" required />
+
+                            <TextInput
+                                id="citizenship"
+                                type="text"
+                                class="tw-mt-1 tw-block tw-w-full"
+                                v-model="form.citizenship"
+                                required
+                                autocomplete="citizenship"
+                            />
+
+                            <InputError class="mt-2" :message="form.errors.citizenship" />
+                        </div>
+                    </div>
+                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                        <div>
+                            <InputLabel for="religion" value="Religion" />
+
+                            <TextInput
+                                id="religion"
+                                type="text"
+                                class="tw-mt-1 tw-block tw-w-full"
+                                v-model="form.religion"
+                                required
+                                autocomplete="religion"
+                            />
+
+                            <InputError class="tw-mt-2" :message="form.errors.religion" />
+                        </div>
+
+                        <div>
+                            <InputLabel for="civil_status" value="Civil Status" required />
+
+                            <TextInput
+                                id="civil_status"
+                                type="text"
+                                class="tw-mt-1 tw-block tw-w-full"
+                                v-model="form.civil_status"
+                                required
+                                autocomplete="civil_status"
+                            />
+
+                            <InputError class="mt-2" :message="form.errors.civil_status" />
+                        </div>
+                    </div>
+                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                        <div>
+                            <InputLabel for="date_of_birth" value="Birthday" required />
 
                             <TextInput
                                 id="date_of_birth"
@@ -88,7 +152,26 @@
                         </div>
 
                         <div>
-                            <InputLabel for="email" value="Email address" />
+                            <InputLabel for="place_of_birth" value="Place of Birth" />
+
+                            <TextInput
+                                id="place_of_birth"
+                                type="text"
+                                class="tw-mt-1 tw-block tw-w-full"
+                                v-model="form.place_of_birth"
+                                autocomplete="place_of_birth"
+                            />
+
+                            <InputError class="mt-2" :message="form.errors.place_of_birth" />
+                        </div>
+                    </div>
+                    <div class="tw-border tw-border-gray-200"></div>
+                    <h3 class="tw-text-lg tw-font-bold tw-text-gray-600">
+                        Contact Information
+                    </h3>
+                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                        <div>
+                            <InputLabel for="email" value="Email address" required />
 
                             <TextInput
                                 id="email"
@@ -101,8 +184,7 @@
 
                             <InputError class="mt-2" :message="form.errors.email" />
                         </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+
                         <div>
                             <InputLabel for="contact_number" value="Contact Number" />
 
@@ -116,53 +198,15 @@
 
                             <InputError class="tw-mt-2" :message="form.errors.contact_number" />
                         </div>
-
-                        <div>
-                            <InputLabel for="guardian_name" value="Guardian Name" />
-
-                            <TextInput
-                                id="guardian_name"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.guardian_name"
-                                autocomplete="guardian_name"
-                            />
-
-                            <InputError class="mt-2" :message="form.errors.guardian_name" />
-                        </div>
                     </div>
+
+                    <div class="tw-border tw-border-gray-200"></div>
+                    <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
+                        Address Information
+                    </h3>
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                         <div>
-                            <InputLabel for="guardian_relationship" value="Guardian Relationship" />
-
-                            <TextInput
-                                id="guardian_relationship"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.guardian_relationship"
-                                autocomplete="guardian_relationship"
-                            />
-
-                            <InputError class="tw-mt-2" :message="form.errors.guardian_relationship" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="guardian_contact_number" value="Guardian Contact Number" />
-
-                            <TextInput
-                                id="guardian_contact_number"
-                                type="text"
-                                class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.guardian_contact_number"
-                                autocomplete="guardian_contact_number"
-                            />
-
-                            <InputError class="mt-2" :message="form.errors.guardian_contact_number" />
-                        </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="province_id" value="Province" />
+                            <InputLabel for="province_id" value="Province" required />
                             <ListBox
                                 id="province_id"
                                 :items="provinces"
@@ -173,7 +217,7 @@
                         </div>
 
                         <div>
-                            <InputLabel for="city_id" value="City/Municipality" />
+                            <InputLabel for="city_id" value="City/Municipality" required />
                             <ListBox
                                 id="city_id"
                                 :items="citiesMunicipalities"
@@ -187,7 +231,7 @@
                     </div>
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                         <div>
-                            <InputLabel for="barangay_id" value="Barangay" />
+                            <InputLabel for="barangay_id" value="Barangay" required />
                             <ListBox
                                 id="barangay_id"
                                 :items="barangays"
@@ -199,9 +243,35 @@
                             <InputError class="mt-2" :message="form.errors.barangay_id" />
                         </div>
                     </div>
+
+                    <div class="tw-border tw-border-gray-200"></div>
+                    <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
+                        Account Information
+                    </h3>
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                         <div>
-                            <InputLabel for="password" value="Password" />
+                            <InputLabel for="role" value="Role" required />
+                            <ListBox
+                                id="role"
+                                :items="[
+                                    {
+                                        id: 1,
+                                        name: 'Admin'
+                                    },
+                                    {
+                                        id: 2,
+                                        name: 'Faculty'
+                                    },
+                                ]"
+                                v-on:update:model-value="form.role = $event.id"
+                                :model-value="form.role"
+                            />
+                            <InputError class="mt-2" :message="form.errors.role" />
+                        </div>
+                    </div>
+                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                        <div>
+                            <InputLabel for="password" value="Password" required />
 
                             <TextInput
                                 id="password"
@@ -216,7 +286,7 @@
                         </div>
 
                         <div>
-                            <InputLabel for="password_confirmation" value="Confirm Password" />
+                            <InputLabel for="password_confirmation" value="Confirm Password" required />
 
                             <TextInput
                                 id="password_confirmation"
@@ -263,20 +333,25 @@
     const url = 'users'
 
     const form = useForm({
-        id_number: null,
         first_name: null,
         last_name: null,
         middle_name: null,
         suffix_name: null,
+        gender: null,
+        citizenship: null,
+        religion: null,
+        civil_status: null,
         date_of_birth: null,
+        place_of_birth: null,
+
         email: null,
         contact_number: null,
-        guardian_name: null,
-        guardian_relationship: null,
-        guardian_contact_number: null,
+
         province_id: null,
         city_id: null,
         barangay_id: null,
+
+        role: null,
         password: null,
         password_confirmation: null,
         terms: false,

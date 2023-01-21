@@ -34,6 +34,8 @@ class UserController extends Controller
 
         $query->join('roles', 'model_has_roles.role_id', '=', 'roles.id');
 
+        $query->whereIn('roles.name', ['Admin', 'Faculty']);
+
         $query->select(
             'users.id',
             'users.id_number',
@@ -60,19 +62,25 @@ class UserController extends Controller
             'middle_name' => 'nullable|max:255',
             'last_name' => 'required|max:255',
             'suffix_name' => 'nullable|max:255',
+            'gender' => 'required|max:255',
+            'citizenship' => 'required|max:255',
+            'religion' => 'nullable|max:255',
+            'civil_status' => 'required|max:255',
             'date_of_birth' => 'required|max:10|date',
+            'place_of_birth' => 'nullable|max:255',
+
             'email' => [
                 'required',
                 'email',
                 Rule::unique('users'),
             ],
             'contact_number' => 'nullable|max:255',
-            'guardian_name' => 'nullable|max:255',
-            'guardian_relationship' => 'nullable|max:255',
-            'guardian_contact_number' => 'nullable|max:255',
-            'province_id' => 'nullable',
-            'city_id' => 'nullable',
-            'barangay_id' => 'nullable',
+
+            'province_id' => 'required',
+            'city_id' => 'required',
+            'barangay_id' => 'required',
+
+            'role' => 'required',
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
@@ -82,11 +90,9 @@ class UserController extends Controller
 
             $request['password'] = Hash::make($request->password);
 
-            $user = User::create($request->all());
+            $user = User::create($request->except('role'));
 
-            $user->save();
-
-            $user->syncRoles(['Admin']);
+            $user->syncRoles([$request->role]);
 
             DB::commit();
 
@@ -99,61 +105,6 @@ class UserController extends Controller
             // return back();
         }
     }
-
-    // public function storeStudent(Request $request)
-    // {
-    //     $request->validate([
-    //         'id_number' => [
-    //             'required',
-    //             'numeric',
-    //             'max_digits:10',
-    //             'min_digits:10',
-    //             Rule::unique('users'),
-    //             'exists:id_numbers',
-    //         ],
-    //         'first_name' => 'required|max:255',
-    //         'middle_name' => 'nullable|max:255',
-    //         'last_name' => 'required|max:255',
-    //         'suffix_name' => 'nullable|max:255',
-    //         'date_of_birth' => 'required|max:10|date',
-    //         'email' => [
-    //             'required',
-    //             'email',
-    //             Rule::unique('users'),
-    //         ],
-    //         'contact_number' => 'nullable|max:255',
-    //         'guardian_name' => 'nullable|max:255',
-    //         'guardian_relationship' => 'nullable|max:255',
-    //         'guardian_contact_number' => 'nullable|max:255',
-    //         'province_id' => 'nullable',
-    //         'city_id' => 'nullable',
-    //         'barangay_id' => 'nullable',
-    //         'password' => ['required', 'confirmed', Password::defaults()],
-    //     ]);
-
-    //     DB::beginTransaction();
-
-    //     try {
-
-    //         $request['password'] = Hash::make($request->password);
-
-    //         $user = User::create($request->all());
-
-    //         $user->save();
-
-    //         $user->syncRoles(['Student']);
-
-    //         DB::commit();
-
-    //         return back();
-    //     } catch (Throwable $e) {
-
-    //         DB::rollBack();
-
-    //         return $e;
-    //         // return back();
-    //     }
-    // }
 
     public function show($id)
     {
@@ -174,6 +125,8 @@ class UserController extends Controller
     {
         $model = User::find($id);
 
+        $model->load('roles');
+
         return Inertia::render('User/Edit', [
             'model' => $model,
         ]);
@@ -183,42 +136,30 @@ class UserController extends Controller
     {
         $model = User::find($id);
 
-        // if ($model->roles[0]->name == "Student") {
-
-        //     $request->validate([
-        //         'id_number' => [
-        //             'required',
-        //             'numeric',
-        //             'max_digits:10',
-        //             'min_digits:10',
-        //             Rule::unique('users')->ignore($model),
-        //         ],
-        //     ]);
-        // } else {
-
-        //     $request->validate([
-        //         'id_number' => 'nullable'
-        //     ]);
-        // }
-
         $request->validate([
             'first_name' => 'required|max:255',
             'middle_name' => 'nullable|max:255',
             'last_name' => 'required|max:255',
             'suffix_name' => 'nullable|max:255',
+            'gender' => 'required|max:255',
+            'citizenship' => 'required|max:255',
+            'religion' => 'nullable|max:255',
+            'civil_status' => 'required|max:255',
             'date_of_birth' => 'required|max:10|date',
+            'place_of_birth' => 'nullable|max:255',
+
             'email' => [
                 'required',
                 'email',
                 Rule::unique('users')->ignore($model),
             ],
             'contact_number' => 'nullable|max:255',
-            'guardian_name' => 'nullable|max:255',
-            'guardian_relationship' => 'nullable|max:255',
-            'guardian_contact_number' => 'nullable|max:255',
-            'province_id' => 'nullable',
-            'city_id' => 'nullable',
-            'barangay_id' => 'nullable',
+
+            'province_id' => 'required',
+            'city_id' => 'required',
+            'barangay_id' => 'required',
+
+            'role' => 'required',
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
 
@@ -229,11 +170,13 @@ class UserController extends Controller
             if ($request->filled('password')) {
                 $request['password'] = Hash::make($request->password);
 
-                $model->update($request->all());
+                $model->update($request->except('role'));
             } else {
 
-                $model->update($request->except('password'));
+                $model->update($request->except('password', 'role'));
             }
+
+            $model->syncRoles([$request->role]);
 
             DB::commit();
 
