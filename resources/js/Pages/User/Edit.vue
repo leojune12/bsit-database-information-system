@@ -5,7 +5,7 @@
         <div class="tw-bg-white tw-shadow-lg tw-border sm:tw-rounded-lg tw-mb-5 tw-p-4 sm:tw-p-8">
             <div class="md:tw-grid md:tw-grid-cols-2">
                 <header>
-                    <h2 class="tw-text-lg tw-font-medium tw-text-gray-900">Update User</h2>
+                    <h2 class="tw-text-xl tw-font-bold tw-text-gray-900">Update User</h2>
                 </header>
             </div>
             <form @submit.prevent="submitForm()" class="tw-mt-6 tw-space-y-6 md:tw-col-span-1">

@@ -5,7 +5,7 @@
         <div class="tw-bg-white tw-shadow sm:tw-rounded-lg tw-mb-5 tw-p-4 sm:tw-p-8">
             <div class="md:tw-grid md:tw-grid-cols-2">
                 <header>
-                    <h2 class="tw-text-lg tw-font-medium tw-text-gray-900">Create Student</h2>
+                    <h2 class="tw-text-xl tw-font-bold tw-text-gray-900">Create Student</h2>
                 </header>
             </div>
             <div class="">
