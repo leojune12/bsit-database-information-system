@@ -814,50 +814,48 @@
                     <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
                         Account Information
                     </h3>
-                    <div class="tw-space-y-6">
-                        <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                            <div>
-                                <InputLabel for="password" value="Password" required />
+                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                        <div>
+                            <InputLabel for="password" value="Password" required />
 
-                                <TextInput
-                                    id="password"
-                                    type="password"
-                                    class="tw-mt-1 tw-block tw-w-full"
-                                    v-model="form.password"
-                                    required
-                                    autocomplete="password"
-                                />
+                            <TextInput
+                                id="password"
+                                type="password"
+                                class="tw-mt-1 tw-block tw-w-full"
+                                v-model="form.password"
+                                required
+                                autocomplete="password"
+                            />
 
-                                <InputError class="tw-mt-2" :message="form.errors.password" />
-                            </div>
-
-                            <div>
-                                <InputLabel for="password_confirmation" value="Confirm Password" required />
-
-                                <TextInput
-                                    id="password_confirmation"
-                                    type="password"
-                                    class="tw-mt-1 tw-block tw-w-full"
-                                    v-model="form.password_confirmation"
-                                    required
-                                    autocomplete="password_confirmation"
-                                />
-
-                                <InputError class="tw-mt-2" :message="form.errors.password_confirmation" />
-                            </div>
+                            <InputError class="tw-mt-2" :message="form.errors.password" />
                         </div>
-                        <div class="tw-flex tw-items-center tw-justify-end tw-mt-4">
-                            <Link
-                                :href="route('login')"
-                                class="tw-underline tw-text-sm tw-text-gray-600 hover:tw-text-gray-900 tw-rounded-md focus:tw-outline-none"
-                            >
-                                Already registered?
-                            </Link>
 
-                            <PrimaryButton class="tw-ml-4" :class="{ 'tw-opacity-25': form.processing }" :disabled="form.processing">
-                                Register
-                            </PrimaryButton>
+                        <div>
+                            <InputLabel for="password_confirmation" value="Confirm Password" required />
+
+                            <TextInput
+                                id="password_confirmation"
+                                type="password"
+                                class="tw-mt-1 tw-block tw-w-full"
+                                v-model="form.password_confirmation"
+                                required
+                                autocomplete="password_confirmation"
+                            />
+
+                            <InputError class="tw-mt-2" :message="form.errors.password_confirmation" />
                         </div>
+                    </div>
+                    <div class="tw-flex tw-items-center tw-justify-end tw-mt-4">
+                        <Link
+                            :href="route('login')"
+                            class="tw-underline tw-text-sm tw-text-gray-600 hover:tw-text-gray-900 tw-rounded-md focus:tw-outline-none"
+                        >
+                            Already registered?
+                        </Link>
+
+                        <PrimaryButton class="tw-ml-4" :class="{ 'tw-opacity-25': form.processing }" :disabled="form.processing">
+                            Register
+                        </PrimaryButton>
                     </div>
                 </form>
             </div>
