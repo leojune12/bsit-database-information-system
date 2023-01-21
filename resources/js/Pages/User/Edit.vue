@@ -335,19 +335,6 @@
     const url = 'users'
 
     const form = useForm({
-        first_name: props.model.first_name,
-        last_name: props.model.last_name,
-        middle_name: props.model.middle_name,
-        suffix_name: props.model.suffix_name,
-        date_of_birth: props.model.date_of_birth,
-        email: props.model.email,
-        contact_number: props.model.contact_number,
-        guardian_name: props.model.guardian_name,
-        guardian_relationship: props.model.guardian_relationship,
-        guardian_contact_number: props.model.guardian_contact_number,
-        province_id: props.model.province_id,
-        city_id: props.model.city_id,
-        barangay_id: props.model.barangay_id,
 
         first_name: props.model.first_name,
         last_name: props.model.last_name,
