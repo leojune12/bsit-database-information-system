@@ -4,7 +4,7 @@
     <AuthenticatedLayout>
         <div class="tw-flex tw-flex-col md:tw-flex-row tw-mb-4 md:tw-justify-between md:tw-items-center tw-gap-y-4">
             <h3 class="tw-text-xl tw-font-bold tw-leading-6 tw-text-gray-700">
-                Students
+                Alumni
             </h3>
             <LinkComponent
                 :href="url + '/create'"
@@ -49,9 +49,9 @@
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.email }}
                         </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                        <!-- <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.role }}
-                        </td>
+                        </td> -->
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             <div class="tw-flex tw-gap-2">
                                 <Link
@@ -131,10 +131,10 @@
             title: 'Email',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
-        {
-            title: 'Role',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
-        },
+        // {
+        //     title: 'Role',
+        //     class: 'tw-py-3 tw-px-6 tw-text-left',
+        // },
         {
             title: 'Actions',
             class: 'tw-py-3 tw-px-6 tw-text-left',
