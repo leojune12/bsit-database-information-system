@@ -11,7 +11,9 @@ use Illuminate\Validation\Rule;
 use App\Models\Address\Province;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\Password;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class UserController extends Controller
 {
@@ -60,6 +62,11 @@ class UserController extends Controller
         // dd($request->photo);
 
         $request->validate([
+            'photo' => [
+                'nullable',
+                File::image()
+                ->max(5 * 1024),
+            ],
             'first_name' => 'required|max:255',
             'middle_name' => 'nullable|max:255',
             'last_name' => 'required|max:255',
@@ -96,9 +103,12 @@ class UserController extends Controller
 
             $user->syncRoles([$request->role]);
 
-            $user
-                ->addMedia($request->photo)
-                ->toMediaCollection();
+            if ($request->filled('photo')) {
+
+                $user
+                    ->addMedia($request->photo)
+                    ->toMediaCollection('profile_photos');
+            }
 
             DB::commit();
 
@@ -122,7 +132,7 @@ class UserController extends Controller
 
         $model['age'] = Carbon::parse($model->date_of_birth)->age;
 
-        $photo_url = $model->getFirstMediaUrl();
+        $photo_url = $model->getFirstMediaUrl('profile_photos');
 
         return Inertia::render('User/Show', [
             'model' => $model,
@@ -136,8 +146,11 @@ class UserController extends Controller
 
         $model->load('roles');
 
+        $photo_url = $model->getFirstMediaUrl('profile_photos');
+
         return Inertia::render('User/Edit', [
             'model' => $model,
+            'photo_url' => $photo_url,
         ]);
     }
 
@@ -146,6 +159,11 @@ class UserController extends Controller
         $model = User::find($id);
 
         $request->validate([
+            'photo' => [
+                'nullable',
+                File::image()
+                ->max(5 * 1024),
+            ],
             'first_name' => 'required|max:255',
             'middle_name' => 'nullable|max:255',
             'last_name' => 'required|max:255',
@@ -183,6 +201,24 @@ class UserController extends Controller
             } else {
 
                 $model->update($request->except('password', 'role'));
+            }
+
+            // Remove photo
+            if ($request->remove_photo) {
+
+                $media = $model->getFirstMedia('profile_photos');
+
+                if ($media) {
+
+                    $media->delete();
+                }
+            }
+
+            // Add photo
+            if ($request->photo) {
+                $model
+                    ->addMedia($request->photo)
+                    ->toMediaCollection('profile_photos');
             }
 
             $model->syncRoles([$request->role]);

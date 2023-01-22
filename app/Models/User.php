@@ -108,4 +108,11 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsTo(Barangay::class, 'barangay_id', 'brgyCode');
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('profile_photos')
+            ->singleFile();
+    }
 }
