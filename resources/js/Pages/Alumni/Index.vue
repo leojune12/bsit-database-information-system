@@ -6,14 +6,14 @@
             <h3 class="tw-text-xl tw-font-bold tw-leading-6 tw-text-gray-700">
                 Alumni
             </h3>
-            <LinkComponent
+            <!-- <LinkComponent
                 :href="url + '/create'"
                 type="success-outlined"
                 class=""
             >
                 <PlusIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" />
                 New Student
-            </LinkComponent>
+            </LinkComponent> -->
         </div>
         <div class="tw-overflow-x-auto tw-mb-4">
             <table class="tw-min-w-full">

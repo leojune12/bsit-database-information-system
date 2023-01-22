@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\Password;
 
 class AlumniController extends Controller
@@ -59,6 +60,11 @@ class AlumniController extends Controller
     {
         $request->validate([
             // Basic Information
+            'photo' => [
+                'nullable',
+                File::image()
+                ->max(5 * 1024),
+            ],
             'id_number' => [
                 'required',
                 'numeric',
@@ -143,9 +149,14 @@ class AlumniController extends Controller
 
             $user->syncRoles(['Student']);
 
-            DB::commit();
+            if ($request->photo) {
 
-            Auth::login($user);
+                $user
+                    ->addMedia($request->photo)
+                    ->toMediaCollection('profile_photos');
+            }
+
+            DB::commit();
 
             return back();
         } catch (Throwable $e) {
@@ -167,8 +178,11 @@ class AlumniController extends Controller
 
         $model['age'] = Carbon::parse($model->date_of_birth)->age;
 
+        $photo_url = $model->getFirstMediaUrl('profile_photos');
+
         return Inertia::render('Alumni/Show', [
             'model' => $model,
+            'photo_url' => $photo_url,
         ]);
     }
 
@@ -176,8 +190,11 @@ class AlumniController extends Controller
     {
         $model = User::find($id);
 
+        $photo_url = $model->getFirstMediaUrl('profile_photos');
+
         return Inertia::render('Alumni/Edit', [
             'model' => $model,
+            'photo_url' => $photo_url,
         ]);
     }
 
@@ -186,6 +203,11 @@ class AlumniController extends Controller
         $model = User::find($id);
 
         $request->validate([
+            'photo' => [
+                'nullable',
+                File::image()
+                ->max(5 * 1024),
+            ],
             // Basic Information
             'id_number' => [
                 'required',
@@ -270,6 +292,24 @@ class AlumniController extends Controller
             } else {
 
                 $model->update($request->except('password'));
+            }
+
+            // Remove photo
+            if ($request->remove_photo) {
+
+                $media = $model->getFirstMedia('profile_photos');
+
+                if ($media) {
+
+                    $media->delete();
+                }
+            }
+
+            // Add photo
+            if ($request->photo) {
+                $model
+                    ->addMedia($request->photo)
+                    ->toMediaCollection('profile_photos');
             }
 
             DB::commit();

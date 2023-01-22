@@ -8,6 +8,23 @@
                     <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900">Alumni Information</h3>
                 </dl>
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
+                    <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Photo</dt>
+                    <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
+                        <img
+                            v-if="props.photo_url != ''"
+                            :src="props.photo_url"
+                            alt="photo"
+                            class="tw-w-44 tw-max-h-44 tw-object-contain tw-rounded-lg"
+                        >
+                        <div
+                            v-else
+                            class="tw-w-28 tw-h-28 tw-rounded-lg tw-text-5xl tw-bg-blue-200 tw-text-white tw-flex tw-items-center tw-justify-center"
+                        >
+                            {{ props.model.first_name.charAt(0) + props.model.last_name.charAt(0) }}
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">ID Number</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
                         {{ props.model.id_number }}
@@ -276,6 +293,7 @@
 
     const props = defineProps({
         model: Object,
+        photo_url: String,
     })
 
     const url = 'alumni'
