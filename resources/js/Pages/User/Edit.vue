@@ -15,47 +15,47 @@
                 </h3>
 
                 <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
-                            <InputLabel for="" value="Photo" class="tw-mb-1" />
+                    <div>
+                        <InputLabel for="" value="Photo" class="tw-mb-1" />
 
-                            <input
-                                type="file"
-                                accept="image/*"
-                                @input="previewImage"
-                                class=""
-                                id="photo"
-                                hidden
-                            >
+                        <input
+                            type="file"
+                            accept="image/*"
+                            @input="previewImage"
+                            class=""
+                            id="photo"
+                            hidden
+                        >
 
-                            <div v-if="preview" class="tw-mb-2">
-                                <img :src="preview" class="tw-w-44 tw-max-h-44 tw-object-contain tw-mb-2" />
-                                <div v-if="!!form.photo">
-                                    <p class="tw-mb-0">File name: {{ form.photo.name }}</p>
-                                    <p class="tw-mb-0">Size: {{ (form.photo.size/1024).toFixed(2) }}KB</p>
-                                </div>
+                        <div v-if="preview" class="tw-mb-2">
+                            <img :src="preview" class="tw-w-44 tw-max-h-44 tw-object-contain tw-mb-2" />
+                            <div v-if="!!form.photo">
+                                <p class="tw-mb-0">File name: {{ form.photo.name }}</p>
+                                <p class="tw-mb-0">Size: {{ (form.photo.size/1024).toFixed(2) }}KB</p>
                             </div>
-
-                            <div class="tw-flex tw-gap-3">
-                                <button
-                                    @click="browseFile()"
-                                    type="button"
-                                    class="tw-h-8 tw-bg-blue-500 hover:tw-bg-blue-600 tw-text-white tw-rounded-lg tw-px-3 tw-text-sm"
-                                >
-                                    Browse File
-                                </button>
-                                <button
-                                    v-if="preview"
-                                    @click="resetFile()"
-                                    type="button"
-                                    class="tw-h-8 tw-bg-red-500 hover:tw-bg-red-600 tw-text-white tw-rounded-lg tw-px-3 tw-text-sm"
-                                >
-                                    Remove
-                                </button>
-                            </div>
-
-                            <InputError class="tw-mt-2" :message="form.errors.photo" />
                         </div>
+
+                        <div class="tw-flex tw-gap-3">
+                            <button
+                                @click="browseFile()"
+                                type="button"
+                                class="tw-h-8 tw-bg-blue-500 hover:tw-bg-blue-600 tw-text-white tw-rounded-lg tw-px-3 tw-text-sm"
+                            >
+                                Browse File
+                            </button>
+                            <button
+                                v-if="preview"
+                                @click="resetFile()"
+                                type="button"
+                                class="tw-h-8 tw-bg-red-500 hover:tw-bg-red-600 tw-text-white tw-rounded-lg tw-px-3 tw-text-sm"
+                            >
+                                Remove
+                            </button>
+                        </div>
+
+                        <InputError class="tw-mt-2" :message="form.errors.photo" />
                     </div>
+                </div>
 
                 <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                     <div>

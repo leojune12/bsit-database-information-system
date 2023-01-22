@@ -13,6 +13,48 @@
                     <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
                         Student Information
                     </h3>
+
+                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                        <div>
+                            <InputLabel for="photo" value="Photo" class="tw-mb-1" />
+
+                            <input
+                                type="file"
+                                accept="image/*"
+                                @input="previewImage"
+                                class=""
+                                id="photo"
+                                hidden
+                            >
+
+                            <div v-if="preview" class="tw-mb-2">
+                                <img :src="preview" class="tw-w-44 tw-max-h-44 tw-object-contain tw-mb-2" />
+                                <p class="tw-mb-0">File name: {{ form.photo.name }}</p>
+                                <p class="tw-mb-0">Size: {{ (form.photo.size/1024).toFixed(2) }}KB</p>
+                            </div>
+
+                            <div class="tw-flex tw-gap-3">
+                                <button
+                                    @click="browseFile()"
+                                    type="button"
+                                    class="tw-h-8 tw-bg-blue-500 hover:tw-bg-blue-600 tw-text-white tw-rounded-lg tw-px-3 tw-text-sm"
+                                >
+                                    Browse File
+                                </button>
+                                <button
+                                    v-if="preview"
+                                    @click="resetFile()"
+                                    type="button"
+                                    class="tw-h-8 tw-bg-red-500 hover:tw-bg-red-600 tw-text-white tw-rounded-lg tw-px-3 tw-text-sm"
+                                >
+                                    Remove
+                                </button>
+                            </div>
+
+                            <InputError class="tw-mt-2" :message="form.errors.photo" />
+                        </div>
+                    </div>
+
                     <div class="tw-space-y-6">
                         <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                             <div>
@@ -877,10 +919,13 @@
 
     const url = 'students'
 
+    const preview = ref(null)
+
     const form = useForm({
         id_number: null,
 
         // Basic Information
+        photo: null,
         first_name: null,
         last_name: null,
         middle_name: null,
@@ -970,6 +1015,33 @@
         resetBarangayIndex.value = true
         form.barangay_id = null
     })
+
+    function previewImage(event) {
+
+        let input = event.target;
+
+        if (input.files.length) {
+
+            let reader = new FileReader();
+
+            reader.onload = (e) => {
+
+                preview.value = e.target.result;
+            }
+
+            form.photo = input.files[0];
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function browseFile() {
+        document.getElementById("photo").click()
+    }
+
+    function resetFile() {
+        form.photo = null
+        preview.value = null
+    }
 
     function submitForm() {
         form.post(route(url + '.store'), {

@@ -14,11 +14,11 @@
                             v-if="props.photo_url != ''"
                             :src="props.photo_url"
                             alt="photo"
-                            class="tw-w-44 tw-h-44 tw-rounded-lg"
+                            class="tw-w-44 tw-max-h-44 tw-object-contain tw-rounded-lg"
                         >
                         <div
                             v-else
-                            class="tw-w-44 tw-h-44 tw-rounded-lg tw-text-7xl tw-bg-blue-200 tw-text-white tw-flex tw-items-center tw-justify-center"
+                            class="tw-w-28 tw-h-28 tw-rounded-lg tw-text-5xl tw-bg-blue-200 tw-text-white tw-flex tw-items-center tw-justify-center"
                         >
                             {{ props.model.first_name.charAt(0) + props.model.last_name.charAt(0) }}
                         </div>
