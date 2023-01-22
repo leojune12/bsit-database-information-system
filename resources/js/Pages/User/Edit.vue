@@ -157,7 +157,6 @@
                             type="text"
                             class="tw-mt-1 tw-block tw-w-full"
                             v-model="form.religion"
-                            required
                             autocomplete="religion"
                         />
 
@@ -315,7 +314,7 @@
                 </div>
                 <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                     <div>
-                        <InputLabel for="password" value="New Password" required />
+                        <InputLabel for="password" value="New Password" />
 
                         <TextInput
                             id="password"
@@ -329,7 +328,7 @@
                     </div>
 
                     <div>
-                        <InputLabel for="password_confirmation" value="Confirm Password" required />
+                        <InputLabel for="password_confirmation" value="Confirm Password" />
 
                         <TextInput
                             id="password_confirmation"
@@ -417,7 +416,7 @@
     const resetBarangayIndex = ref(false)
 
     onMounted(() => {
-        if(!!props.model.province_id) getProvinces()
+        getProvinces()
         if(!!props.model.city_id) getCitiesMunicipalities(props.model.province_id)
         if(!!props.model.barangay_id) getBarangays(props.model.city_id)
     })
