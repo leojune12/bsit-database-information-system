@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use App\Models\Address\Province;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\Password;
@@ -103,7 +104,7 @@ class UserController extends Controller
 
             $user->syncRoles([$request->role]);
 
-            if ($request->filled('photo')) {
+            if ($request->photo) {
 
                 $user
                     ->addMedia($request->photo)
