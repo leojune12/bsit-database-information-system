@@ -15,7 +15,7 @@ import { Link } from '@inertiajs/inertia-vue3';
                         <h1 class="tw-text-4xl tw-font-extrabold tw-tracking-tight tw-leading-none tw-text-white md:tw-text-5xl lg:tw-text-5xl dark:tw-text-white">Database Information System for BSIT Student</h1>
                     </Link>
                     <div class="tw-flex tw-w-28 tw-h-28 tw-justify-center tw-items-center">
-                        <img src="/it_logo.jpeg" alt="" class="tw-w-20">
+                        <img src="/it_logo.png" alt="" class="tw-w-20">
                     </div>
                 </div>
             </div>

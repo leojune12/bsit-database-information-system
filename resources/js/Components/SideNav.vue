@@ -4,7 +4,7 @@
             <div class="tw-flex tw-justify-center tw-h-16">
                 <Link :href="route('dashboard')" class="tw-flex tw-items-center tw-gap-x-3">
                     <img src="/capsu_logo.png" class="tw-h-6 sm:tw-h-12" alt="Flowbite Logo" />
-                    <img src="/it_logo.jpeg" class="tw-h-6 sm:tw-h-12" alt="Flowbite Logo" />
+                    <img src="/it_logo.png" class="tw-h-6 sm:tw-h-12" alt="Flowbite Logo" />
                     <!-- <span class="tw-self-center tw-text-xl tw-font-semibold tw-whitespace-nowrap dark:tw-text-white">Capsu Pilar</span> -->
                 </Link>
             </div>
