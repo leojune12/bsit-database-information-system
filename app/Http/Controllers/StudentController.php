@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Models\IdNumber;
 use Illuminate\Http\Request;
 use App\Services\DateService;
+use App\Services\RoleService;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,10 @@ class StudentController extends Controller
 {
     public function index(Request $request)
     {
+        if (Auth::user()->roles[0]->name == 'Student') {
+            return redirect('/students/' . Auth::id());
+        }
+
         return Inertia::render('Student/Index', [
             'response' => $this->getData($request),
         ]);
@@ -53,6 +58,8 @@ class StudentController extends Controller
 
     public function create()
     {
+        RoleService::checkAuthority(['Admin', 'Faculty']);
+
         return Inertia::render('Student/Create', [
             //
         ]);
@@ -60,6 +67,8 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
+        RoleService::checkAuthority(['Admin', 'Faculty']);
+
         $request->validate([
             // Basic Information
             'photo' => [
@@ -172,6 +181,9 @@ class StudentController extends Controller
 
     public function show($id)
     {
+        RoleService::checkAuthority(['Admin', 'Faculty', 'Student']);
+        RoleService::checkAuthorityById($id, "You can only view your own profile");
+
         $model = User::find($id);
 
         $model->load('province', 'city', 'barangay');
@@ -190,6 +202,9 @@ class StudentController extends Controller
 
     public function edit($id)
     {
+        RoleService::checkAuthority(['Admin', 'Faculty', 'Student']);
+        RoleService::checkAuthorityById($id, "You can only update your own profile");
+
         $model = User::find($id);
 
         $photo_url = $model->getFirstMediaUrl('profile_photos');
@@ -202,6 +217,8 @@ class StudentController extends Controller
 
     public function update(Request $request, $id)
     {
+        RoleService::checkAuthority(['Admin', 'Faculty', 'Student']);
+
         $model = User::find($id);
 
         $request->validate([
@@ -328,6 +345,8 @@ class StudentController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        RoleService::checkAuthority(['Admin']);
+
         if(!empty($request->id_array)) {
 
             DB::beginTransaction();

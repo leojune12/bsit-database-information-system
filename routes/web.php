@@ -38,7 +38,7 @@ if (App::environment('production')) {
 }
 
 Route::get('/', function () {
-    return redirect('login');
+    return redirect('home');
 });
 
 Route::get('address/get-provinces', function() {
@@ -58,19 +58,26 @@ Route::get('address/get-cities-municipalities-per-province/{province_code}', fun
 
 Route::post('/students/store', [StudentController::class, 'store']);
 
-Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Student']], function () {
-
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-
-    Route::resource('users', UserController::class);
+Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']], function () {
 
     Route::resource('students', StudentController::class);
+
+    Route::get('/home', function () {
+
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+});
+
+Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Faculty']], function () {
 
     Route::resource('alumni', AlumniController::class);
 
     Route::resource('subjects', SubjectController::class);
+});
+
+Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
+
+    Route::resource('users', UserController::class);
 });
 
 require __DIR__.'/auth.php';

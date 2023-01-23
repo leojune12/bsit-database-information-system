@@ -12,7 +12,7 @@
                 <li
                     v-for="item in navigation"
                     :key="item.name"
-                    :class="item.for == null || item.for == $page.props.auth.user.roles[0].name ? '' : 'tw-hidden'"
+                    :class="!item.for.length || item.for.includes($page.props.auth.user.roles[0].name) ? '' : 'tw-hidden'"
                 >
                     <Link
                         :href="item.href"
@@ -29,38 +29,48 @@
 </template>
 
 <script setup>
-    import { Link } from '@inertiajs/inertia-vue3';
+    import { Link, usePage } from '@inertiajs/inertia-vue3';
 
     const navigation = [
-        {
+    {
             name: 'Dashboard',
-            href: '/dashboard',
-            for: null
+            href: '/home',
+            for: ['Admin', 'Faculty']
         },
         {
             name: 'Users',
             href: '/users',
-            for: 'Admin'
+            for: ['Admin']
         },
         {
             name: 'Students',
             href: '/students',
-            for: 'Admin'
+            for: ['Admin', 'Faculty']
         },
         {
             name: 'Subjects',
             href: '/subjects',
-            for: 'Admin'
+            for: ['Admin', 'Faculty']
         },
         {
             name: 'Alumni',
             href: '/alumni',
-            for: 'Admin'
+            for: ['Admin', 'Faculty']
+        },
+        {
+            name: 'Grades',
+            href: '/grades',
+            for: ['Student', 'Alumnus']
+        },
+        {
+            name: 'Profile',
+            href: '/students/' + usePage().props.value.auth.user.id,
+            for: ['Student', 'Alumnus']
         },
         {
             name: 'Accout Settings',
             href: '/profile',
-            for: null
+            for: []
         },
     ]
 </script>

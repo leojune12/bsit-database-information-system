@@ -46,7 +46,7 @@
                                 v-for="item in navigation"
                                 :key="item.name" as="a"
                                 :href="item.href"
-                                :class="[$page.url.startsWith(item.href) ? 'tw-bg-rose-800 tw-text-white' : 'tw-text-gray-700 hover:tw-bg-rose-50', item.for == null || item.for == $page.props.auth.user.roles[0].name ? '' : 'tw-hidden', 'tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-flex tw-items-center']"
+                                :class="[$page.url.startsWith(item.href) ? 'tw-bg-rose-800 tw-text-white' : 'tw-text-gray-700 hover:tw-bg-rose-50', !item.for.length || item.for.includes($page.props.auth.user.roles[0].name) ? '' : 'tw-hidden', 'tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-flex tw-items-center']"
                                 :aria-current="item.current ? 'page' : undefined"
                             >
                                 <!-- <component
@@ -107,38 +107,43 @@
     const navigation = [
         {
             name: 'Dashboard',
-            href: '/dashboard',
-            icon: PresentationChartBarIcon,
-            for: null
+            href: '/home',
+            for: ['Admin', 'Faculty']
         },
         {
             name: 'Users',
             href: '/users',
-            icon: UsersIcon,
-            for: 'Admin'
+            for: ['Admin', 'Faculty']
         },
         {
             name: 'Students',
             href: '/students',
-            icon: UsersIcon,
-            for: 'Admin'
+            for: ['Admin', 'Faculty']
         },
         {
             name: 'Subjects',
             href: '/subjects',
-            icon: UsersIcon,
-            for: 'Admin'
+            for: ['Admin', 'Faculty']
         },
         {
             name: 'Alumni',
             href: '/alumni',
-            icon: UsersIcon,
-            for: 'Admin'
+            for: ['Admin', 'Faculty']
+        },
+        {
+            name: 'Grades',
+            href: '/grades',
+            for: ['Student', 'Alumnus']
+        },
+        {
+            name: 'Profile',
+            href: '/students/' + usePage().props.value.auth.user.id,
+            for: ['Student', 'Alumnus']
         },
         {
             name: 'Accout Settings',
             href: '/profile',
-            for: null
+            for: []
         },
     ]
 </script>
