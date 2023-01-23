@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +16,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Home/Home', []);
+        $users = User::role(['Admin', 'Faculty'])->count();
+        $students = User::role(['Student'])->count();
+        $alumni = User::role(['Alumnus'])->count();
+        $subjects = Subject::count();
+
+        return Inertia::render('Dashboard', [
+            'users' => $users,
+            'students' => $students,
+            'alumni' => $alumni,
+            'subjects' => $subjects
+        ]);
     }
 
     /**

@@ -13,18 +13,22 @@
                         v-if="$page.props.auth.user.roles[0].name == 'Admin'"
                         v-for="item in dashboardData"
                         :key="item.title"
-                        class="tw-shadow-lg tw-p-5 tw-w-full md:tw-w-80 flex tw-rounded-lg"
+                        class="tw-shadow-lg tw-border tw-p-5 tw-w-full md:tw-w-52 flex tw-rounded-lg"
                     >
-                        <div>
-                            <div class="tw-text-xl tw-font-bold tw-text-gray-800">
-                                {{ item.value }}
+                        <div class="tw-flex tw-justify-between tw-items-center">
+                            <div>
+                                <div class="tw-text-xl tw-font-bold tw-text-gray-700">
+                                    {{ item.value }}
+                                </div>
+                                <div class="tw-text-gray-500 tw-font-medium">
+                                    {{ item.title }}
+                                </div>
                             </div>
-                            <div class="tw-text-gray-400 tw-font-medium">
-                                {{ item.title }}
-                            </div>
-                        </div>
-                        <div>
-
+                            <component
+                                :is="item.icon"
+                                class="tw-flex-shrink-0 tw-w-10 tw-h-10 tw-transition tw-duration-75 tw-text-rose-800"
+                                aria-hidden="true"
+                            />
                         </div>
                     </div>
                     <div
@@ -43,27 +47,35 @@
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import { Head } from '@inertiajs/inertia-vue3';
     import { ref } from 'vue'
+    import { UserIcon, AcademicCapIcon, BookOpenIcon } from '@heroicons/vue/24/solid'
+
+    const props = defineProps({
+        users: Array,
+        students: Array,
+        alumni: Array,
+        subjects: Array,
+    })
 
     const dashboardData = ref([
     {
         title: 'Users',
-        value: 325,
+        value: props.users,
+        icon: UserIcon,
     },
     {
         title: 'Students',
-        value: 295,
-    },
-    {
-        title: 'Subjects',
-        value: 215,
-    },
-    {
-        title: 'Certificate and Awards',
-        value: 32,
+        value: props.students,
+        icon: UserIcon,
     },
     {
         title: 'Alumni',
-        value: 845,
+        value: props.alumni,
+        icon: AcademicCapIcon,
+    },
+    {
+        title: 'Subjects',
+        value: props.subjects,
+        icon: BookOpenIcon,
     },
     ])
 </script>

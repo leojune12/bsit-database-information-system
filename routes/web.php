@@ -63,10 +63,7 @@ Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student|Al
 
     Route::get('user-profile', [UserProfileController::class, 'show']);
 
-    Route::get('/home', function () {
-
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
 });
 
 Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']], function () {
