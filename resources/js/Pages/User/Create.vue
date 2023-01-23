@@ -11,7 +11,7 @@
             <div class="">
                 <form @submit.prevent="submitForm()" class="tw-mt-6 tw-space-y-6">
                     <h3 class="tw-text-lg tw-font-bold tw-text-gray-600">
-                        User Information
+                        Profile Information
                     </h3>
 
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
