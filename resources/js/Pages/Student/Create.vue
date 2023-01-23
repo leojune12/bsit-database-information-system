@@ -173,7 +173,6 @@
                                     type="text"
                                     class="tw-mt-1 tw-block tw-w-full"
                                     v-model="form.religion"
-                                    required
                                     autocomplete="religion"
                                 />
 
