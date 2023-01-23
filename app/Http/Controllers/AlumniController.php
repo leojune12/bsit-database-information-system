@@ -7,6 +7,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Services\DateService;
+use App\Services\RoleService;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -51,6 +52,8 @@ class AlumniController extends Controller
 
     public function create()
     {
+        RoleService::checkAuthority(['Admin']);
+
         // return Inertia::render('Alumni/Create', [
             //
         // ]);
@@ -58,6 +61,8 @@ class AlumniController extends Controller
 
     public function store(Request $request)
     {
+        RoleService::checkAuthority(['Admin']);
+
         $request->validate([
             // Basic Information
             'photo' => [
@@ -188,6 +193,8 @@ class AlumniController extends Controller
 
     public function edit($id)
     {
+        RoleService::checkAuthority(['Admin']);
+
         $model = User::find($id);
 
         $photo_url = $model->getFirstMediaUrl('profile_photos');
@@ -200,6 +207,8 @@ class AlumniController extends Controller
 
     public function update(Request $request, $id)
     {
+        RoleService::checkAuthority(['Admin']);
+
         $model = User::find($id);
 
         $request->validate([
@@ -326,6 +335,8 @@ class AlumniController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        RoleService::checkAuthority(['Admin']);
+
         if(!empty($request->id_array)) {
 
             DB::beginTransaction();

@@ -275,7 +275,8 @@
                     Back
                 </LinkComponent>
                 <LinkComponent
-                :href="'/' + url + '/' + props.model.id + '/edit'"
+                    v-if="['Admin', 'Student'].includes($page.props.auth.user.roles[0].name)"
+                    :href="'/' + url + '/' + props.model.id + '/edit'"
                     type="primary"
                 >
                     Update

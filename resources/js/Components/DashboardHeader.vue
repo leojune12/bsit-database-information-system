@@ -115,7 +115,7 @@
     import { Bars3Icon, XMarkIcon, PresentationChartBarIcon, ChatBubbleLeftEllipsisIcon, ChatBubbleLeftRightIcon, ChatBubbleBottomCenterTextIcon, UsersIcon } from '@heroicons/vue/24/outline'
 
     const navigation = [
-        {
+    {
             name: 'Dashboard',
             href: '/home',
             for: ['Admin', 'Faculty']
@@ -123,7 +123,7 @@
         {
             name: 'Users',
             href: '/users',
-            for: ['Admin', 'Faculty']
+            for: ['Admin']
         },
         {
             name: 'Students',
@@ -147,8 +147,8 @@
         },
         {
             name: 'Profile',
-            href: '/students/' + usePage().props.value.auth.user.id,
-            for: ['Student', 'Alumnus']
+            href: '/user-profile',
+            for: []
         },
         {
             name: 'Accout Settings',

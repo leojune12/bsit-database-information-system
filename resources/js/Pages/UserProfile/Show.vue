@@ -1,5 +1,5 @@
 <template>
-    <Head title="Alumni" />
+    <Head title="Users" />
 
     <AuthenticatedLayout>
         <div class="tw-bg-white tw-shadow-lg tw-border sm:tw-rounded-lg tw-mb-5">
@@ -24,7 +24,10 @@
                         </div>
                     </dd>
                 </dl>
-                <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
+                <dl
+                    v-if="$page.props.auth.user.roles[0].name == 'Student'"
+                    class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2"
+                >
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">ID Number</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
                         {{ props.model.id_number }}
@@ -267,16 +270,18 @@
                     </dd>
                 </dl>
             </div>
-            <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-4 tw-py-6 sm:tw-px-6 tw-px-4">
-                <LinkComponent
+            <div
+                v-if="$page.props.auth.user.roles[0].name != 'Alumnus'"
+                class="tw-flex tw-flex-col md:tw-flex-row tw-gap-4 tw-py-6 sm:tw-px-6 tw-px-4"
+            >
+                <!-- <LinkComponent
                     :href="'/' + url"
                     type="secondary"
                 >
                     Back
-                </LinkComponent>
+                </LinkComponent> -->
                 <LinkComponent
-                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                    :href="'/' + url + '/' + props.model.id + '/edit'"
+                    :href="'/' + url + '/edit'"
                     type="primary"
                 >
                     Update
@@ -297,7 +302,7 @@
         photo_url: String,
     })
 
-    const url = 'alumni'
+    const url = 'user-profile'
 
     const address = computed(() => {
         return titleCase(props.model.barangay?.brgyDesc + ', ' + props.model.city?.citymunDesc + ', ' + props.model.province?.provDesc)

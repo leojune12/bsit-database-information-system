@@ -58,7 +58,7 @@ class StudentController extends Controller
 
     public function create()
     {
-        RoleService::checkAuthority(['Admin', 'Faculty']);
+        RoleService::checkAuthority(['Admin']);
 
         return Inertia::render('Student/Create', [
             //
@@ -67,7 +67,7 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-        RoleService::checkAuthority(['Admin', 'Faculty']);
+        RoleService::checkAuthority(['Admin']);
 
         $request->validate([
             // Basic Information
@@ -181,7 +181,6 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        RoleService::checkAuthority(['Admin', 'Faculty', 'Student']);
         RoleService::checkAuthorityById($id, "You can only view your own profile");
 
         $model = User::find($id);
@@ -202,7 +201,7 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        RoleService::checkAuthority(['Admin', 'Faculty', 'Student']);
+        RoleService::checkAuthority(['Admin', 'Student']);
         RoleService::checkAuthorityById($id, "You can only update your own profile");
 
         $model = User::find($id);

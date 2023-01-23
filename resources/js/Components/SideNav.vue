@@ -32,7 +32,7 @@
     import { Link, usePage } from '@inertiajs/inertia-vue3';
 
     const navigation = [
-    {
+        {
             name: 'Dashboard',
             href: '/home',
             for: ['Admin', 'Faculty']
@@ -64,8 +64,8 @@
         },
         {
             name: 'Profile',
-            href: '/students/' + usePage().props.value.auth.user.id,
-            for: ['Student', 'Alumnus']
+            href: '/user-profile',
+            for: []
         },
         {
             name: 'Accout Settings',

@@ -12,6 +12,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\IdNumberController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,14 +59,22 @@ Route::get('address/get-cities-municipalities-per-province/{province_code}', fun
 
 Route::post('/students/store', [StudentController::class, 'store']);
 
-Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']], function () {
+Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student|Alumnus']], function () {
 
-    Route::resource('students', StudentController::class);
+    Route::get('user-profile', [UserProfileController::class, 'show']);
 
     Route::get('/home', function () {
 
         return Inertia::render('Dashboard');
     })->name('dashboard');
+});
+
+Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']], function () {
+
+    Route::get('user-profile/edit', [UserProfileController::class, 'edit']);
+    Route::put('user-profile/update', [UserProfileController::class, 'update'])->name('user-profile.update');
+
+    Route::resource('students', StudentController::class);
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Faculty']], function () {

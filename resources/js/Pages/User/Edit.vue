@@ -312,7 +312,7 @@
                         <InputError class="mt-2" :message="form.errors.role" />
                     </div>
                 </div>
-                <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
+                <div v-if="$page.props.auth.user.roles[0].name == 'Admin'" class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                     <div>
                         <InputLabel for="password" value="New Password" />
 

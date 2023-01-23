@@ -7,6 +7,7 @@
                 Subjects
             </h3>
             <LinkComponent
+                v-if="$page.props.auth.user.roles[0].name == 'Admin'"
                 :href="url + '/create'"
                 type="success-outlined"
                 class=""
@@ -66,6 +67,7 @@
                                     View
                                 </Link>
                                 <Link
+                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
                                     :href="url + '/' + item.id + '/edit'"
                                     class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
                                     title="Edit"
@@ -74,6 +76,7 @@
                                     Edit
                                 </Link>
                                 <a
+                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
                                     href="#"
                                     class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
                                     title="Delete"

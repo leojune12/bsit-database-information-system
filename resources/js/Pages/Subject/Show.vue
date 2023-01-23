@@ -58,7 +58,8 @@
                     Back
                 </LinkComponent>
                 <LinkComponent
-                :href="'/' + url + '/' + props.model.id + '/edit'"
+                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                    :href="'/' + url + '/' + props.model.id + '/edit'"
                     type="primary"
                 >
                     Update

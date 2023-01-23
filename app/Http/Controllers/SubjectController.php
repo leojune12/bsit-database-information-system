@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use App\Services\DateService;
+use App\Services\RoleService;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
@@ -32,6 +33,8 @@ class SubjectController extends Controller
 
     public function create()
     {
+        RoleService::checkAuthority(['Admin']);
+
         return Inertia::render('Subject/Create', [
             //
         ]);
@@ -39,6 +42,8 @@ class SubjectController extends Controller
 
     public function store(Request $request)
     {
+        RoleService::checkAuthority(['Admin']);
+
         $request->validate([
             'course_code' => [
                 'required',
@@ -87,6 +92,8 @@ class SubjectController extends Controller
 
     public function edit($id)
     {
+        RoleService::checkAuthority(['Admin']);
+
         $model = Subject::find($id);
 
         return Inertia::render('Subject/Edit', [
@@ -96,6 +103,8 @@ class SubjectController extends Controller
 
     public function update(Request $request, $id)
     {
+        RoleService::checkAuthority(['Admin']);
+
         $model = Subject::find($id);
 
         $request->validate([
@@ -135,6 +144,8 @@ class SubjectController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        RoleService::checkAuthority(['Admin']);
+
         if(!empty($request->id_array)) {
 
             DB::beginTransaction();
