@@ -10,17 +10,17 @@
             <div class="tw-max-w-7xl tw-mx-auto sm:tw-px-6 lg:tw-px-8">
                 <div class="tw-flex tw-flex-wrap tw-gap-10">
                     <div
-                        v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                        v-if="['Admin', 'Faculty'].includes($page.props.auth.user.roles[0].name)"
                         v-for="item in dashboardData"
                         :key="item.title"
-                        class="tw-shadow-lg tw-border tw-p-5 tw-w-full md:tw-w-52 flex tw-rounded-lg"
+                        :class="[!item.for.length || item.for.includes($page.props.auth.user.roles[0].name) ? '' : 'tw-hidden', 'tw-shadow-lg tw-border tw-p-5 tw-w-full md:tw-w-52 flex tw-rounded-lg']"
                     >
                         <div class="tw-flex tw-justify-between tw-items-center">
                             <div>
-                                <div class="tw-text-xl tw-font-bold tw-text-gray-700">
+                                <div class="tw-text-xl tw-font-bold tw-text-rose-800">
                                     {{ item.value }}
                                 </div>
-                                <div class="tw-text-gray-500 tw-font-medium">
+                                <div class="tw-text-amber-700 tw-font-medium">
                                     {{ item.title }}
                                 </div>
                             </div>
@@ -50,10 +50,10 @@
     import { UserIcon, AcademicCapIcon, BookOpenIcon } from '@heroicons/vue/24/solid'
 
     const props = defineProps({
-        users: Array,
-        students: Array,
-        alumni: Array,
-        subjects: Array,
+        users: Number,
+        students: Number,
+        alumni: Number,
+        subjects: Number,
     })
 
     const dashboardData = ref([
@@ -61,21 +61,25 @@
         title: 'Users',
         value: props.users,
         icon: UserIcon,
+        for: ['Admin']
     },
     {
         title: 'Students',
         value: props.students,
         icon: UserIcon,
+        for: ['Admin', 'Faculty']
     },
     {
         title: 'Alumni',
         value: props.alumni,
         icon: AcademicCapIcon,
+        for: ['Admin', 'Faculty']
     },
     {
         title: 'Subjects',
         value: props.subjects,
         icon: BookOpenIcon,
+        for: ['Admin', 'Faculty']
     },
     ])
 </script>
