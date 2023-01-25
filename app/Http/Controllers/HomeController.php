@@ -6,6 +6,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (!in_array(Auth::user()->roles[0]->name, ['Admin', 'Faculty'])) {
+
+            return redirect('/grades');
+        }
+
         $users = User::role(['Admin', 'Faculty'])->count();
         $students = User::role(['Student'])->count();
         $alumni = User::role(['Alumnus'])->count();
