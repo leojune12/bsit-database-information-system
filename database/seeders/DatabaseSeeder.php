@@ -32,8 +32,9 @@ class DatabaseSeeder extends Seeder
             AddressDatabaseSeeder::class,
             SubjectSeeder::class,
             UserDatabaseSeeder::class,
-            AcademicYearSeeder::class,
             YearSemesterSeeder::class,
+            CurriculumSeeder::class,
+            AcademicYearSeeder::class,
         ]);
     }
 }

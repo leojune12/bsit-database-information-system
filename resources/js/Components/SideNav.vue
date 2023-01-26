@@ -38,6 +38,11 @@
             for: ['Admin', 'Faculty']
         },
         {
+            name: 'Curriculums',
+            href: '/curriculums',
+            for: ['Admin', 'Faculty']
+        },
+        {
             name: 'Academic Years',
             href: '/academic-years',
             for: ['Admin', 'Faculty']

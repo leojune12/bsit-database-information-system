@@ -4,7 +4,7 @@
     <AuthenticatedLayout>
         <div class="tw-flex tw-flex-col md:tw-flex-row tw-mb-4 md:tw-justify-between md:tw-items-center tw-gap-y-4">
             <h3 class="tw-text-xl tw-font-bold tw-leading-6 tw-text-gray-700">
-                Academic Years
+                Curriculums
             </h3>
             <LinkComponent
                 v-if="$page.props.auth.user.roles[0].name == 'Admin'"
@@ -13,7 +13,7 @@
                 class=""
             >
                 <PlusIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" />
-                New Academic Year
+                New Curriculum
             </LinkComponent>
         </div>
         <div class="tw-overflow-x-auto tw-mb-4">
@@ -116,7 +116,7 @@
         },
     ])
 
-    const url = 'academic-years'
+    const url = 'curriculums'
 
     const form = useForm({
         //
