@@ -115,9 +115,14 @@
     import { Bars3Icon, XMarkIcon, PresentationChartBarIcon, ChatBubbleLeftEllipsisIcon, ChatBubbleLeftRightIcon, ChatBubbleBottomCenterTextIcon, UsersIcon } from '@heroicons/vue/24/outline'
 
     const navigation = [
-    {
+        {
             name: 'Dashboard',
             href: '/home',
+            for: ['Admin', 'Faculty']
+        },
+        {
+            name: 'Academic Years',
+            href: '/academic-years',
             for: ['Admin', 'Faculty']
         },
         {
