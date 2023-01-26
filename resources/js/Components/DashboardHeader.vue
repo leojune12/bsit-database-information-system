@@ -70,6 +70,14 @@
                 <Menu as="div" class="tw-relative">
                     <div>
                         <MenuButton class="tw-flex tw-items-center tw-gap-x-2 tw-rounded-full tw-text-sm hover:tw-text-gray-600 tw-text-gray-800 focus:tw-outline-none">
+                            <div class="tw-block tw-px-4 tw-py-2 tw-text-right">
+                                <div class="tw-font-bold tw-text-gray-500">
+                                    {{ $page.props.auth.user.first_name }} {{ $page.props.auth.user.last_name }}
+                                </div>
+                                <div class="tw-text-xs tw-font-bold tw-text-gray-400">
+                                    {{ $page.props.auth.user.roles[0].name }}
+                                </div>
+                            </div>
                             <span class="tw-sr-only">Open user menu</span>
                             <!-- {{ $page.props.auth.user.name }} -->
                             <img
@@ -86,7 +94,7 @@
                     </div>
                     <transition enter-active-class="tw-transition tw-ease-out tw-duration-100" enter-from-class="tw-transform tw-opacity-0 tw-scale-95" enter-to-class="tw-transform tw-opacity-100 tw-scale-100" leave-active-class="tw-transition tw-ease-in tw-duration-75" leave-from-class="tw-transform tw-opacity-100 tw-scale-100" leave-to-class="tw-transform tw-opacity-0 tw-scale-95">
                         <MenuItems class="tw-absolute tw-right-0 tw-z-10 tw-mt-2 tw-w-48 tw-origin-top-right tw-rounded-md tw-bg-white tw-shadow-lg tw-ring-1 tw-ring-black tw-ring-opacity-5 focus:tw-outline-none tw-divide-y tw-divide-gray-100 tw-py-1">
-                            <MenuItem v-slot="{ active }">
+                            <!-- <MenuItem v-slot="{ active }">
                                 <div class="tw-block tw-px-4 tw-py-2">
                                     <div class="tw-font-bold tw-text-gray-500">
                                         {{ $page.props.auth.user.first_name }} {{ $page.props.auth.user.last_name }}
@@ -95,7 +103,7 @@
                                         {{ $page.props.auth.user.roles[0].name }}
                                     </div>
                                 </div>
-                            </MenuItem>
+                            </MenuItem> -->
                             <MenuItem v-slot="{ active }">
                                 <Link :href="route('logout')" method="post" as="button" class="tw-flex tw-py-2 tw-px-4 tw-text-sm hover:tw-bg-gray-100 dark:tw-hover:bg-gray-600 dark:tw-text-gray-400 dark:hover:tw-text-white tw-w-full">
                                     Log Out
