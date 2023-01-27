@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Throwable;
 use Inertia\Inertia;
+use App\Models\Curriculum;
 use App\Models\AcademicYear;
 use Illuminate\Http\Request;
 use App\Services\DateService;
@@ -35,8 +36,10 @@ class AcademicYearController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
-        return Inertia::render('AcademicYear/Create', [
+        $curriculums = Curriculum::all();
 
+        return Inertia::render('AcademicYear/Create', [
+            'curriculums' => $curriculums,
         ]);
     }
 
@@ -85,10 +88,13 @@ class AcademicYearController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
+        $curriculums = Curriculum::all();
+
         $model = AcademicYear::find($id);
 
         return Inertia::render('AcademicYear/Edit', [
             'model' => $model,
+            'curriculums' => $curriculums,
         ]);
     }
 
