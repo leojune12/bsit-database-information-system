@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\IdNumberController;
@@ -85,6 +86,8 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Faculty']], funct
     Route::resource('academic-years', AcademicYearController::class);
 
     Route::resource('curriculums', CurriculumController::class);
+
+    Route::resource('sections', SectionController::class);
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {

@@ -164,6 +164,11 @@
             for: ['Admin', 'Faculty']
         },
         {
+            name: 'Sections',
+            href: '/sections',
+            for: ['Admin', 'Faculty']
+        },
+        {
             name: 'Profile',
             href: '/user-profile',
             for: []
