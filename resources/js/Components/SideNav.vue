@@ -38,16 +38,6 @@
             for: ['Admin', 'Faculty']
         },
         {
-            name: 'Curriculums',
-            href: '/curriculums',
-            for: ['Admin', 'Faculty']
-        },
-        {
-            name: 'Academic Years',
-            href: '/academic-years',
-            for: ['Admin', 'Faculty']
-        },
-        {
             name: 'Users',
             href: '/users',
             for: ['Admin']
@@ -55,11 +45,6 @@
         {
             name: 'Students',
             href: '/students',
-            for: ['Admin', 'Faculty']
-        },
-        {
-            name: 'Subjects',
-            href: '/subjects',
             for: ['Admin', 'Faculty']
         },
         {
@@ -71,6 +56,21 @@
             name: 'Grades',
             href: '/grades',
             for: ['Student', 'Alumnus']
+        },
+        {
+            name: 'Curriculums',
+            href: '/curriculums',
+            for: ['Admin', 'Faculty']
+        },
+        {
+            name: 'Academic Years',
+            href: '/academic-years',
+            for: ['Admin', 'Faculty']
+        },
+        {
+            name: 'Subjects',
+            href: '/subjects',
+            for: ['Admin', 'Faculty']
         },
         {
             name: 'Profile',
