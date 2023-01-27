@@ -27,14 +27,12 @@ class DatabaseSeeder extends Seeder
             AdminUserDatabaseSeeder::class,
             StudentUserSeeder::class,
             CommentSeeder::class,
-            // CategoryDatabaseSeeder::class,
-            // SubcategoryDatabaseSeeder::class,
             AddressDatabaseSeeder::class,
-            SubjectSeeder::class,
             UserDatabaseSeeder::class,
-            YearSemesterSeeder::class,
+            // YearSemesterSeeder::class,
             CurriculumSeeder::class,
             AcademicYearSeeder::class,
+            SubjectSeeder::class,
         ]);
     }
 }

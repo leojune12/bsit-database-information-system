@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Throwable;
 use Inertia\Inertia;
 use App\Models\Subject;
+use App\Models\Curriculum;
 use Illuminate\Http\Request;
 use App\Services\DateService;
 use App\Services\RoleService;
@@ -24,9 +25,23 @@ class SubjectController extends Controller
     {
         $query = DB::table('subjects');
 
-        $query->where('deleted_at', null);
+        $query->where('subjects.deleted_at', null);
 
-        $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC');
+        $query->orderBy($request->orderBy ?? 'subjects.id', $request->orderType ?? 'DESC');
+
+        $query->join('curricula', 'curricula.id', '=', 'subjects.curriculum_id');
+
+        $query->select(
+            'subjects.id',
+            'subjects.course_code',
+            'subjects.descriptive_title',
+            'subjects.prerequisite_subject_id',
+            'subjects.year',
+            'subjects.semester',
+            'curricula.name as subject_curriculum_name',
+        );
+
+        // dd($query->paginate($request->perPage ?? 10));
 
         return $query->paginate($request->perPage ?? 10);
     }
@@ -35,8 +50,10 @@ class SubjectController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
+        $curriculums = Curriculum::all();
+
         return Inertia::render('Subject/Create', [
-            //
+            'curriculums' => $curriculums,
         ]);
     }
 
@@ -45,6 +62,7 @@ class SubjectController extends Controller
         RoleService::checkAuthority(['Admin']);
 
         $request->validate([
+            'curriculum_id' => 'required',
             'course_code' => [
                 'required',
                 'max:255',
@@ -59,6 +77,8 @@ class SubjectController extends Controller
                 'integer',
                 'exists:subjects',
             ],
+            'year' => 'required',
+            'semester' => 'required',
         ]);
 
         DB::beginTransaction();
@@ -83,6 +103,8 @@ class SubjectController extends Controller
     {
         $model = Subject::find($id);
 
+        $model->load('curriculum');
+
         $model['date_added'] = DateService::viewDate($model->created_at);
 
         return Inertia::render('Subject/Show', [
@@ -94,10 +116,13 @@ class SubjectController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
+        $curriculums = Curriculum::all();
+
         $model = Subject::find($id);
 
         return Inertia::render('Subject/Edit', [
             'model' => $model,
+            'curriculums' => $curriculums,
         ]);
     }
 

@@ -11,11 +11,19 @@ class Subject extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'curriculum_id',
         'course_code',
         'descriptive_title',
         'unit',
         'laboratory',
         'lecture',
         'prerequisite_subject_id',
+        'year',
+        'semester',
     ];
+
+    public function curriculum()
+    {
+        return $this->belongsTo(Curriculum::class);
+    }
 }

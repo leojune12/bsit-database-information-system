@@ -39,22 +39,22 @@
                             {{ item.id }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                            {{ item.subject_curriculum_name }}
+                        </td>
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.course_code }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.descriptive_title }}
                         </td>
-                        <!-- <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                            {{ item.unit }}
-                        </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                            {{ item.lecture }}
-                        </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                            {{ item.laboratory }}
-                        </td> -->
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.prerequisite_subject_id }}
+                        </td>
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                            {{ item.year }}
+                        </td>
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                            {{ item.semester }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             <div class="tw-flex tw-gap-2">
@@ -122,6 +122,10 @@
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
         {
+            title: 'Curriculum',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
+        {
             title: 'Course Number',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
@@ -143,6 +147,14 @@
         // },
         {
             title: 'Prerequisite Subject ID',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
+        {
+            title: 'Year',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
+        {
+            title: 'Semester',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
         {

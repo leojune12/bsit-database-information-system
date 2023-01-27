@@ -8,6 +8,12 @@
                     <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900">Subject Information</h3>
                 </dl>
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
+                    <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Curriculum</dt>
+                    <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
+                        {{ props.model.curriculum.name }}
+                    </dd>
+                </dl>
+                <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Course Code</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
                         {{ props.model.course_code }}
@@ -41,6 +47,18 @@
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Prerequisite Subject ID</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
                         {{ props.model.prerequisite_subject_id }}
+                    </dd>
+                </dl>
+                <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
+                    <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Year</dt>
+                    <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
+                        {{ props.model.year }}
+                    </dd>
+                </dl>
+                <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
+                    <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Semester</dt>
+                    <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
+                        {{ props.model.semester }}
                     </dd>
                 </dl>
                 <dl class="tw-bg-white tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
