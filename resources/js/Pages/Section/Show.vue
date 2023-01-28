@@ -86,7 +86,7 @@
             <div>
                 <div class="tw-overflow-x-auto tw-mb-4">
                     <table class="tw-min-w-full">
-                        <thead class="tw-border tw-bg-rose-800 tw-text-sm tw-font-medium tw-text-white">
+                        <thead class="tw-border tw-bg-rose-700 tw-text-sm tw-font-medium tw-text-white">
                             <tr>
                                 <th
                                     v-for="header in tableHeader"
@@ -99,6 +99,7 @@
                         </thead>
                         <tbody class="border">
                             <tr
+                                v-if="props.students.length"
                                 v-for="item in props.students"
                                 :key="item.id"
                                 class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
@@ -143,6 +144,13 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr
+                                v-else
+                            >
+                                <td colspan="6" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
+                                    No records
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -170,31 +178,31 @@
     const tableHeader = ref([
         {
             title: 'ID',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
+            class: 'tw-py-2 tw-px-6 tw-text-left',
         },
         {
             title: 'ID Number',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
+            class: 'tw-py-2 tw-px-6 tw-text-left',
         },
         {
             title: 'First Name',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
+            class: 'tw-py-2 tw-px-6 tw-text-left',
         },
         {
             title: 'Last Name',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
+            class: 'tw-py-2 tw-px-6 tw-text-left',
         },
         {
             title: 'Email',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
+            class: 'tw-py-2 tw-px-6 tw-text-left',
         },
         // {
         //     title: 'Role',
-        //     class: 'tw-py-3 tw-px-6 tw-text-left',
+        //     class: 'tw-py-2 tw-px-6 tw-text-left',
         // },
         {
             title: 'Actions',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
+            class: 'tw-py-2 tw-px-6 tw-text-left',
         },
     ])
 
@@ -260,7 +268,7 @@
                 preserveScroll: true,
                 onSuccess: () => {
                     Swal.fire({
-                        title: 'Deleted successfully',
+                        title: 'Removed successfully',
                         // text: "Deleted successfully.",
                         // icon: 'success',
                         confirmButtonColor: '#16a34a',

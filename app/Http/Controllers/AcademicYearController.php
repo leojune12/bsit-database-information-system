@@ -77,6 +77,13 @@ class AcademicYearController extends Controller
     {
         $model = AcademicYear::find($id);
 
+        $model->load(
+            'first_year_sections',
+            'second_year_sections',
+            'third_year_sections',
+            'fourth_year_sections'
+        );
+
         $model['date_added'] = DateService::viewDate($model->created_at);
 
         return Inertia::render('AcademicYear/Show', [
