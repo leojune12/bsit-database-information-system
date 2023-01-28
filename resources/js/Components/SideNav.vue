@@ -70,12 +70,12 @@
         {
             name: 'Subjects',
             href: '/subjects',
-            for: ['Admin', 'Faculty']
+            for: ['Admin']
         },
         {
             name: 'Sections',
             href: '/sections',
-            for: ['Admin', 'Faculty']
+            for: ['Admin']
         },
         {
             name: 'Profile',

@@ -22,13 +22,17 @@ class CurriculumController extends Controller
 
     private function getData($request)
     {
-        $query = DB::table('curricula');
+        // $query = DB::table('curricula');
 
-        $query->where('deleted_at', null);
+        // $query->where('deleted_at', null);
 
-        $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC');
+        // $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC');
 
-        return $query->paginate($request->perPage ?? 10);
+        // return $query->paginate($request->perPage ?? 10);
+
+        return Curriculum::orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC')
+                ->with('subjects')
+                ->paginate($request->perPage ?? 10);
     }
 
     public function create()
@@ -73,6 +77,17 @@ class CurriculumController extends Controller
     public function show($id)
     {
         $model = Curriculum::find($id);
+
+        $model->load(
+            'first_year_first_semester_subjects',
+            'first_year_second_semester_subjects',
+            'second_year_first_semester_subjects',
+            'second_year_second_semester_subjects',
+            'third_year_first_semester_subjects',
+            'third_year_second_semester_subjects',
+            'fourth_year_first_semester_subjects',
+            'fourth_year_second_semester_subjects',
+        );
 
         $model['date_added'] = DateService::viewDate($model->created_at);
 

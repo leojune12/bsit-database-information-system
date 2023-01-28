@@ -42,6 +42,9 @@
                             {{ item.name }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                            {{ item.subjects.length }}
+                        </td>
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             <div class="tw-flex tw-gap-2">
                                 <Link
                                     :href="url + '/' + item.id"
@@ -108,6 +111,10 @@
         },
         {
             title: 'Name',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
+        {
+            title: 'Subjects',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
         {
