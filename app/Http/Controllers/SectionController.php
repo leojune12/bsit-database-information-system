@@ -120,7 +120,7 @@ class SectionController extends Controller
     public function addStudent(Request $request)
     {
         $request->validate([
-            'id_number' => 'required|exists:users,id_number',
+            'id_number' => 'required|integer|exists:users,id_number',
         ]);
 
         $user = User::where('id_number', $request->id_number)->first();
