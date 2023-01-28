@@ -88,6 +88,8 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Faculty']], funct
     Route::resource('curriculums', CurriculumController::class);
 
     Route::resource('sections', SectionController::class);
+    Route::delete('sections/remove-student/{id}', [SectionController::class, 'removeStudent']);
+    Route::post('sections/add-student', [SectionController::class, 'addStudent']);
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {

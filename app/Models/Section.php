@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Curriculum;
 use App\Models\AcademicYear;
 use Illuminate\Database\Eloquent\Model;
@@ -27,5 +28,10 @@ class Section extends Model
     public function curriculum()
     {
         return $this->belongsTo(Curriculum::class);
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

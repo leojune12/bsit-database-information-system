@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Throwable;
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Section;
+use App\Models\Subject;
 use App\Models\Curriculum;
+use App\Models\SectionUser;
+use App\Models\SubjectUser;
 use App\Models\AcademicYear;
 use Illuminate\Http\Request;
 use App\Services\DateService;
@@ -109,7 +113,53 @@ class SectionController extends Controller
 
         return Inertia::render('Section/Show', [
             'model' => $model,
+            'students' => $model->students,
         ]);
+    }
+
+    public function addStudent(Request $request)
+    {
+        $request->validate([
+            'id_number' => 'required|exists:users,id_number',
+        ]);
+
+        $user = User::where('id_number', $request->id_number)->first();
+
+        DB::beginTransaction();
+
+        try {
+
+            $section_user = SectionUser::where('user_id', $user->id)
+                ->where('section_id', $request->section_id)
+                ->first();
+
+            if (!$section_user) {
+
+                SectionUser::insert([
+                    'section_id' => $request->section_id,
+                    'user_id' => $user->id,
+                ]);
+
+                $subjects = Subject::where('curriculum_id', $request->curriculum_id)
+                    ->where('year', $request->year)
+                    ->get();
+
+                foreach ($subjects as $subject) {
+
+                    SubjectUser::insert([
+                        'subject_id' => $subject->id,
+                        'user_id' => $user->id,
+                    ]);
+                }
+            }
+
+            DB::commit();
+            return back();
+        } catch (Throwable $e) {
+            dd($e);
+            DB::rollBack();
+            return back();
+        }
     }
 
     public function edit($id)
@@ -184,6 +234,41 @@ class SectionController extends Controller
                 return back();
             } catch (Throwable $e) {
 
+                DB::rollBack();
+                return back();
+            }
+        }
+    }
+
+    public function removeStudent(Request $request, $id)
+    {
+        RoleService::checkAuthority(['Admin']);
+
+        if(!empty($request->section_id)) {
+
+            DB::beginTransaction();
+
+            try {
+
+                SectionUser::where('user_id', $id)
+                    ->where('section_id', $request->section_id)
+                    ->delete();
+
+                $subjects = Subject::where('curriculum_id', $request->curriculum_id)
+                    ->where('year', $request->year)
+                    ->get();
+
+                foreach ($subjects as $subject) {
+
+                    SubjectUser::where('subject_id', $subject->id)
+                        ->where('user_id', $id)
+                        ->delete();
+                }
+
+                DB::commit();
+                return back();
+            } catch (Throwable $e) {
+                dd($e);
                 DB::rollBack();
                 return back();
             }
