@@ -11,11 +11,17 @@ use App\Services\DateService;
 use App\Services\RoleService;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
     public function index(Request $request)
     {
+        if (Auth::user()->roles[0]->name != 'Admin') {
+
+            return redirect('/');
+        }
+
         return Inertia::render('Subject/Index', [
             'response' => $this->getData($request),
         ]);
