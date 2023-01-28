@@ -79,6 +79,7 @@ class CurriculumController extends Controller
         $model = Curriculum::find($id);
 
         $model->load(
+            'subjects',
             'first_year_first_semester_subjects',
             'first_year_second_semester_subjects',
             'second_year_first_semester_subjects',

@@ -59,7 +59,10 @@
         <div class="tw-bg-white tw-shadow-lg tw-border sm:tw-rounded-lg tw-mb-5 tw-px-4 sm:tw-px-6 tw-py-5">
             <div class="tw-flex tw-items-center tw-justify-between tw-mb-3">
                 <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900">Students ({{ props.students.length }})</h3>
-                <form @submit.prevent="submitAddSudentForm()" class="tw-flex">
+                <form
+                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                    @submit.prevent="submitAddSudentForm()" class="tw-flex"
+                >
                     <div>
                         <TextInput
                             id="id_number"
@@ -74,7 +77,6 @@
                         <InputError class="tw-mt-2" :message="addStudentForm.errors.id_number" />
                     </div>
                     <button
-                        v-if="$page.props.auth.user.roles[0].name == 'Admin'"
                         type="submit"
                         class="tw-h-11 tw-rounded-l-none tw-flex tw-justify-center tw-items-center tw-px-4 tw-bg-green-600s tw-border-2 tw-border-green-600 tw-rounded-md tw-font-semibold tw-text-xs tw-text-green-600 tw-uppercase tw-tracking-widest hover:tw-bg-green-700 hover:tw-text-white active:tw-text-white focus:tw-text-white focus:tw-bg-green-700 active:tw-bg-green-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-green-500 focus:tw-ring-offset-2 tw-transition tw-ease-in-out tw-duration-150"
                     >

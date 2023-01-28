@@ -39,7 +39,7 @@
         </div>
         <div class="tw-bg-white tw-shadow-lg tw-border sm:tw-rounded-lg tw-mb-5 tw-px-4 tw-py-5 sm:tw-px-6">
             <div class="tw-flex tw-items-center tw-justify-between tw-mb-3">
-                <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900">Subjects</h3>
+                <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900">Subjects ({{ props.model.subjects.length }})</h3>
                 <LinkComponent
                     v-if="$page.props.auth.user.roles[0].name == 'Admin'"
                     :href="'/subjects/create'"

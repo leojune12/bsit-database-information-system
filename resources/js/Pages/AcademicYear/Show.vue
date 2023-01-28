@@ -95,7 +95,7 @@
                                             <div class="tw-flex tw-gap-2">
                                                 <a
                                                     target="_blank"
-                                                    :href="'/subjects/' + item.id"
+                                                    :href="'/sections/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
                                                 >
@@ -103,7 +103,7 @@
                                                 </a>
                                                 <Link
                                                     v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
+                                                    :href="'/sections/' + item.id + '/edit'"
                                                     class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="Edit"
                                                 >
@@ -177,7 +177,7 @@
                                             <div class="tw-flex tw-gap-2">
                                                 <a
                                                     target="_blank"
-                                                    :href="'/subjects/' + item.id"
+                                                    :href="'/sections/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
                                                 >
@@ -185,7 +185,7 @@
                                                 </a>
                                                 <Link
                                                     v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
+                                                    :href="'/sections/' + item.id + '/edit'"
                                                     class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="Edit"
                                                 >
@@ -259,7 +259,7 @@
                                             <div class="tw-flex tw-gap-2">
                                                 <a
                                                     target="_blank"
-                                                    :href="'/subjects/' + item.id"
+                                                    :href="'/sections/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
                                                 >
@@ -267,7 +267,7 @@
                                                 </a>
                                                 <Link
                                                     v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
+                                                    :href="'/sections/' + item.id + '/edit'"
                                                     class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="Edit"
                                                 >
@@ -341,7 +341,7 @@
                                             <div class="tw-flex tw-gap-2">
                                                 <a
                                                     target="_blank"
-                                                    :href="'/subjects/' + item.id"
+                                                    :href="'/sections/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
                                                 >
@@ -349,7 +349,7 @@
                                                 </a>
                                                 <Link
                                                     v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
+                                                    :href="'/sections/' + item.id + '/edit'"
                                                     class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="Edit"
                                                 >
