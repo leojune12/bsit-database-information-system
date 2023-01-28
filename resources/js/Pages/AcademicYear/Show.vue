@@ -38,294 +38,347 @@
             </div>
         </div>
         <div class="tw-bg-white tw-shadow-lg tw-border sm:tw-rounded-lg tw-mb-5 tw-px-4 tw-py-5 sm:tw-px-6">
-            <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900 tw-mb-3">Years and Sections</h3>
-            <div>
-                <h4 class="tw-font-black tw-leading-6 tw-text-gray-500 tw-mb-2">First Year</h4>
-                <div class="tw-overflow-x-auto tw-mb-4">
-                    <table class="tw-min-w-full">
-                        <thead class="tw-border tw-bg-rose-700 tw-text-sm tw-font-medium tw-text-white">
-                            <tr>
-                                <th
-                                    v-for="header in tableHeader"
-                                    :key="header.title"
-                                    :class="header.class"
-                                >
-                                    {{ header.title }}
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="border">
-                            <tr
-                                v-if="props.model.first_year_sections.length"
-                                v-for="item in props.model.first_year_sections"
-                                :key="item.id"
-                                class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                            >
-                                <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
-                                    {{ item.id }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    {{ item.name }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    {{ item.year }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    <div class="tw-flex tw-gap-2">
-                                        <a
-                                            target="_blank"
-                                            :href="'/sections/' + item.id"
-                                            class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="View"
-                                        >
-                                            View
-                                        </a>
-                                        <Link
-                                            v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                            :href="'/sections/' + item.id + '/edit'"
-                                            class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="Edit"
-                                        >
-                                            Edit
-                                        </Link>
-                                        <a
-                                            v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                            href="#"
-                                            class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="Delete"
-                                            @click="confirmDelete(item.id)"
-                                        >
-                                            Delete
-                                    </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                v-else
-                            >
-                                <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                    No records
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="tw-flex tw-items-center tw-justify-between tw-mb-3">
+                <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900">Sections</h3>
+                <LinkComponent
+                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                    :href="'/sections/create'"
+                    type="success-outlined"
+                    class=""
+                >
+                    <PlusIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" />
+                    New Section
+                </LinkComponent>
             </div>
             <div>
-                <h4 class="tw-font-black tw-leading-6 tw-text-gray-500 tw-mb-2">Second Year</h4>
-                <div class="tw-overflow-x-auto tw-mb-4">
-                    <table class="tw-min-w-full">
-                        <thead class="tw-border tw-bg-rose-700 tw-text-sm tw-font-medium tw-text-white">
-                            <tr>
-                                <th
-                                    v-for="header in tableHeader"
-                                    :key="header.title"
-                                    :class="header.class"
-                                >
-                                    {{ header.title }}
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="border">
-                            <tr
-                                v-if="props.model.second_year_sections.length"
-                                v-for="item in props.model.second_year_sections"
-                                :key="item.id"
-                                class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                            >
-                                <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
-                                    {{ item.id }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    {{ item.name }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    {{ item.year }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    <div class="tw-flex tw-gap-2">
-                                        <a
-                                            target="_blank"
-                                            :href="'/sections/' + item.id"
-                                            class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="View"
+                <Disclosure v-slot="{ open }">
+                    <DisclosureButton
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                    >
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">First Year ({{ props.model.first_year_sections.length }})</h4></span>
+                        <ChevronUpIcon
+                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                        />
+                    </DisclosureButton>
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                        <div class="tw-overflow-x-auto tw-mb-4">
+                            <table class="tw-min-w-full">
+                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                    <tr>
+                                        <th
+                                            v-for="header in tableHeader"
+                                            :key="header.title"
+                                            :class="header.class"
                                         >
-                                            View
-                                        </a>
-                                        <Link
-                                            v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                            :href="'/sections/' + item.id + '/edit'"
-                                            class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="Edit"
+                                            {{ header.title }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border">
+                                    <tr
+                                        v-if="props.model.first_year_sections.length"
+                                        v-for="item in props.model.first_year_sections"
+                                        :key="item.id"
+                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
+                                    >
+                                        <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
+                                            {{ item.id }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            {{ item.name }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            {{ item.year }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            <div class="tw-flex tw-gap-2">
+                                                <a
+                                                    target="_blank"
+                                                    :href="'/subjects/' + item.id"
+                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="View"
+                                                >
+                                                    View
+                                                </a>
+                                                <Link
+                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                                                    :href="'/subjects/' + item.id + '/edit'"
+                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="Edit"
+                                                >
+                                                    Edit
+                                                </Link>
+                                                <a
+                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                                                    href="#"
+                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="Delete"
+                                                    @click="confirmDelete(item.id)"
+                                                >
+                                                    Delete
+                                            </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        v-else
+                                    >
+                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
+                                            No records
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </DisclosurePanel>
+                </Disclosure>
+                <Disclosure v-slot="{ open }">
+                    <DisclosureButton
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                    >
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">Second Year ({{ props.model.second_year_sections.length }})</h4></span>
+                        <ChevronUpIcon
+                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                        />
+                    </DisclosureButton>
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                        <div class="tw-overflow-x-auto tw-mb-4">
+                            <table class="tw-min-w-full">
+                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                    <tr>
+                                        <th
+                                            v-for="header in tableHeader"
+                                            :key="header.title"
+                                            :class="header.class"
                                         >
-                                            Edit
-                                        </Link>
-                                        <a
-                                            v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                            href="#"
-                                            class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="Delete"
-                                            @click="confirmDelete(item.id)"
+                                            {{ header.title }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border">
+                                    <tr
+                                        v-if="props.model.second_year_sections.length"
+                                        v-for="item in props.model.second_year_sections"
+                                        :key="item.id"
+                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
+                                    >
+                                        <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
+                                            {{ item.id }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            {{ item.name }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            {{ item.year }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            <div class="tw-flex tw-gap-2">
+                                                <a
+                                                    target="_blank"
+                                                    :href="'/subjects/' + item.id"
+                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="View"
+                                                >
+                                                    View
+                                                </a>
+                                                <Link
+                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                                                    :href="'/subjects/' + item.id + '/edit'"
+                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="Edit"
+                                                >
+                                                    Edit
+                                                </Link>
+                                                <a
+                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                                                    href="#"
+                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="Delete"
+                                                    @click="confirmDelete(item.id)"
+                                                >
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        v-else
+                                    >
+                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
+                                            No records
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </DisclosurePanel>
+                </Disclosure>
+                <Disclosure v-slot="{ open }">
+                    <DisclosureButton
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                    >
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">Third Year ({{ props.model.third_year_sections.length }})</h4></span>
+                        <ChevronUpIcon
+                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                        />
+                    </DisclosureButton>
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                        <div class="tw-overflow-x-auto tw-mb-4">
+                            <table class="tw-min-w-full">
+                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                    <tr>
+                                        <th
+                                            v-for="header in tableHeader"
+                                            :key="header.title"
+                                            :class="header.class"
                                         >
-                                            Delete
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                v-else
-                            >
-                                <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                    No records
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div>
-                <h4 class="tw-font-black tw-leading-6 tw-text-gray-500 tw-mb-2">Third Year</h4>
-                <div class="tw-overflow-x-auto tw-mb-4">
-                    <table class="tw-min-w-full">
-                        <thead class="tw-border tw-bg-rose-700 tw-text-sm tw-font-medium tw-text-white">
-                            <tr>
-                                <th
-                                    v-for="header in tableHeader"
-                                    :key="header.title"
-                                    :class="header.class"
-                                >
-                                    {{ header.title }}
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="border">
-                            <tr
-                                v-if="props.model.third_year_sections.length"
-                                v-for="item in props.model.third_year_sections"
-                                :key="item.id"
-                                class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                            >
-                                <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
-                                    {{ item.id }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    {{ item.name }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    {{ item.year }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    <div class="tw-flex tw-gap-2">
-                                        <a
-                                            target="_blank"
-                                            :href="'/sections/' + item.id"
-                                            class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="View"
+                                            {{ header.title }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border">
+                                    <tr
+                                        v-if="props.model.third_year_sections.length"
+                                        v-for="item in props.model.third_year_sections"
+                                        :key="item.id"
+                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
+                                    >
+                                        <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
+                                            {{ item.id }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            {{ item.name }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            {{ item.year }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            <div class="tw-flex tw-gap-2">
+                                                <a
+                                                    target="_blank"
+                                                    :href="'/subjects/' + item.id"
+                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="View"
+                                                >
+                                                    View
+                                                </a>
+                                                <Link
+                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                                                    :href="'/subjects/' + item.id + '/edit'"
+                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="Edit"
+                                                >
+                                                    Edit
+                                                </Link>
+                                                <a
+                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                                                    href="#"
+                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="Delete"
+                                                    @click="confirmDelete(item.id)"
+                                                >
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        v-else
+                                    >
+                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
+                                            No records
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </DisclosurePanel>
+                </Disclosure>
+                <Disclosure v-slot="{ open }">
+                    <DisclosureButton
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                    >
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">Fourth Year ({{ props.model.fourth_year_sections.length }})</h4></span>
+                        <ChevronUpIcon
+                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                        />
+                    </DisclosureButton>
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                        <div class="tw-overflow-x-auto tw-mb-4">
+                            <table class="tw-min-w-full">
+                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                    <tr>
+                                        <th
+                                            v-for="header in tableHeader"
+                                            :key="header.title"
+                                            :class="header.class"
                                         >
-                                            View
-                                        </a>
-                                        <Link
-                                            v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                            :href="'/sections/' + item.id + '/edit'"
-                                            class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="Edit"
-                                        >
-                                            Edit
-                                        </Link>
-                                        <a
-                                            v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                            href="#"
-                                            class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="Delete"
-                                            @click="confirmDelete(item.id)"
-                                        >
-                                            Delete
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                v-else
-                            >
-                                <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                    No records
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div>
-                <h4 class="tw-font-black tw-leading-6 tw-text-gray-500 tw-mb-2">Fourth Year</h4>
-                <div class="tw-overflow-x-auto tw-mb-4">
-                    <table class="tw-min-w-full">
-                        <thead class="tw-border tw-bg-rose-700 tw-text-sm tw-font-medium tw-text-white">
-                            <tr>
-                                <th
-                                    v-for="header in tableHeader"
-                                    :key="header.title"
-                                    :class="header.class"
-                                >
-                                    {{ header.title }}
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="border">
-                            <tr
-                                v-if="props.model.fourth_year_sections.length"
-                                v-for="item in props.model.fourth_year_sections"
-                                :key="item.id"
-                                class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                            >
-                                <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
-                                    {{ item.id }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    {{ item.name }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    {{ item.year }}
-                                </td>
-                                <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                                    <div class="tw-flex tw-gap-2">
-                                        <a
-                                            target="_blank"
-                                            :href="'/sections/' + item.id"
-                                            class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="View"
-                                        >
-                                            View
-                                        </a>
-                                        <Link
-                                            v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                            :href="'/sections/' + item.id + '/edit'"
-                                            class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="Edit"
-                                        >
-                                            Edit
-                                        </Link>
-                                        <a
-                                            v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                            href="#"
-                                            class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                            title="Delete"
-                                            @click="confirmDelete(item.id)"
-                                        >
-                                            Delete
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                v-else
-                            >
-                                <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                    No records
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                            {{ header.title }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border">
+                                    <tr
+                                        v-if="props.model.fourth_year_sections.length"
+                                        v-for="item in props.model.fourth_year_sections"
+                                        :key="item.id"
+                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
+                                    >
+                                        <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
+                                            {{ item.id }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            {{ item.name }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            {{ item.year }}
+                                        </td>
+                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                                            <div class="tw-flex tw-gap-2">
+                                                <a
+                                                    target="_blank"
+                                                    :href="'/subjects/' + item.id"
+                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="View"
+                                                >
+                                                    View
+                                                </a>
+                                                <Link
+                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                                                    :href="'/subjects/' + item.id + '/edit'"
+                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="Edit"
+                                                >
+                                                    Edit
+                                                </Link>
+                                                <a
+                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
+                                                    href="#"
+                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
+                                                    title="Delete"
+                                                    @click="confirmDelete(item.id)"
+                                                >
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        v-else
+                                    >
+                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
+                                            No records
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </DisclosurePanel>
+                </Disclosure>
             </div>
         </div>
     </AuthenticatedLayout>
@@ -337,6 +390,8 @@
     import LinkComponent from '@/Components/LinkComponent.vue';
     import { ref, computed } from 'vue'
     import Swal from 'sweetalert2'
+    import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
+    import { ChevronUpIcon, PlusIcon } from '@heroicons/vue/20/solid'
 
     const props = defineProps({
         model: Object,
@@ -393,7 +448,7 @@
                 id_array: id_array,
             }))
             .delete(
-            route('sections.destroy', id),
+            route('subjects.destroy', id),
             {
                 preserveScroll: true,
                 onSuccess: () => {

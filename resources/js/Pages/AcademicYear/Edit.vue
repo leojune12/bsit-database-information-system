@@ -1,12 +1,12 @@
 <template>
-    <Head title="Alumni" />
+    <Head title="Academic Years" />
 
     <AuthenticatedLayout>
         <div class="tw-bg-white tw-shadow-lg sm:tw-rounded-lg tw-mb-5 tw-p-4 sm:tw-p-8">
             <form @submit.prevent="submitForm()" class="tw-mt-6 tw-space-y-6 md:tw-col-span-1">
 
                 <h3 class="tw-text-xl tw-font-bold tw-text-gray-600">
-                    Profile Information
+                    Academic Year Information
                 </h3>
                 <div class="tw-space-y-6">
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
