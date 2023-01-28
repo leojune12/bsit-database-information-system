@@ -53,18 +53,18 @@
             <div>
                 <Disclosure v-slot="{ open }">
                     <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
                     >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">First Year First Semester ({{ props.model.first_year_first_semester_subjects.length }})</h4></span>
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">First Year First Semester ({{ props.model.first_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
                             :class="open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                            class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
                         <div class="tw-overflow-x-auto tw-mb-4">
                             <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
                                     <tr>
                                         <th
                                             v-for="header in tableHeader"
@@ -138,18 +138,18 @@
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
                     <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
                     >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">First Year Second Semester ({{ props.model.first_year_second_semester_subjects.length }})</h4></span>
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">First Year Second Semester ({{ props.model.first_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
                             :class="open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                            class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
                         <div class="tw-overflow-x-auto tw-mb-4">
                             <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
                                     <tr>
                                         <th
                                             v-for="header in tableHeader"
@@ -223,18 +223,18 @@
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
                     <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
                     >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">Second Year First Semester ({{ props.model.second_year_first_semester_subjects.length }})</h4></span>
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Second Year First Semester ({{ props.model.second_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
                             :class="open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                            class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
                         <div class="tw-overflow-x-auto tw-mb-4">
                             <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
                                     <tr>
                                         <th
                                             v-for="header in tableHeader"
@@ -308,18 +308,18 @@
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
                     <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
                     >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">Second Year Second Semester ({{ props.model.second_year_second_semester_subjects.length }})</h4></span>
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Second Year Second Semester ({{ props.model.second_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
                             :class="open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                            class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
                         <div class="tw-overflow-x-auto tw-mb-4">
                             <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
                                     <tr>
                                         <th
                                             v-for="header in tableHeader"
@@ -393,18 +393,18 @@
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
                     <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
                     >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">Third Year First Semester ({{ props.model.third_year_first_semester_subjects.length }})</h4></span>
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Third Year First Semester ({{ props.model.third_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
                             :class="open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                            class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
                         <div class="tw-overflow-x-auto tw-mb-4">
                             <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
                                     <tr>
                                         <th
                                             v-for="header in tableHeader"
@@ -478,18 +478,18 @@
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
                     <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
                     >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">Third Year Second Semester ({{ props.model.third_year_second_semester_subjects.length }})</h4></span>
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Third Year Second Semester ({{ props.model.third_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
                             :class="open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                            class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
                         <div class="tw-overflow-x-auto tw-mb-4">
                             <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
                                     <tr>
                                         <th
                                             v-for="header in tableHeader"
@@ -563,18 +563,18 @@
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
                     <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
                     >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">Fourth Year First Semester ({{ props.model.fourth_year_first_semester_subjects.length }})</h4></span>
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Fourth Year First Semester ({{ props.model.fourth_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
                             :class="open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                            class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
                         <div class="tw-overflow-x-auto tw-mb-4">
                             <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
                                     <tr>
                                         <th
                                             v-for="header in tableHeader"
@@ -648,18 +648,18 @@
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
                     <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-rose-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-rose-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-rose-900 hover:tw-bg-rose-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-rose-500 focus-visible:tw-ring-opacity-75']"
+                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
                     >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-gray-500">Fourth Year Second Semester ({{ props.model.fourth_year_second_semester_subjects.length }})</h4></span>
+                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Fourth Year Second Semester ({{ props.model.fourth_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
                             :class="open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-rose-500"
+                            class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-rose-200']">
+                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
                         <div class="tw-overflow-x-auto tw-mb-4">
                             <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-rose-700 tw-border-b">
+                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
                                     <tr>
                                         <th
                                             v-for="header in tableHeader"
