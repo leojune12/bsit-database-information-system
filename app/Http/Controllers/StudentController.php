@@ -417,6 +417,24 @@ class StudentController extends Controller
         }
     }
 
+    public function updateRoleToAlumnus($id)
+    {
+        $model = User::find($id);
+
+        $model->syncRoles('Alumnus');
+
+        return back();
+    }
+
+    public function updateRoleToStudent($id)
+    {
+        $model = User::find($id);
+
+        $model->syncRoles('Student');
+
+        return back();
+    }
+
     public function destroy(Request $request, $id)
     {
         RoleService::checkAuthority(['Admin']);

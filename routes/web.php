@@ -83,6 +83,9 @@ Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']]
 
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Faculty']], function () {
 
+    Route::post('students/{id}/update-role-to-alumnus', [StudentController::class, 'updateRoleToAlumnus']);
+    Route::post('students/{id}/update-role-to-student', [StudentController::class, 'updateRoleToStudent']);
+
     Route::resource('alumni', AlumniController::class);
 
     Route::resource('subjects', SubjectController::class);

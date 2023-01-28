@@ -306,6 +306,14 @@
                 >
                     Update
                 </LinkComponent>
+
+                <button
+                    v-if="['Admin'].includes($page.props.auth.user.roles[0].name)"
+                    @click="confirmMakeAlumnus()"
+                    class="tw-bg-blue-600 tw-rounded-lg tw-px-3 tw-text-white"
+                >
+                    Make Alumnus
+                </button>
             </div>
         </div>
     </AuthenticatedLayout>
@@ -313,9 +321,11 @@
 
 <script setup>
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-    import { Head } from '@inertiajs/inertia-vue3'
+    import { Head, useForm } from '@inertiajs/inertia-vue3'
     import LinkComponent from '@/Components/LinkComponent.vue';
     import { ref, computed } from 'vue'
+    import Swal from 'sweetalert2'
+    import { Inertia } from '@inertiajs/inertia'
 
     const props = defineProps({
         model: Object,
@@ -323,6 +333,10 @@
     })
 
     const url = 'students'
+
+    const form = useForm({
+        //
+    });
 
     const address = computed(() => {
         return titleCase(props.model.barangay?.brgyDesc + ', ' + props.model.city?.citymunDesc + ', ' + props.model.province?.provDesc)
@@ -340,5 +354,33 @@
         return splitStr.join(' ');
     }
 
+    function confirmMakeAlumnus() {
 
+        Swal.fire({
+            title: 'Are you sure?',
+            // text: "You won't be able to revert this!",
+            // icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                submitForm()
+            }
+        })
+    }
+
+    function submitForm() {
+        form.post('/students/' + props.model.id + '/update-role-to-alumnus', {
+            preserveScroll: true,
+            onSuccess: () => {
+                Swal.fire({
+                    title: 'Updated successfully',
+                    confirmButtonColor: '#16a34a',
+                }).then(() => {
+                    Inertia.get('/alumni/' + props.model.id)
+                })
+            },
+        })
+    }
 </script>
