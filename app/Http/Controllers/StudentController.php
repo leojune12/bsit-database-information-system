@@ -6,6 +6,7 @@ use Throwable;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\IdNumber;
+use App\Models\SubjectUser;
 use Illuminate\Http\Request;
 use App\Services\DateService;
 use App\Services\RoleService;
@@ -216,6 +217,61 @@ class StudentController extends Controller
             'model' => $model,
             'photo_url' => $photo_url,
         ]);
+    }
+
+    public function showGrades($id = null)
+    {
+        if (!$id) {
+            $id = Auth::id();
+        }
+
+        RoleService::checkAuthorityById($id, "You can only view your own profile");
+
+        $model = User::find($id);
+
+        $model->load(
+            'section',
+            'first_year_first_semester_subjects',
+            'first_year_second_semester_subjects',
+            'second_year_first_semester_subjects',
+            'second_year_second_semester_subjects',
+            'third_year_first_semester_subjects',
+            'third_year_second_semester_subjects',
+            'fourth_year_first_semester_subjects',
+            'fourth_year_second_semester_subjects',
+        );
+
+        return Inertia::render('Student/Grades', [
+            'model' => $model,
+        ]);
+    }
+
+    public function updateGrade(Request $request, $id)
+    {
+        $request->validate([
+            'grade' => 'required|max:100'
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+
+            $model = SubjectUser::where('user_id', $id)
+                                ->where('subject_id', $request->subject_id)
+                                ->first();
+
+            $model->update($request->only('grade'));
+
+            DB::commit();
+
+            return back();
+        } catch (Throwable $e) {
+
+            DB::rollBack();
+
+            return $e;
+            // return back();
+        }
     }
 
     public function edit($id)

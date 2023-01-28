@@ -16,4 +16,6 @@ class SubjectUser extends Model
     ];
 
     protected $table = 'subject_user';
+
+    public $timestamps = false;
 }

@@ -67,6 +67,8 @@ Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student|Al
     Route::get('user-profile', [UserProfileController::class, 'show']);
 
     Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
+
+    Route::get('grades', [StudentController::class, 'showGrades']);
 });
 
 Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']], function () {
@@ -74,6 +76,8 @@ Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']]
     Route::get('user-profile/edit', [UserProfileController::class, 'edit']);
     Route::put('user-profile/update', [UserProfileController::class, 'update'])->name('user-profile.update');
 
+    Route::get('students/{id}/grades', [StudentController::class, 'showGrades']);
+    Route::post('students/{id}/grades', [StudentController::class, 'updateGrade']);
     Route::resource('students', StudentController::class);
 });
 

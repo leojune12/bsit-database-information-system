@@ -122,4 +122,76 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(Section::class)
                         ->orderByPivot('id', 'desc');
     }
+
+    public function first_year_first_semester_subjects()
+    {
+        return $this->belongsToMany(Subject::class)
+                        ->where('year', 1)
+                        ->where('semester', 1)
+                        ->withPivot('grade')
+                        ->orderBy('course_code', 'asc');
+    }
+
+    public function first_year_second_semester_subjects()
+    {
+        return $this->belongsToMany(Subject::class)
+                        ->where('year', 1)
+                        ->where('semester', 2)
+                        ->withPivot('grade')
+                        ->orderBy('course_code', 'asc');
+    }
+
+    public function second_year_first_semester_subjects()
+    {
+        return $this->belongsToMany(Subject::class)
+                        ->where('year', 2)
+                        ->where('semester', 1)
+                        ->withPivot('grade')
+                        ->orderBy('course_code', 'asc');
+    }
+
+    public function second_year_second_semester_subjects()
+    {
+        return $this->belongsToMany(Subject::class)
+                        ->where('year', 2)
+                        ->where('semester', 2)
+                        ->withPivot('grade')
+                        ->orderBy('course_code', 'asc');
+    }
+
+    public function third_year_first_semester_subjects()
+    {
+        return $this->belongsToMany(Subject::class)
+                        ->where('year', 3)
+                        ->where('semester', 1)
+                        ->withPivot('grade')
+                        ->orderBy('course_code', 'asc');
+    }
+
+    public function third_year_second_semester_subjects()
+    {
+        return $this->belongsToMany(Subject::class)
+                        ->where('year', 3)
+                        ->where('semester', 2)
+                        ->withPivot('grade')
+                        ->orderBy('course_code', 'asc');
+    }
+
+    public function fourth_year_first_semester_subjects()
+    {
+        return $this->belongsToMany(Subject::class)
+                        ->where('year', 4)
+                        ->where('semester', 1)
+                        ->withPivot('grade')
+                        ->orderBy('course_code', 'asc');
+    }
+
+    public function fourth_year_second_semester_subjects()
+    {
+        return $this->belongsToMany(Subject::class)
+                        ->where('year', 4)
+                        ->where('semester', 2)
+                        ->withPivot('grade')
+                        ->orderBy('course_code', 'asc');
+    }
 }

@@ -41,23 +41,31 @@
                         <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
                             {{ item.id_number }}
                         </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             {{ item.first_name }}
                         </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             {{ item.last_name }}
                         </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             {{ item.email }}
                         </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             {{ item.section[0] ? item.section[0].year : ''  }}
                         </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             {{ item.section[0] ? item.section[0].name : ''  }}
                         </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             <div class="tw-flex tw-gap-2">
+                                <Link
+                                    :href="url + '/' + item.id + '/grades'"
+                                    class="tw-text-yellow-500 hover:tw-text-yellow-600 tw-transition tw-duration-300 tw-ease-in-out"
+                                    title="View"
+                                >
+                                    <!-- <EyeIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" /> -->
+                                    Grades
+                                </Link>
                                 <Link
                                     :href="url + '/' + item.id"
                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
