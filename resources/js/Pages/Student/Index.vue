@@ -50,9 +50,12 @@
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             {{ item.email }}
                         </td>
-                        <!-- <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
-                            {{ item.role }}
-                        </td> -->
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                            {{ item.section[0] ? item.section[0].year : ''  }}
+                        </td>
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
+                            {{ item.section[0] ? item.section[0].name : ''  }}
+                        </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 py-3 tw-whitespace-nowrap">
                             <div class="tw-flex tw-gap-2">
                                 <Link
@@ -134,10 +137,14 @@
             title: 'Email',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
-        // {
-        //     title: 'Role',
-        //     class: 'tw-py-3 tw-px-6 tw-text-left',
-        // },
+        {
+            title: 'Year',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
+        {
+            title: 'Section',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
         {
             title: 'Actions',
             class: 'tw-py-3 tw-px-6 tw-text-left',

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Section;
 use App\Models\Address\City;
 use App\Models\Address\Region;
 use App\Models\Address\Barangay;
@@ -114,5 +115,11 @@ class User extends Authenticatable implements HasMedia
         $this
             ->addMediaCollection('profile_photos')
             ->singleFile();
+    }
+
+    public function section()
+    {
+        return $this->belongsToMany(Section::class)
+                        ->orderByPivot('id', 'desc');
     }
 }
