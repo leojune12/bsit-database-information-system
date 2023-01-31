@@ -126,14 +126,13 @@
                                 </td> -->
                                 <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                     <div class="tw-flex tw-gap-2">
-                                        <a
-                                            target="_blank"
+                                        <Link
                                             :href="'/students/' + item.id"
                                             class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                             title="View"
                                         >
                                             View
-                                        </a>
+                                        </Link>
                                         <a
                                             v-if="$page.props.auth.user.roles[0].name == 'Admin'"
                                             href="#"
@@ -163,7 +162,7 @@
 
 <script setup>
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-    import { Head, useForm } from '@inertiajs/inertia-vue3'
+    import { Head, useForm, Link } from '@inertiajs/inertia-vue3'
     import LinkComponent from '@/Components/LinkComponent.vue';
     import { ref } from 'vue'
     import Swal from 'sweetalert2'

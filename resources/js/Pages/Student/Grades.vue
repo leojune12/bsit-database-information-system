@@ -46,7 +46,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">First Year First Semester ({{ props.model.first_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -83,7 +83,6 @@
                                         <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <!-- <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -129,7 +128,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">First Year Second Semester ({{ props.model.first_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -166,7 +165,6 @@
                                         <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <!-- <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -213,7 +211,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Second Year First Semester ({{ props.model.second_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -250,7 +248,6 @@
                                         <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <!-- <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -297,7 +294,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Second Year Second Semester ({{ props.model.second_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -334,7 +331,6 @@
                                         <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <!-- <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -381,7 +377,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Third Year First Semester ({{ props.model.third_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -418,7 +414,6 @@
                                         <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <!-- <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -465,7 +460,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Third Year Second Semester ({{ props.model.third_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -502,7 +497,6 @@
                                         <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <!-- <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -549,7 +543,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Fourth Year First Semester ({{ props.model.fourth_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -586,7 +580,6 @@
                                         <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <!-- <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -633,7 +626,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Fourth Year Second Semester ({{ props.model.fourth_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -670,7 +663,6 @@
                                         <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <!-- <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -797,8 +789,7 @@
 <script setup>
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
     import { Head, useForm, Link, usePage } from '@inertiajs/inertia-vue3'
-    import LinkComponent from '@/Components/LinkComponent.vue';
-    import { ref, computed } from 'vue'
+    import { ref } from 'vue'
     import Swal from 'sweetalert2'
     import {
         Disclosure,

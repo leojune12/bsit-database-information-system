@@ -39,14 +39,13 @@
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Section</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
-                        <a
-                            target="_blank"
+                        <Link
                             v-if="props.model.section[0]"
                             :href="'/sections/' + props.model.section[0].id"
                             class="tw-text-blue-500 tw-underline hover:tw-text-blue-700"
                         >
                             {{ props.model.section[0].name }}
-                        </a>
+                        </Link>
                     </dd>
                 </dl>
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
@@ -523,7 +522,7 @@
 
 <script setup>
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-    import { Head, useForm } from '@inertiajs/inertia-vue3'
+    import { Head, useForm, Link } from '@inertiajs/inertia-vue3'
     import LinkComponent from '@/Components/LinkComponent.vue';
     import { ref, computed } from 'vue'
     import Swal from 'sweetalert2'

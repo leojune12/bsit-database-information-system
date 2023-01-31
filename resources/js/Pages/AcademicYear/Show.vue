@@ -57,7 +57,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">First Year ({{ props.model.first_year_sections.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -94,7 +94,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/sections/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -139,7 +138,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Second Year ({{ props.model.second_year_sections.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -176,7 +175,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/sections/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -221,7 +219,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Third Year ({{ props.model.third_year_sections.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -258,7 +256,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/sections/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -303,7 +300,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Fourth Year ({{ props.model.fourth_year_sections.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -340,7 +337,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/sections/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"

@@ -57,7 +57,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">First Year First Semester ({{ props.model.first_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -97,7 +97,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -142,7 +141,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">First Year Second Semester ({{ props.model.first_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -182,7 +181,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -227,7 +225,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Second Year First Semester ({{ props.model.second_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -267,7 +265,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -312,7 +309,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Second Year Second Semester ({{ props.model.second_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -352,7 +349,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -397,7 +393,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Third Year First Semester ({{ props.model.third_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -437,7 +433,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -482,7 +477,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Third Year Second Semester ({{ props.model.third_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -522,7 +517,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -567,7 +561,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Fourth Year First Semester ({{ props.model.fourth_year_first_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -607,7 +601,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"
@@ -652,7 +645,7 @@
                     >
                         <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Fourth Year Second Semester ({{ props.model.fourth_year_second_semester_subjects.length }})</h4></span>
                         <ChevronUpIcon
-                            :class="open ? 'tw-rotate-180 tw-transform' : ''"
+                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
                             class="tw-h-5 tw-w-5 tw-text-green-500"
                         />
                     </DisclosureButton>
@@ -692,7 +685,6 @@
                                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                                             <div class="tw-flex tw-gap-2">
                                                 <a
-                                                    target="_blank"
                                                     :href="'/subjects/' + item.id"
                                                     class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
                                                     title="View"

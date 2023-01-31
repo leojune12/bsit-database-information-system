@@ -18,8 +18,16 @@
                                     <MenuButton class="tw-flex tw-items-center tw-gap-x-2 tw-rounded-full tw-text-sm hover:tw-text-gray-600 tw-text-gray-800 focus:tw-outline-none">
                                         <span class="tw-sr-only">Open user menu</span>
                                         <!-- {{ $page.props.auth.user.name }} -->
-                                        <img class="tw-h-8 tw-w-8 tw-rounded-full hover:tw-brightness-95" :src="'https://ui-avatars.com/api/?name=' + $page.props.auth.user.first_name + ' ' + $page.props.auth.user.last_name + '&background=random'" alt="" />
-                                        <img src="" alt="">
+                                        <img
+                                            v-if="usePage().props.value.auth.photo_url != ''"
+                                            class="tw-h-8 tw-w-8 tw-rounded-full hover:tw-brightness-95" :src="usePage().props.value.auth.photo_url" alt=""
+                                        />
+                                        <div
+                                            v-else
+                                            class="tw-h-8 tw-w-8 tw-rounded-full hover:tw-brightness-95 tw-bg-blue-300 tw-text-white tw-flex tw-items-center tw-justify-center"
+                                        >
+                                            {{ usePage().props.value.auth.user.first_name.charAt(0) + usePage().props.value.auth.user.last_name.charAt(0) }}
+                                        </div>
                                     </MenuButton>
                                 </div>
                                 <transition enter-active-class="tw-transition tw-ease-out tw-duration-100" enter-from-class="tw-transform tw-opacity-0 tw-scale-95" enter-to-class="tw-transform tw-opacity-100 tw-scale-100" leave-active-class="tw-transition tw-ease-in tw-duration-75" leave-from-class="tw-transform tw-opacity-100 tw-scale-100" leave-to-class="tw-transform tw-opacity-0 tw-scale-95">
