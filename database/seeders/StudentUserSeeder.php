@@ -27,5 +27,27 @@ class StudentUserSeeder extends Seeder
         ]);
 
         $student->assignRole('Student');
+
+        $faculty = User::firstOrCreate([
+            "first_name" => "Faculty",
+            "last_name" => "Faculty",
+            "email" => "faculty@test.com",
+            "email_verified_at" => now(),
+            "password" => Hash::make("pw@12345"),
+            "remember_token" => Str::random(10),
+        ]);
+
+        $faculty->assignRole('Faculty');
+
+        $alumnus = User::firstOrCreate([
+            "first_name" => "Alumnus",
+            "last_name" => "Alumnus",
+            "email" => "alumnus@test.com",
+            "email_verified_at" => now(),
+            "password" => Hash::make("pw@12345"),
+            "remember_token" => Str::random(10),
+        ]);
+
+        $alumnus->assignRole('Alumnus');
     }
 }
