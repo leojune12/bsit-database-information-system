@@ -177,7 +177,7 @@ class AlumniController extends Controller
     {
         $model = User::find($id);
 
-        $model->load('province', 'city', 'barangay');
+        $model->load('province', 'city', 'barangay', 'certificate_and_awards');
 
         $model['date_added'] = DateService::viewDate($model->created_at);
 

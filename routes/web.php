@@ -16,6 +16,7 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AcademicYearController;
+use App\Http\Controllers\CertificateAndAwardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,11 +78,14 @@ Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']]
     Route::put('user-profile/update', [UserProfileController::class, 'update'])->name('user-profile.update');
 
     Route::get('students/{id}/grades', [StudentController::class, 'showGrades']);
-    Route::post('students/{id}/grades', [StudentController::class, 'updateGrade']);
     Route::resource('students', StudentController::class);
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Faculty']], function () {
+
+    Route::post('students/{id}/grades', [StudentController::class, 'updateGrade']);
+    Route::post('students/certificate-and-awards', [CertificateAndAwardController::class, 'store']);
+    Route::post('students/delete-certificate-and-awards', [CertificateAndAwardController::class, 'destroy']);
 
     Route::post('students/{id}/update-role-to-alumnus', [StudentController::class, 'updateRoleToAlumnus']);
     Route::post('students/{id}/update-role-to-student', [StudentController::class, 'updateRoleToStudent']);

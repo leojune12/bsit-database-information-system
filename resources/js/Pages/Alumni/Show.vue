@@ -290,6 +290,70 @@
                 </button>
             </div>
         </div>
+
+        <div
+            class="tw-bg-white tw-shadow-lg tw-border sm:tw-rounded-lg tw-mb-5"
+        >
+            <div>
+                <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
+                    <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900">Certificates and Awards</h3>
+                </dl>
+                <dl class="tw-px-4 tw-py-5 sm:tw-px-6 tw-border-b-2">
+                    <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-mt-0">
+                        <div class="tw-flex tw-flex-wrap">
+                            <div
+                                v-if="props.model.certificate_and_awards.length"
+                                v-for="item in props.model.certificate_and_awards"
+                                :key="item.id"
+                                class="tw-w-48 tw-flex tw-items-center tw-justify-center"
+                            >
+                                <div>
+                                    <div class="tw-relative">
+                                        <img
+                                            v-if="item.file.mime_type.startsWith('image/')"
+                                            :src="item.file.original_url"
+                                            alt=""
+                                            class="tw-h-44 tw-w-44 tw-object-contain tw-rounded-xl tw-border-2 tw-mb-2"
+                                        >
+                                        <div
+                                            v-else
+                                            class="tw-h-44 tw-w-44 tw-flex tw-items-center tw-justify-center tw-rounded-xl tw-border-2 tw-mb-2"
+                                        >
+                                            <DocumentIcon
+                                                class="tw-h-16 tw-w-16 tw-text-gray-500"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="tw-mb-1 tw-w-44 tw-truncate">
+                                            {{ item.name }}
+                                        </div>
+                                        <div class="tw-inline-block">
+                                            <a
+                                                download
+                                                :href="item.file.original_url"
+                                                class="tw-bg-amber-400 tw-h-7 tw-flex tw-items-center tw-w-auto tw-px-3 tw-rounded-lg tw-text-white tw-text-xs"
+                                                :title="item.file.file_name"
+                                            >
+                                                <ArrowDownTrayIcon
+                                                    class="tw-h-4 tw-w-4 tw-mr-1"
+                                                />
+                                                Download
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                v-else
+                            >
+                                No records found
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
     </AuthenticatedLayout>
 </template>
 
@@ -300,6 +364,7 @@
     import { ref, computed } from 'vue'
     import Swal from 'sweetalert2'
     import { Inertia } from '@inertiajs/inertia'
+    import { DocumentIcon, ArrowDownTrayIcon } from '@heroicons/vue/24/outline'
 
     const props = defineProps({
         model: Object,

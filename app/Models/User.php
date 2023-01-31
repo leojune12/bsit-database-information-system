@@ -194,4 +194,9 @@ class User extends Authenticatable implements HasMedia
                         ->withPivot('grade')
                         ->orderBy('course_code', 'asc');
     }
+
+    public function certificate_and_awards()
+    {
+        return $this->hasMany(CertificateAndAward::class);
+    }
 }
