@@ -27,7 +27,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Register" />
+        <Head title="Login" />
 
         <div class="tw-flex-grow tw-w-full tw-bg-white tw-rounded-lg tw-shadow dark:tw-border md:tw-mt-0 sm:tw-max-w-md dark:tw-bg-gray-800 dark:tw-border-gray-700 tw-p-6 sm:tw-p-8">
             <div class="tw-space-y-4 md:tw-space-y-6">
