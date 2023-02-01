@@ -34,7 +34,7 @@
                     class="tw-h-11"
                 >
                     <PlusIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" />
-                    New User
+                    New Subject
                 </LinkComponent>
             </div>
         </div>

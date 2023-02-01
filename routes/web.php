@@ -14,6 +14,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\IdNumberController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CurriculumController;
+use App\Http\Controllers\PrintGradeController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\CertificateAndAwardController;
@@ -70,6 +71,8 @@ Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student|Al
     Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
 
     Route::get('grades', [StudentController::class, 'showGrades']);
+
+    Route::get('print-grades/{id_number}', [PrintGradeController::class, 'show']);
 });
 
 Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']], function () {

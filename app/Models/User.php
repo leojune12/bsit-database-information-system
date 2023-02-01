@@ -117,10 +117,17 @@ class User extends Authenticatable implements HasMedia
             ->singleFile();
     }
 
-    public function section()
+    public function sections()
     {
         return $this->belongsToMany(Section::class)
                         ->orderByPivot('id', 'desc');
+    }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class)
+                        ->withPivot('grade')
+                        ->orderBy('course_code', 'asc');
     }
 
     public function first_year_first_semester_subjects()

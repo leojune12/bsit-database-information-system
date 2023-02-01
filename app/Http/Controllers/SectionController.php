@@ -66,7 +66,7 @@ class SectionController extends Controller
             'name' => [
                 'required',
                 'max:100',
-                Rule::unique('sections'),
+                // Rule::unique('sections'),
             ],
             'year' => [
                 'required',
@@ -182,7 +182,7 @@ class SectionController extends Controller
             'name' => [
                 'required',
                 'max:100',
-                Rule::unique('sections')->ignore($model),
+                // Rule::unique('sections')->ignore($model),
             ],
             'year' => [
                 'required',

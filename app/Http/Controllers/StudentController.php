@@ -33,7 +33,7 @@ class StudentController extends Controller
 
     private function getData($request)
     {
-        $query = User::with('section')
+        $query = User::with('sections')
         ->orderBy($request->orderBy ?? 'users.id', $request->orderType ?? 'DESC')
 
         ->when($request->search != 'null', function ($query) use ($request) {
@@ -184,7 +184,9 @@ class StudentController extends Controller
 
         $model = User::find($id);
 
-        $model->load('province', 'city', 'barangay', 'section', 'certificate_and_awards');
+        $model->load('province', 'city', 'barangay', 'sections', 'certificate_and_awards');
+
+        $model->sections->load('curriculum', 'academic_year');
 
         $model['date_added'] = DateService::viewDate($model->created_at);
 
@@ -209,7 +211,7 @@ class StudentController extends Controller
         $model = User::find($id);
 
         $model->load(
-            'section',
+            'sections',
             'first_year_first_semester_subjects',
             'first_year_second_semester_subjects',
             'second_year_first_semester_subjects',
@@ -219,6 +221,8 @@ class StudentController extends Controller
             'fourth_year_first_semester_subjects',
             'fourth_year_second_semester_subjects',
         );
+
+        $model->sections->load('curriculum', 'academic_year');
 
         return Inertia::render('Student/Grades', [
             'model' => $model,

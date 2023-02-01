@@ -34,7 +34,7 @@
                     class="tw-h-11"
                 >
                     <PlusIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" />
-                    New User
+                    New Student
                 </LinkComponent>
             </div>
         </div>
@@ -74,10 +74,10 @@
                             {{ item.email }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                            {{ item.section[0] ? item.section[0].year : ''  }}
+                            {{ item.sections[0] ? item.sections[0].year : ''  }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                            {{ item.section[0] ? item.section[0].name : ''  }}
+                            {{ item.sections[0] ? item.sections[0].name : ''  }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             <div class="tw-flex tw-gap-2">

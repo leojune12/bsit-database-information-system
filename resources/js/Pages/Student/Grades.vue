@@ -24,13 +24,43 @@
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Year</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
-                        {{ props.model.section[0] ? props.model.section[0].year : '' }}
+                        {{ props.model.sections[0] ? props.model.sections[0].year : '' }}
                     </dd>
                 </dl>
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Section</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
-                        {{ props.model.section[0] ? props.model.section[0].name : '' }}
+                        <Link
+                            v-if="props.model.sections[0]"
+                            :href="'/sections/' + props.model.sections[0].id"
+                            class="tw-text-blue-500 tw-underline hover:tw-text-blue-700"
+                        >
+                            {{ props.model.sections[0].name }}
+                        </Link>
+                    </dd>
+                </dl>
+                <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
+                    <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Academic Year</dt>
+                    <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
+                        <Link
+                            v-if="props.model.sections[0]"
+                            :href="'/academic-years/' + props.model.sections[0].academic_year.id"
+                            class="tw-text-blue-500 tw-underline hover:tw-text-blue-700"
+                        >
+                            {{ props.model.sections[0].academic_year.name }}
+                        </Link>
+                    </dd>
+                </dl>
+                <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
+                    <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Curriculum</dt>
+                    <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
+                        <Link
+                            v-if="props.model.sections[0]"
+                            :href="'/curriculums/' + props.model.sections[0].curriculum.id"
+                            class="tw-text-blue-500 tw-underline hover:tw-text-blue-700"
+                        >
+                            {{ props.model.sections[0].curriculum.name }}
+                        </Link>
                     </dd>
                 </dl>
             </div>
@@ -120,6 +150,16 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="tw-inline-block">
+                            <a
+                                v-if="props.model.first_year_first_semester_subjects.length"
+                                target="_blank"
+                                :href="'/print-grades/' + props.model.id_number + '/?year=1&semester=1'"
+                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
+                            >
+                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
+                            </a>
+                        </div>
                     </DisclosurePanel>
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
@@ -202,6 +242,16 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="tw-inline-block">
+                            <a
+                                v-if="props.model.first_year_second_semester_subjects.length"
+                                target="_blank"
+                                :href="'/print-grades/' + props.model.id_number + '/?year=1&semester=2'"
+                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
+                            >
+                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
+                            </a>
                         </div>
                     </DisclosurePanel>
                 </Disclosure>
@@ -286,6 +336,16 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="tw-inline-block">
+                            <a
+                                v-if="props.model.second_year_first_semester_subjects.length"
+                                target="_blank"
+                                :href="'/print-grades/' + props.model.id_number + '/?year=2&semester=1'"
+                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
+                            >
+                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
+                            </a>
+                        </div>
                     </DisclosurePanel>
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
@@ -368,6 +428,16 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="tw-inline-block">
+                            <a
+                                v-if="props.model.second_year_second_semester_subjects.length"
+                                target="_blank"
+                                :href="'/print-grades/' + props.model.id_number + '/?year=2&semester=2'"
+                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
+                            >
+                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
+                            </a>
                         </div>
                     </DisclosurePanel>
                 </Disclosure>
@@ -452,6 +522,16 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="tw-inline-block">
+                            <a
+                                v-if="props.model.third_year_first_semester_subjects.length"
+                                target="_blank"
+                                :href="'/print-grades/' + props.model.id_number + '/?year=3&semester=1'"
+                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
+                            >
+                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
+                            </a>
+                        </div>
                     </DisclosurePanel>
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
@@ -534,6 +614,16 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="tw-inline-block">
+                            <a
+                                v-if="props.model.third_year_second_semester_subjects.length"
+                                target="_blank"
+                                :href="'/print-grades/' + props.model.id_number + '/?year=3&semester=2'"
+                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
+                            >
+                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
+                            </a>
                         </div>
                     </DisclosurePanel>
                 </Disclosure>
@@ -618,6 +708,16 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="tw-inline-block">
+                            <a
+                                v-if="props.model.fourth_year_first_semester_subjects.length"
+                                target="_blank"
+                                :href="'/print-grades/' + props.model.id_number + '/?year=4&semester=1'"
+                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
+                            >
+                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
+                            </a>
+                        </div>
                     </DisclosurePanel>
                 </Disclosure>
                 <Disclosure v-slot="{ open }">
@@ -700,6 +800,16 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="tw-inline-block">
+                            <a
+                                v-if="props.model.fourth_year_second_semester_subjects.length"
+                                target="_blank"
+                                :href="'/print-grades/' + props.model.id_number + '/?year=4&semester=2'"
+                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
+                            >
+                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
+                            </a>
                         </div>
                     </DisclosurePanel>
                 </Disclosure>
@@ -788,7 +898,7 @@
 
 <script setup>
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-    import { Head, useForm, Link, usePage } from '@inertiajs/inertia-vue3'
+    import { Head, useForm, usePage, Link } from '@inertiajs/inertia-vue3'
     import { ref } from 'vue'
     import Swal from 'sweetalert2'
     import {
@@ -801,7 +911,7 @@
         DialogPanel,
         DialogTitle,
     } from '@headlessui/vue'
-    import { ChevronUpIcon, PlusIcon } from '@heroicons/vue/20/solid'
+    import { ChevronUpIcon, PrinterIcon } from '@heroicons/vue/20/solid'
     import TextInput from '@/Components/TextInput.vue';
     import InputLabel from '@/Components/InputLabel.vue';
     import InputError from '@/Components/InputError.vue';
