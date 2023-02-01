@@ -138,7 +138,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $model->load('province', 'city', 'barangay');
 
@@ -156,7 +156,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $model->load('roles');
 
@@ -170,7 +170,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $request->validate([
             'photo' => [

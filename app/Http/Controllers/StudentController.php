@@ -182,7 +182,7 @@ class StudentController extends Controller
     {
         RoleService::checkAuthorityById($id, "You can only view your own profile");
 
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $model->load('province', 'city', 'barangay', 'sections', 'certificate_and_awards');
 
@@ -208,7 +208,7 @@ class StudentController extends Controller
 
         RoleService::checkAuthorityById($id, "You can only view your own profile");
 
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $model->load(
             'sections',
@@ -262,7 +262,7 @@ class StudentController extends Controller
         RoleService::checkAuthority(['Admin', 'Student']);
         RoleService::checkAuthorityById($id, "You can only update your own profile");
 
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $photo_url = $model->getFirstMediaUrl('profile_photos');
 
@@ -276,7 +276,7 @@ class StudentController extends Controller
     {
         RoleService::checkAuthority(['Admin', 'Faculty', 'Student']);
 
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $request->validate([
             'photo' => [
@@ -402,7 +402,7 @@ class StudentController extends Controller
 
     public function updateRoleToAlumnus($id)
     {
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $model->syncRoles('Alumnus');
 
@@ -411,7 +411,7 @@ class StudentController extends Controller
 
     public function updateRoleToStudent($id)
     {
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $model->syncRoles('Student');
 

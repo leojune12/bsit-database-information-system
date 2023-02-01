@@ -19,7 +19,7 @@ class UserProfileController extends Controller
 {
     public function show()
     {
-        $model = User::find(Auth::id());
+        $model = User::findOrFail(Auth::id());
 
         $model->load('province', 'city', 'barangay', 'certificate_and_awards');
 
@@ -37,7 +37,7 @@ class UserProfileController extends Controller
 
     public function edit()
     {
-        $model = User::find(Auth::id());
+        $model = User::findOrFail(Auth::id());
 
         $model->load('roles');
 
@@ -51,7 +51,7 @@ class UserProfileController extends Controller
 
     public function update(Request $request)
     {
-        $model = User::find(Auth::id());
+        $model = User::findOrFail(Auth::id());
 
         $request->validate([
             'photo' => [

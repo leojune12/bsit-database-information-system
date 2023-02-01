@@ -73,7 +73,7 @@ class AcademicYearController extends Controller
 
     public function show($id)
     {
-        $model = AcademicYear::find($id);
+        $model = AcademicYear::findOrFail($id);
 
         $model->load(
             'first_year_sections',
@@ -95,7 +95,7 @@ class AcademicYearController extends Controller
 
         $curriculums = Curriculum::all();
 
-        $model = AcademicYear::find($id);
+        $model = AcademicYear::findOrFail($id);
 
         return Inertia::render('AcademicYear/Edit', [
             'model' => $model,
@@ -107,7 +107,7 @@ class AcademicYearController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
-        $model = AcademicYear::find($id);
+        $model = AcademicYear::findOrFail($id);
 
         $request->validate([
             'name' => [

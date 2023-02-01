@@ -170,7 +170,7 @@ class AlumniController extends Controller
 
     public function show($id)
     {
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $model->load('province', 'city', 'barangay', 'certificate_and_awards');
 
@@ -190,7 +190,7 @@ class AlumniController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $photo_url = $model->getFirstMediaUrl('profile_photos');
 
@@ -204,7 +204,7 @@ class AlumniController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
-        $model = User::find($id);
+        $model = User::findOrFail($id);
 
         $request->validate([
             'photo' => [

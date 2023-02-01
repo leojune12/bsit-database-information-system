@@ -96,7 +96,7 @@ class SectionController extends Controller
 
     public function show($id)
     {
-        $model = Section::find($id);
+        $model = Section::findOrFail($id);
 
         $model->load('academic_year', 'curriculum');
 
@@ -161,7 +161,7 @@ class SectionController extends Controller
 
         $curriculums = Curriculum::all();
 
-        $model = Section::find($id);
+        $model = Section::findOrFail($id);
 
         return Inertia::render('Section/Edit', [
             'model' => $model,
@@ -174,7 +174,7 @@ class SectionController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
-        $model = Section::find($id);
+        $model = Section::findOrFail($id);
 
         $request->validate([
             'academic_year_id' => 'required',

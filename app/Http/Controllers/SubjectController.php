@@ -95,7 +95,7 @@ class SubjectController extends Controller
 
     public function show($id)
     {
-        $model = Subject::find($id);
+        $model = Subject::findOrFail($id);
 
         $model->load('curriculum');
 
@@ -112,7 +112,7 @@ class SubjectController extends Controller
 
         $curriculums = Curriculum::all();
 
-        $model = Subject::find($id);
+        $model = Subject::findOrFail($id);
 
         return Inertia::render('Subject/Edit', [
             'model' => $model,
@@ -124,7 +124,7 @@ class SubjectController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
-        $model = Subject::find($id);
+        $model = Subject::findOrFail($id);
 
         $request->validate([
             'course_code' => [

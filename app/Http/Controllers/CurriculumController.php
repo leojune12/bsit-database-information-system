@@ -71,7 +71,7 @@ class CurriculumController extends Controller
 
     public function show($id)
     {
-        $model = Curriculum::find($id);
+        $model = Curriculum::findOrFail($id);
 
         $model->load(
             'subjects',
@@ -96,7 +96,7 @@ class CurriculumController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
-        $model = Curriculum::find($id);
+        $model = Curriculum::findOrFail($id);
 
         return Inertia::render('Curriculum/Edit', [
             'model' => $model,
@@ -107,7 +107,7 @@ class CurriculumController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
-        $model = Curriculum::find($id);
+        $model = Curriculum::findOrFail($id);
 
         $request->validate([
             'name' => [
