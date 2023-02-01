@@ -27,28 +27,41 @@ class UserController extends Controller
 
     private function getData($request)
     {
-        $query = DB::table('users');
 
-        $query->where('deleted_at', null);
+        $query = User::with('roles')
+        ->orderBy($request->orderBy ?? 'users.id', $request->orderType ?? 'DESC')
 
-        $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC');
+        ->when($request->search != 'null', function ($query) use ($request) {
+                return $query->orWhere('users.first_name', 'like', '%' . $request->search . '%');
+        })
+        ->when($request->search != 'null', function ($query) use ($request) {
+            return $query->orWhere('users.last_name', 'like', '%' . $request->search . '%');
+        })
+        ->when($request->search != 'null', function ($query) use ($request) {
+                return $query->orWhere('users.email', 'like', '%' . $request->search . '%');
+        })
 
-        $query->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id');
+        ->role(['Admin', 'Faculty'])
+        ->paginate($request->perPage ?? 10);
 
-        $query->join('roles', 'model_has_roles.role_id', '=', 'roles.id');
+        return $query;
+    }
 
-        $query->whereIn('roles.name', ['Admin', 'Faculty']);
+    private function search($query, $request)
+    {
+        $query->when($request->search != 'null', function ($query) use ($request) {
+            return $query->where('users.first_name', 'like', '%' . $request->search . '%');
+        });
 
-        $query->select(
-            'users.id',
-            'users.id_number',
-            'users.first_name',
-            'users.last_name',
-            'users.email',
-            'roles.name as role'
-        );
+        $query->when($request->search != 'null', function ($query) use ($request) {
+            return $query->orWhere('users.last_name', 'like', '%' . $request->search . '%');
+        });
 
-        return $query->paginate($request->perPage ?? 10);
+        $query->when($request->search != 'null', function ($query) use ($request) {
+            return $query->orWhere('users.email', 'like', '%' . $request->search . '%');
+        });
+
+        return $query;
     }
 
     public function create()

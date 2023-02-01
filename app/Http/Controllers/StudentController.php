@@ -33,45 +33,24 @@ class StudentController extends Controller
 
     private function getData($request)
     {
-        // $query = DB::table('users');
+        $query = User::with('section')
+        ->orderBy($request->orderBy ?? 'users.id', $request->orderType ?? 'DESC')
 
-        // $query->where('users.deleted_at', null);
+        ->when($request->search != 'null', function ($query) use ($request) {
+            return $query->where('id_number', 'like', '%' . $request->search . '%');
+        })
+        ->when($request->search != 'null', function ($query) use ($request) {
+                return $query->orWhere('users.first_name', 'like', '%' . $request->search . '%');
+        })
+        ->when($request->search != 'null', function ($query) use ($request) {
+            return $query->orWhere('users.last_name', 'like', '%' . $request->search . '%');
+        })
+        ->when($request->search != 'null', function ($query) use ($request) {
+                return $query->orWhere('users.email', 'like', '%' . $request->search . '%');
+        })
 
-        // $query->orderBy($request->orderBy ?? 'users.id', $request->orderType ?? 'DESC');
-
-        // $query->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id');
-
-        // $query->join('roles', 'model_has_roles.role_id', '=', 'roles.id');
-
-        // $query->where('roles.name', 'Student');
-
-        // $query->leftJoin('section_user', 'users.id', '=', 'section_user.user_id');
-
-        // $query->leftJoin('sections', 'section_user.section_id', '=', 'sections.id');
-
-        // $query->select(
-        //     'users.id',
-        //     'users.id_number',
-        //     'users.first_name',
-        //     'users.last_name',
-        //     'users.email',
-        //     'roles.name as role',
-        //     // 'sections.name as section',
-        //     // 'sections.year as year'
-        // );
-
-        // $query->groupBy('users.id');
-
-        // return $query->paginate($request->perPage ?? 10);
-
-        $query = User::role('Student')
-            ->with('section')
-            ->orderBy($request->orderBy ?? 'users.id', $request->orderType ?? 'DESC')
-            ->paginate($request->perPage ?? 10);
-
-        // $query->load('section');
-
-        // dd($query[8]->section);
+        ->role('Student')
+        ->paginate($request->perPage ?? 10);
 
         return $query;
     }

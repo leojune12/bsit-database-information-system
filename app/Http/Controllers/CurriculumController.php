@@ -22,16 +22,11 @@ class CurriculumController extends Controller
 
     private function getData($request)
     {
-        // $query = DB::table('curricula');
-
-        // $query->where('deleted_at', null);
-
-        // $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC');
-
-        // return $query->paginate($request->perPage ?? 10);
-
         return Curriculum::orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC')
                 ->with('subjects')
+                ->when($request->search != 'null', function ($query) use ($request) {
+                    return $query->orWhere('name', 'like', '%' . $request->search . '%');
+                })
                 ->paginate($request->perPage ?? 10);
     }
 

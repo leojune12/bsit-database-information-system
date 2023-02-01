@@ -26,28 +26,23 @@ class AlumniController extends Controller
 
     private function getData($request)
     {
-        $query = DB::table('users');
+        $query = User::orderBy($request->orderBy ?? 'users.id', $request->orderType ?? 'DESC')
+        ->when($request->search != 'null', function ($query) use ($request) {
+            return $query->where('id_number', 'like', '%' . $request->search . '%');
+        })
+        ->when($request->search != 'null', function ($query) use ($request) {
+                return $query->orWhere('users.first_name', 'like', '%' . $request->search . '%');
+        })
+        ->when($request->search != 'null', function ($query) use ($request) {
+            return $query->orWhere('users.last_name', 'like', '%' . $request->search . '%');
+        })
+        ->when($request->search != 'null', function ($query) use ($request) {
+                return $query->orWhere('users.email', 'like', '%' . $request->search . '%');
+        })
+        ->role('Alumnus')
+        ->paginate($request->perPage ?? 10);
 
-        $query->where('deleted_at', null);
-
-        $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC');
-
-        $query->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id');
-
-        $query->join('roles', 'model_has_roles.role_id', '=', 'roles.id');
-
-        $query->where('roles.name', 'Alumnus');
-
-        $query->select(
-            'users.id',
-            'users.id_number',
-            'users.first_name',
-            'users.last_name',
-            'users.email',
-            'roles.name as role'
-        );
-
-        return $query->paginate($request->perPage ?? 10);
+        return $query;
     }
 
     public function create()

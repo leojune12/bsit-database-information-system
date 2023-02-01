@@ -23,13 +23,11 @@ class AcademicYearController extends Controller
 
     private function getData($request)
     {
-        $query = DB::table('academic_years');
-
-        $query->where('deleted_at', null);
-
-        $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC');
-
-        return $query->paginate($request->perPage ?? 10);
+        return AcademicYear::orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC')
+                ->when($request->search != 'null', function ($query) use ($request) {
+                    return $query->orWhere('name', 'like', '%' . $request->search . '%');
+                })
+                ->paginate($request->perPage ?? 10);
     }
 
     public function create()

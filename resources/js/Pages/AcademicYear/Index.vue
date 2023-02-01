@@ -6,15 +6,37 @@
             <h3 class="tw-text-xl tw-font-bold tw-leading-6 tw-text-gray-700">
                 Academic Years
             </h3>
-            <LinkComponent
-                v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                :href="url + '/create'"
-                type="success-outlined"
-                class=""
-            >
-                <PlusIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" />
-                New Academic Year
-            </LinkComponent>
+            <div class="tw-flex tw-gap-3">
+                <div class="tw-flex">
+                    <TextInput
+                        id="id_number"
+                        type="text"
+                        class="tw-block tw-w-full tw-border-r-0 tw-rounded-r-none tw-ring-0 tw-rounded-lg tw-border-2"
+                        v-model="search"
+                        required
+                        autocomplete="id_number"
+                        placeholder="Search Name"
+                    />
+                    <LinkComponent
+                        :href="search ? '/' + url + '/?search=' + search : '/' + url"
+                        type="success-outlined"
+                        class="tw-h-11 tw-rounded-l-none"
+                        title="Search"
+                    >
+                        <MagnifyingGlassIcon
+                            class="tw-h-6 tw-w-6"
+                        />
+                    </LinkComponent>
+                </div>
+                <LinkComponent
+                    :href="url + '/create'"
+                    type="success-outlined"
+                    class="tw-h-11"
+                >
+                    <PlusIcon class="tw-block tw-h-5 tw-w-5" aria-hidden="true" />
+                    New User
+                </LinkComponent>
+            </div>
         </div>
         <div class="tw-overflow-x-auto tw-mb-4">
             <table class="tw-min-w-full">
@@ -31,6 +53,7 @@
                 </thead>
                 <tbody class="border">
                     <tr
+                        v-if="props.response.data.length"
                         v-for="item in props.response.data"
                         :key="item.id"
                         class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
@@ -73,16 +96,27 @@
                             </div>
                         </td>
                     </tr>
+                    <tr
+                        v-else
+                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
+                    >
+                        <td
+                            :colspan="tableHeader.length"
+                            class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-center"
+                        >
+                            No records
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
         <PaginationComponent
-            :totalPages="props.response.last_page"
-            :perPage="props.response.per_page"
-            :currentPage="props.response.current_page"
-            :from="props.response.from"
-            :to="props.response.to"
-            :total="props.response.total"
+            :totalPages="props.response.last_page ?? 0"
+            :perPage="props.response.per_page ?? 0"
+            :currentPage="props.response.current_page ?? 0"
+            :from="props.response.from ?? 0"
+            :to="props.response.to ?? 0"
+            :total="props.response.total ?? 0"
             :url="url"
         />
     </AuthenticatedLayout>
@@ -92,10 +126,11 @@
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
     import PaginationComponent from '@/Components/Table/Pagination.vue'
     import { Head, useForm, Link } from '@inertiajs/inertia-vue3'
-    import { EyeIcon, PencilSquareIcon, TrashIcon, PlusIcon } from '@heroicons/vue/24/outline'
+    import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/vue/24/outline'
     import Swal from 'sweetalert2'
     import LinkComponent from '@/Components/LinkComponent.vue';
     import { ref } from 'vue'
+    import TextInput from '@/Components/TextInput.vue';
 
     const props = defineProps({
         response: Object,
@@ -117,6 +152,8 @@
     ])
 
     const url = 'academic-years'
+
+    const search = ref('')
 
     const form = useForm({
         //

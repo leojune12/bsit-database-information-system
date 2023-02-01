@@ -29,27 +29,15 @@ class SubjectController extends Controller
 
     private function getData($request)
     {
-        $query = DB::table('subjects');
-
-        $query->where('subjects.deleted_at', null);
-
-        $query->orderBy($request->orderBy ?? 'subjects.id', $request->orderType ?? 'DESC');
-
-        $query->join('curricula', 'curricula.id', '=', 'subjects.curriculum_id');
-
-        $query->select(
-            'subjects.id',
-            'subjects.course_code',
-            'subjects.descriptive_title',
-            'subjects.prerequisite_subject_id',
-            'subjects.year',
-            'subjects.semester',
-            'curricula.name as subject_curriculum_name',
-        );
-
-        // dd($query->paginate($request->perPage ?? 10));
-
-        return $query->paginate($request->perPage ?? 10);
+        return Subject::with('curriculum')
+            ->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC')
+            ->when($request->search != 'null', function ($query) use ($request) {
+                return $query->orWhere('course_code', 'like', '%' . $request->search . '%');
+            })
+            ->when($request->search != 'null', function ($query) use ($request) {
+                return $query->orWhere('descriptive_title', 'like', '%' . $request->search . '%');
+            })
+            ->paginate($request->perPage ?? 10);
     }
 
     public function create()

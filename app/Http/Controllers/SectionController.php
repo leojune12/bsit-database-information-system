@@ -34,27 +34,12 @@ class SectionController extends Controller
 
     private function getData($request)
     {
-        $query = DB::table('sections');
-
-        $query->where('sections.deleted_at', null);
-
-        $query->orderBy($request->orderBy ?? 'sections.id', $request->orderType ?? 'DESC');
-
-        $query->join('academic_years', 'academic_years.id', '=', 'sections.academic_year_id');
-        $query->where('academic_years.deleted_at', null);
-
-        $query->join('curricula', 'curricula.id', '=', 'sections.curriculum_id');
-        $query->where('curricula.deleted_at', null);
-
-        $query->select(
-            'sections.id',
-            'sections.name',
-            'sections.year',
-            'academic_years.name as section_academic_year',
-            'curricula.name as section_curriculum',
-        );
-
-        return $query->paginate($request->perPage ?? 10);
+        return Section::with('curriculum', 'academic_year')
+            ->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC')
+            ->when($request->search != 'null', function ($query) use ($request) {
+                return $query->orWhere('name', 'like', '%' . $request->search . '%');
+            })
+            ->paginate($request->perPage ?? 10);
     }
 
     public function create()
