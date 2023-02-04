@@ -34,7 +34,7 @@ class SectionController extends Controller
 
     private function getData($request)
     {
-        return Section::with('curriculum', 'academic_year')
+        return Section::with('curriculum', 'academic_year', 'students')
             ->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC')
             ->when($request->search != 'null', function ($query) use ($request) {
                 return $query->orWhere('name', 'like', '%' . $request->search . '%');

@@ -1,5 +1,5 @@
 <template>
-    <Head title="Alumni" />
+    <Head title="Sections" />
 
     <AuthenticatedLayout>
         <div class="tw-flex tw-flex-col md:tw-flex-row tw-mb-4 md:tw-justify-between md:tw-items-center tw-gap-y-4">
@@ -65,6 +65,9 @@
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             {{ item.year }}
+                        </td>
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
+                            {{ item.students.length }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             <Link
@@ -154,6 +157,10 @@
         },
         {
             title: 'Year',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
+        {
+            title: 'Students',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
         {

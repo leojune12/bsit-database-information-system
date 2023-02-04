@@ -10,13 +10,23 @@
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Academic Year</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
-                        {{ props.model.academic_year.name }}
+                        <Link
+                            class="tw-text-blue-600 hover:tw-underline"
+                            :href="'/academic-years/' + props.model.academic_year_id"
+                        >
+                            {{ props.model.academic_year.name }}
+                        </Link>
                     </dd>
                 </dl>
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Curriculum</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
-                        {{ props.model.curriculum.name }}
+                        <Link
+                            class="tw-text-blue-600 hover:tw-underline"
+                            :href="'/curriculums/' + props.model.curriculum_id"
+                        >
+                            {{ props.model.curriculum.name }}
+                        </Link>
                     </dd>
                 </dl>
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
