@@ -16,7 +16,7 @@ class AdminUserDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if (!User::findOrFail(1)) {
+        if (!User::find(1)) {
 
             $admin = User::firstOrCreate([
                 "first_name" => "Admin",

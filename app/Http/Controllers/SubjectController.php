@@ -29,7 +29,7 @@ class SubjectController extends Controller
 
     private function getData($request)
     {
-        return Subject::with('curriculum')
+        return Subject::with('curriculums')
             ->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC')
             ->when($request->search != 'null', function ($query) use ($request) {
                 return $query->orWhere('course_code', 'like', '%' . $request->search . '%');
@@ -97,7 +97,7 @@ class SubjectController extends Controller
     {
         $model = Subject::findOrFail($id);
 
-        $model->load('curriculum');
+        $model->load('curriculums');
 
         $model['date_added'] = DateService::viewDate($model->created_at);
 

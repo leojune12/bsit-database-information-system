@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Curriculum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,8 +23,8 @@ class Subject extends Model
         'semester',
     ];
 
-    public function curriculum()
+    public function curriculums()
     {
-        return $this->belongsTo(Curriculum::class);
+        return $this->belongsToMany(Curriculum::class);
     }
 }

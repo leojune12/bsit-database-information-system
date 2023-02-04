@@ -109,6 +109,8 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Faculty']], funct
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
 
     Route::resource('users', UserController::class);
+
+    Route::post('curriculums/{id}/update-subjects', [CurriculumController::class, 'updateSubjects']);
 });
 
 require __DIR__.'/auth.php';

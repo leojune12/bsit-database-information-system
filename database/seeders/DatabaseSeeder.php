@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             RolesDatabaseSeeder::class,
             AdminUserDatabaseSeeder::class,
             StudentUserSeeder::class,
-            CommentSeeder::class,
+            // CommentSeeder::class,
             AddressDatabaseSeeder::class,
             UserDatabaseSeeder::class,
             // YearSemesterSeeder::class,

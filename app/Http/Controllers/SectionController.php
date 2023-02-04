@@ -34,7 +34,7 @@ class SectionController extends Controller
 
     private function getData($request)
     {
-        return Section::with('curriculum', 'academic_year')
+        return Section::with('curriculums', 'academic_year')
             ->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC')
             ->when($request->search != 'null', function ($query) use ($request) {
                 return $query->orWhere('name', 'like', '%' . $request->search . '%');
@@ -98,7 +98,7 @@ class SectionController extends Controller
     {
         $model = Section::findOrFail($id);
 
-        $model->load('academic_year', 'curriculum');
+        $model->load('academic_year', 'curriculums');
 
         $model['date_added'] = DateService::viewDate($model->created_at);
 

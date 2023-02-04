@@ -186,7 +186,7 @@ class StudentController extends Controller
 
         $model->load('province', 'city', 'barangay', 'sections', 'certificate_and_awards');
 
-        $model->sections->load('curriculum', 'academic_year');
+        $model->sections->load('curriculums', 'academic_year');
 
         $model['date_added'] = DateService::viewDate($model->created_at);
 
@@ -222,7 +222,7 @@ class StudentController extends Controller
             'fourth_year_second_semester_subjects',
         );
 
-        $model->sections->load('curriculum', 'academic_year');
+        $model->sections->load('curriculums', 'academic_year');
 
         return Inertia::render('Student/Grades', [
             'model' => $model,
