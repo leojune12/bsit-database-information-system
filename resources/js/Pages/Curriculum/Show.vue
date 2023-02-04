@@ -50,6 +50,7 @@
                     New Subject
                 </LinkComponent> -->
                 <button
+                    v-if="['Admin'].includes($page.props.auth.user.roles[0].name)"
                     type="button"
                     @click="openModal"
                     class="tw-rounded-lg tw-border-2 tw-h-10 tw-px-3 tw-border-green-600 hover:tw-bg-green-600 hover:tw-text-white tw-text-green-600 tw-text-sm"

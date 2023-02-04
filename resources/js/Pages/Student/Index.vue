@@ -29,6 +29,7 @@
                     </LinkComponent>
                 </div>
                 <LinkComponent
+                    v-if="['Admin'].includes($page.props.auth.user.roles[0].name)"
                     :href="url + '/create'"
                     type="success-outlined"
                     class="tw-h-11"

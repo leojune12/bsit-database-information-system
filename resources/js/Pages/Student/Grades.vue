@@ -256,9 +256,6 @@
     import { ref, onMounted } from 'vue'
     import Swal from 'sweetalert2'
     import {
-        Disclosure,
-        DisclosureButton,
-        DisclosurePanel,
         TransitionRoot,
         TransitionChild,
         Dialog,
