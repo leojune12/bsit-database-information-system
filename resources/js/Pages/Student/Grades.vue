@@ -70,749 +70,103 @@
                 <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900">Grades</h3>
             </div>
             <div>
-                <Disclosure v-slot="{ open }">
-                    <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
-                    >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">First Year First Semester ({{ props.model.first_year_first_semester_subjects.length }})</h4></span>
-                        <ChevronUpIcon
-                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-green-500"
-                        />
-                    </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
-                        <div class="tw-overflow-x-auto tw-mb-4">
-                            <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
-                                    <tr>
-                                        <th
-                                            v-for="header in tableHeader"
-                                            :key="header.title"
-                                            :class="header.class"
-                                        >
-                                            {{ header.title }}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="border">
-                                    <tr
-                                        v-if="props.model.first_year_first_semester_subjects.length"
-                                        v-for="item in props.model.first_year_first_semester_subjects"
-                                        :key="item.id"
-                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                                    >
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.course_code }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.descriptive_title }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.pivot.grade }}
-                                        </td>
-                                        <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                                            <div class="tw-flex tw-gap-2">
-                                                <!-- <a
-                                                    :href="'/subjects/' + item.id"
-                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="View"
-                                                >
-                                                    View
-                                                </a> -->
-                                                <button
-                                                    type="button"
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin' || $page.props.auth.user.roles[0].name == 'Faculty'"
-                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Edit"
-                                                    @click="openModal(item.id, item.course_code, item.pivot.grade)"
-                                                >
-                                                    Edit
-                                                </button>
-                                                <!-- <a
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    href="#"
-                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Delete"
-                                                    @click="confirmDelete(item.id)"
-                                                >
-                                                    Delete
-                                            </a> -->
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        v-else
-                                    >
-                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                            No records
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tw-inline-block">
-                            <a
-                                v-if="props.model.first_year_first_semester_subjects.length"
-                                target="_blank"
-                                :href="'/print-grades/' + props.model.id_number + '/?year=1&semester=1'"
-                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
+                <TabGroup>
+                    <TabList class="tw-flex tw-space-x-1 tw-rounded-xl tw-bg-indigo-500 tw-p-1">
+                        <Tab
+                            v-for="(item, index) in yearAndSemesters"
+                            as="template"
+                            :key="item.title"
+                            v-slot="{ selected }"
+                        >
+                            <button
+                                :class="[
+                                'tw-w-full tw-rounded-lg tw-py-2 tw-text-sm tw-font tw-leading-5 tw-text-blue-700',
+                                'tw-ring-white tw-ring-opacity-60 tw-ring-offset-2 tw-ring-offset-blue-400 focus:tw-outline-none focus:tw-ring-2s tw-text-xs tw-font-bold',
+                                selected
+                                    ? 'tw-bg-white tw-shadow'
+                                    : 'tw-text-blue-100 hover:tw-bg-white/[0.12] hover:tw-text-white',
+                                ]"
                             >
-                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
-                            </a>
-                        </div>
-                    </DisclosurePanel>
-                </Disclosure>
-                <Disclosure v-slot="{ open }">
-                    <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
-                    >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">First Year Second Semester ({{ props.model.first_year_second_semester_subjects.length }})</h4></span>
-                        <ChevronUpIcon
-                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-green-500"
-                        />
-                    </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
-                        <div class="tw-overflow-x-auto tw-mb-4">
-                            <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
-                                    <tr>
-                                        <th
-                                            v-for="header in tableHeader"
-                                            :key="header.title"
-                                            :class="header.class"
+                                {{ item.title }} ({{ item.items.length }})
+                            </button>
+                        </Tab>
+                    </TabList>
+
+                    <TabPanels class="tw-mt-2">
+                        <TabPanel
+                            v-for="(yearAndSemester, idx) in yearAndSemesters"
+                            :key="idx"
+                            :class="[
+                                'tw-rounded-xl tw-bg-white p-3',
+                                'tw-ring-white tw-ring-opacity-60 tw-ring-offset-2 focus:tw-outline-none focus:tw-ring-2',
+                            ]"
+                        >
+                            <div class="tw-overflow-x-auto tw-my-4">
+                                <table class="tw-min-w-full">
+                                    <thead class="tw-text-sm tw-font-medium tw-text-gray-800 tw-border-b">
+                                        <tr>
+                                            <th
+                                                v-for="header in tableHeader"
+                                                :key="header.title"
+                                                :class="header.class"
+                                            >
+                                                {{ header.title }}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border">
+                                        <tr
+                                            v-if="yearAndSemester.items.length"
+                                            v-for="item in yearAndSemester.items"
+                                            :key="item.id"
+                                            class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
                                         >
-                                            {{ header.title }}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="border">
-                                    <tr
-                                        v-if="props.model.first_year_second_semester_subjects.length"
-                                        v-for="item in props.model.first_year_second_semester_subjects"
-                                        :key="item.id"
-                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                                    >
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.course_code }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.descriptive_title }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.pivot.grade }}
-                                        </td>
-                                        <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                                            <div class="tw-flex tw-gap-2">
-                                                <!-- <a
-                                                    :href="'/subjects/' + item.id"
-                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="View"
-                                                >
-                                                    View
-                                                </a> -->
-                                                <button
-                                                    type="button"
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
-                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Edit"
-                                                    @click="openModal(item.id, item.course_code, item.pivot.grade)"
-                                                >
-                                                    Edit
-                                                </button>
-                                                <!-- <a
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    href="#"
-                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Delete"
-                                                    @click="confirmDelete(item.id)"
-                                                >
-                                                    Delete
-                                            </a> -->
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        v-else
-                                    >
-                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                            No records
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tw-inline-block">
-                            <a
-                                v-if="props.model.first_year_second_semester_subjects.length"
-                                target="_blank"
-                                :href="'/print-grades/' + props.model.id_number + '/?year=1&semester=2'"
-                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
-                            >
-                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
-                            </a>
-                        </div>
-                    </DisclosurePanel>
-                </Disclosure>
-                <Disclosure v-slot="{ open }">
-                    <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
-                    >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Second Year First Semester ({{ props.model.second_year_first_semester_subjects.length }})</h4></span>
-                        <ChevronUpIcon
-                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-green-500"
-                        />
-                    </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
-                        <div class="tw-overflow-x-auto tw-mb-4">
-                            <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
-                                    <tr>
-                                        <th
-                                            v-for="header in tableHeader"
-                                            :key="header.title"
-                                            :class="header.class"
+                                            <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
+                                                {{ item.course_code }}
+                                            </td>
+                                            <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
+                                                {{ item.descriptive_title }}
+                                            </td>
+                                            <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
+                                                {{ item.pivot.grade }}
+                                            </td>
+                                            <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
+                                                <div class="tw-flex tw-gap-2">
+                                                    <button
+                                                        type="button"
+                                                        v-if="$page.props.auth.user.roles[0].name == 'Admin' || $page.props.auth.user.roles[0].name == 'Faculty'"
+                                                        class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
+                                                        title="Edit"
+                                                        @click="openModal(item.id, item.course_code, item.pivot.grade)"
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr
+                                            v-else
                                         >
-                                            {{ header.title }}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="border">
-                                    <tr
-                                        v-if="props.model.second_year_first_semester_subjects.length"
-                                        v-for="item in props.model.second_year_first_semester_subjects"
-                                        :key="item.id"
-                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                                    >
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.course_code }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.descriptive_title }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.pivot.grade }}
-                                        </td>
-                                        <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                                            <div class="tw-flex tw-gap-2">
-                                                <!-- <a
-                                                    :href="'/subjects/' + item.id"
-                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="View"
-                                                >
-                                                    View
-                                                </a> -->
-                                                <button
-                                                    type="button"
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
-                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Edit"
-                                                    @click="openModal(item.id, item.course_code, item.pivot.grade)"
-                                                >
-                                                    Edit
-                                                </button>
-                                                <!-- <a
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    href="#"
-                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Delete"
-                                                    @click="confirmDelete(item.id)"
-                                                >
-                                                    Delete
-                                            </a> -->
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        v-else
-                                    >
-                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                            No records
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tw-inline-block">
-                            <a
-                                v-if="props.model.second_year_first_semester_subjects.length"
-                                target="_blank"
-                                :href="'/print-grades/' + props.model.id_number + '/?year=2&semester=1'"
-                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
-                            >
-                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
-                            </a>
-                        </div>
-                    </DisclosurePanel>
-                </Disclosure>
-                <Disclosure v-slot="{ open }">
-                    <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
-                    >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Second Year Second Semester ({{ props.model.second_year_second_semester_subjects.length }})</h4></span>
-                        <ChevronUpIcon
-                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-green-500"
-                        />
-                    </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
-                        <div class="tw-overflow-x-auto tw-mb-4">
-                            <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
-                                    <tr>
-                                        <th
-                                            v-for="header in tableHeader"
-                                            :key="header.title"
-                                            :class="header.class"
-                                        >
-                                            {{ header.title }}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="border">
-                                    <tr
-                                        v-if="props.model.second_year_second_semester_subjects.length"
-                                        v-for="item in props.model.second_year_second_semester_subjects"
-                                        :key="item.id"
-                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                                    >
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.course_code }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.descriptive_title }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.pivot.grade }}
-                                        </td>
-                                        <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                                            <div class="tw-flex tw-gap-2">
-                                                <!-- <a
-                                                    :href="'/subjects/' + item.id"
-                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="View"
-                                                >
-                                                    View
-                                                </a> -->
-                                                <button
-                                                    type="button"
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
-                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Edit"
-                                                    @click="openModal(item.id, item.course_code, item.pivot.grade)"
-                                                >
-                                                    Edit
-                                                </button>
-                                                <!-- <a
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    href="#"
-                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Delete"
-                                                    @click="confirmDelete(item.id)"
-                                                >
-                                                    Delete
-                                            </a> -->
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        v-else
-                                    >
-                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                            No records
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tw-inline-block">
-                            <a
-                                v-if="props.model.second_year_second_semester_subjects.length"
-                                target="_blank"
-                                :href="'/print-grades/' + props.model.id_number + '/?year=2&semester=2'"
-                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
-                            >
-                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
-                            </a>
-                        </div>
-                    </DisclosurePanel>
-                </Disclosure>
-                <Disclosure v-slot="{ open }">
-                    <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
-                    >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Third Year First Semester ({{ props.model.third_year_first_semester_subjects.length }})</h4></span>
-                        <ChevronUpIcon
-                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-green-500"
-                        />
-                    </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
-                        <div class="tw-overflow-x-auto tw-mb-4">
-                            <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
-                                    <tr>
-                                        <th
-                                            v-for="header in tableHeader"
-                                            :key="header.title"
-                                            :class="header.class"
-                                        >
-                                            {{ header.title }}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="border">
-                                    <tr
-                                        v-if="props.model.third_year_first_semester_subjects.length"
-                                        v-for="item in props.model.third_year_first_semester_subjects"
-                                        :key="item.id"
-                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                                    >
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.course_code }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.descriptive_title }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.pivot.grade }}
-                                        </td>
-                                        <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                                            <div class="tw-flex tw-gap-2">
-                                                <!-- <a
-                                                    :href="'/subjects/' + item.id"
-                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="View"
-                                                >
-                                                    View
-                                                </a> -->
-                                                <button
-                                                    type="button"
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
-                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Edit"
-                                                    @click="openModal(item.id, item.course_code, item.pivot.grade)"
-                                                >
-                                                    Edit
-                                                </button>
-                                                <!-- <a
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    href="#"
-                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Delete"
-                                                    @click="confirmDelete(item.id)"
-                                                >
-                                                    Delete
-                                            </a> -->
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        v-else
-                                    >
-                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                            No records
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tw-inline-block">
-                            <a
-                                v-if="props.model.third_year_first_semester_subjects.length"
-                                target="_blank"
-                                :href="'/print-grades/' + props.model.id_number + '/?year=3&semester=1'"
-                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
-                            >
-                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
-                            </a>
-                        </div>
-                    </DisclosurePanel>
-                </Disclosure>
-                <Disclosure v-slot="{ open }">
-                    <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
-                    >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Third Year Second Semester ({{ props.model.third_year_second_semester_subjects.length }})</h4></span>
-                        <ChevronUpIcon
-                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-green-500"
-                        />
-                    </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
-                        <div class="tw-overflow-x-auto tw-mb-4">
-                            <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
-                                    <tr>
-                                        <th
-                                            v-for="header in tableHeader"
-                                            :key="header.title"
-                                            :class="header.class"
-                                        >
-                                            {{ header.title }}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="border">
-                                    <tr
-                                        v-if="props.model.third_year_second_semester_subjects.length"
-                                        v-for="item in props.model.third_year_second_semester_subjects"
-                                        :key="item.id"
-                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                                    >
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.course_code }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.descriptive_title }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.pivot.grade }}
-                                        </td>
-                                        <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                                            <div class="tw-flex tw-gap-2">
-                                                <!-- <a
-                                                    :href="'/subjects/' + item.id"
-                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="View"
-                                                >
-                                                    View
-                                                </a> -->
-                                                <button
-                                                    type="button"
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
-                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Edit"
-                                                    @click="openModal(item.id, item.course_code, item.pivot.grade)"
-                                                >
-                                                    Edit
-                                                </button>
-                                                <!-- <a
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    href="#"
-                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Delete"
-                                                    @click="confirmDelete(item.id)"
-                                                >
-                                                    Delete
-                                            </a> -->
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        v-else
-                                    >
-                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                            No records
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tw-inline-block">
-                            <a
-                                v-if="props.model.third_year_second_semester_subjects.length"
-                                target="_blank"
-                                :href="'/print-grades/' + props.model.id_number + '/?year=3&semester=2'"
-                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
-                            >
-                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
-                            </a>
-                        </div>
-                    </DisclosurePanel>
-                </Disclosure>
-                <Disclosure v-slot="{ open }">
-                    <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
-                    >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Fourth Year First Semester ({{ props.model.fourth_year_first_semester_subjects.length }})</h4></span>
-                        <ChevronUpIcon
-                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-green-500"
-                        />
-                    </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
-                        <div class="tw-overflow-x-auto tw-mb-4">
-                            <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
-                                    <tr>
-                                        <th
-                                            v-for="header in tableHeader"
-                                            :key="header.title"
-                                            :class="header.class"
-                                        >
-                                            {{ header.title }}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="border">
-                                    <tr
-                                        v-if="props.model.fourth_year_first_semester_subjects.length"
-                                        v-for="item in props.model.fourth_year_first_semester_subjects"
-                                        :key="item.id"
-                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                                    >
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.course_code }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.descriptive_title }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.pivot.grade }}
-                                        </td>
-                                        <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                                            <div class="tw-flex tw-gap-2">
-                                                <!-- <a
-                                                    :href="'/subjects/' + item.id"
-                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="View"
-                                                >
-                                                    View
-                                                </a> -->
-                                                <button
-                                                    type="button"
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
-                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Edit"
-                                                    @click="openModal(item.id, item.course_code, item.pivot.grade)"
-                                                >
-                                                    Edit
-                                                </button>
-                                                <!-- <a
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    href="#"
-                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Delete"
-                                                    @click="confirmDelete(item.id)"
-                                                >
-                                                    Delete
-                                            </a> -->
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        v-else
-                                    >
-                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                            No records
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tw-inline-block">
-                            <a
-                                v-if="props.model.fourth_year_first_semester_subjects.length"
-                                target="_blank"
-                                :href="'/print-grades/' + props.model.id_number + '/?year=4&semester=1'"
-                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
-                            >
-                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
-                            </a>
-                        </div>
-                    </DisclosurePanel>
-                </Disclosure>
-                <Disclosure v-slot="{ open }">
-                    <DisclosureButton
-                        :class="[open ? 'tw-rounded-b-none tw-border tw-border-green-200' : 'tw-mb-3', 'tw-flex tw-w-full tw-justify-between tw-rounded-lg tw-bg-green-100 tw-px-4 tw-py-2 tw-text-left tw-text-sm tw-font-medium tw-text-green-900 hover:tw-bg-green-200 focus:tw-outline-none focus-visible:tw-ring focus-visible:tw-ring-green-500 focus-visible:tw-ring-opacity-75']"
-                    >
-                        <span><h4 class="tw-font-black tw-leading-6 tw-text-green-700">Fourth Year Second Semester ({{ props.model.fourth_year_second_semester_subjects.length }})</h4></span>
-                        <ChevronUpIcon
-                            :class="!open ? 'tw-rotate-180 tw-transform' : ''"
-                            class="tw-h-5 tw-w-5 tw-text-green-500"
-                        />
-                    </DisclosureButton>
-                    <DisclosurePanel :class="[open ? 'tw-mb-3' : '', 'tw-px-4 tw-pt-4 tw-pb-2 tw-text-sm tw-text-gray-500 tw-border tw-rounded-b-lg tw-border-green-200']">
-                        <div class="tw-overflow-x-auto tw-mb-4">
-                            <table class="tw-min-w-full">
-                                <thead class="tw-text-sm tw-font-medium tw-text-green-700 tw-border-b">
-                                    <tr>
-                                        <th
-                                            v-for="header in tableHeader"
-                                            :key="header.title"
-                                            :class="header.class"
-                                        >
-                                            {{ header.title }}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="border">
-                                    <tr
-                                        v-if="props.model.fourth_year_second_semester_subjects.length"
-                                        v-for="item in props.model.fourth_year_second_semester_subjects"
-                                        :key="item.id"
-                                        class="tw-bg-white tw-border-b tw-transition tw-duration-300 tw-ease-in-out hover:tw-bg-gray-100"
-                                    >
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.course_code }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.descriptive_title }}
-                                        </td>
-                                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                                            {{ item.pivot.grade }}
-                                        </td>
-                                        <td v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'" class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                                            <div class="tw-flex tw-gap-2">
-                                                <!-- <a
-                                                    :href="'/subjects/' + item.id"
-                                                    class="tw-text-green-500 hover:tw-text-green-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="View"
-                                                >
-                                                    View
-                                                </a> -->
-                                                <button
-                                                    type="button"
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    :href="'/subjects/' + item.id + '/edit'"
-                                                    class="tw-text-blue-600 hover:tw-text-blue-700 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Edit"
-                                                    @click="openModal(item.id, item.course_code, item.pivot.grade)"
-                                                >
-                                                    Edit
-                                                </button>
-                                                <!-- <a
-                                                    v-if="$page.props.auth.user.roles[0].name == 'Admin'"
-                                                    href="#"
-                                                    class="tw-text-red-500 hover:tw-text-red-600 tw-transition tw-duration-300 tw-ease-in-out"
-                                                    title="Delete"
-                                                    @click="confirmDelete(item.id)"
-                                                >
-                                                    Delete
-                                            </a> -->
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr
-                                        v-else
-                                    >
-                                        <td colspan="4" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
-                                            No records
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tw-inline-block">
-                            <a
-                                v-if="props.model.fourth_year_second_semester_subjects.length"
-                                target="_blank"
-                                :href="'/print-grades/' + props.model.id_number + '/?year=4&semester=2'"
-                                class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
-                            >
-                                <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
-                            </a>
-                        </div>
-                    </DisclosurePanel>
-                </Disclosure>
+                                            <td :colspan="tableHeader.length" class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900 tw-text-center">
+                                                No records
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tw-inline-block">
+                                <a
+                                    v-if="yearAndSemester.items.length"
+                                    target="_blank"
+                                    :href="'/print-grades/' + props.model.id_number + '/?year=' + yearAndSemester.year + '&semester=' + yearAndSemester.semester"
+                                    class="tw-bg-blue-500 tw-h-8 tw-text-white tw-px-3 tw-rounded-lg tw-flex tw-grow-0 tw-items-center tw-justify-center"
+                                >
+                                    <PrinterIcon class="tw-w-4 tw-h-4 tw-mr-2" /> Print
+                                </a>
+                            </div>
+                        </TabPanel>
+                    </TabPanels>
+                </TabGroup>
             </div>
         </div>
         <TransitionRoot appear :show="updateGradeModalIsOpen" as="template">
@@ -899,7 +253,7 @@
 <script setup>
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
     import { Head, useForm, usePage, Link } from '@inertiajs/inertia-vue3'
-    import { ref } from 'vue'
+    import { ref, onMounted } from 'vue'
     import Swal from 'sweetalert2'
     import {
         Disclosure,
@@ -910,6 +264,11 @@
         Dialog,
         DialogPanel,
         DialogTitle,
+        TabGroup,
+        TabList,
+        Tab,
+        TabPanels,
+        TabPanel,
     } from '@headlessui/vue'
     import { ChevronUpIcon, PrinterIcon } from '@heroicons/vue/20/solid'
     import TextInput from '@/Components/TextInput.vue';
@@ -919,6 +278,65 @@
     const props = defineProps({
         model: Object,
     })
+
+    onMounted(() =>{
+        setYearAndSemesters()
+    })
+
+    const yearAndSemesters = ref({})
+
+    function setYearAndSemesters() {
+        yearAndSemesters.value = [
+            {
+                title: '1st Year-1st Sem',
+                items: props.model.first_year_first_semester_subjects,
+                year: 1,
+                semester: 1,
+            },
+            {
+                title: '1st Year-2nd Sem',
+                items: props.model.first_year_second_semester_subjects,
+                year: 1,
+                semester: 2,
+            },
+            {
+                title: '2nd Year-1st Sem',
+                items: props.model.second_year_first_semester_subjects,
+                year: 2,
+                semester: 1,
+            },
+            {
+                title: '2nd Year-2nd Sem',
+                items: props.model.second_year_second_semester_subjects,
+                year: 2,
+                semester: 2,
+            },
+            {
+                title: '3rd Year-1st Sem',
+                items: props.model.third_year_first_semester_subjects,
+                year: 3,
+                semester: 1,
+            },
+            {
+                title: '3rd Year-2nd Sem',
+                items: props.model.third_year_second_semester_subjects,
+                year: 3,
+                semester: 2,
+            },
+            {
+                title: '4th Year-1st Sem',
+                items: props.model.fourth_year_first_semester_subjects,
+                year: 4,
+                semester: 1,
+            },
+            {
+                title: '4th Year-2nd Sem',
+                items: props.model.fourth_year_second_semester_subjects,
+                year: 4,
+                semester: 2,
+            },
+        ]
+    }
 
     const tableHeader = ref([
         {
@@ -966,6 +384,8 @@
                     title: 'Updated successfully',
                     confirmButtonColor: '#16a34a',
                 })
+
+                setYearAndSemesters()
             },
         })
 
