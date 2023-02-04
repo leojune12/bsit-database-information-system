@@ -59,7 +59,7 @@
             </div>
             <div>
                 <TabGroup>
-                    <TabList class="tw-flex tw-space-x-1 tw-rounded-xl tw-bg-blue-600 tw-p-1">
+                    <TabList class="tw-flex tw-space-x-1 tw-rounded-xl tw-bg-indigo-500 tw-p-1">
                         <Tab
                             v-for="(item, index) in yearAndSections"
                             as="template"
@@ -76,7 +76,7 @@
                                 ]"
                                 @click="setYearAndSectionToUpdate(item)"
                             >
-                                {{ item.title }}
+                                {{ item.title }} ({{ item.subjects.length }})
                             </button>
                         </Tab>
                     </TabList>

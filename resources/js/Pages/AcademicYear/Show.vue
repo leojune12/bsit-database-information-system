@@ -378,7 +378,7 @@
             </div>
             <div>
                 <TabGroup>
-                    <TabList class="tw-flex tw-space-x-1 tw-rounded-xl tw-bg-blue-600 tw-p-1">
+                    <TabList class="tw-flex tw-space-x-1 tw-rounded-xl tw-bg-indigo-500 tw-p-1">
                         <Tab
                             v-for="(item, index) in sections"
                             as="template"
@@ -488,9 +488,6 @@
     import { ref, computed, onMounted } from 'vue'
     import Swal from 'sweetalert2'
     import {
-        Disclosure,
-        DisclosureButton,
-        DisclosurePanel,
         TabGroup,
         TabList,
         Tab,

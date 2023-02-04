@@ -32,7 +32,7 @@
         </div>
         <div class="tw-overflow-x-auto tw-mb-4">
             <table class="tw-min-w-full">
-                <thead class="tw-border tw-bg-rose-800 tw-text-sm tw-font-medium tw-text-white">
+                <thead class="tw-border tw-bg-indigo-500 tw-text-sm tw-font-medium tw-text-white">
                     <tr>
                         <th
                             v-for="header in tableHeader"
