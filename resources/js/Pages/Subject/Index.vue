@@ -61,7 +61,7 @@
                         <td class="tw-px-6 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">
                             {{ item.id }}
                         </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
+                        <!-- <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
                             <ul>
                                 <li v-for="curriculum in item.curriculums">
                                     <Link :href="'/curriculums/' + curriculum.id" class="tw-text-blue-600 hover:tw-underline tw-whitespace-nowrap">
@@ -69,7 +69,7 @@
                                     </Link>
                                 </li>
                             </ul>
-                        </td>
+                        </td> -->
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
                             {{ item.course_code }}
                         </td>
@@ -162,10 +162,10 @@
             title: 'ID',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
-        {
-            title: 'Curriculum',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
-        },
+        // {
+        //     title: 'Curriculum',
+        //     class: 'tw-py-3 tw-px-6 tw-text-left',
+        // },
         {
             title: 'Course Number',
             class: 'tw-py-3 tw-px-6 tw-text-left',
