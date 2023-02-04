@@ -81,6 +81,7 @@ Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']]
     Route::put('user-profile/update', [UserProfileController::class, 'update'])->name('user-profile.update');
 
     Route::get('students/{id}/grades', [StudentController::class, 'showGrades']);
+    Route::get('alumni/{id}/grades', [StudentController::class, 'showGrades']);
     Route::resource('students', StudentController::class);
 });
 
