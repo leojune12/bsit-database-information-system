@@ -10,19 +10,6 @@
 
                 <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                     <div>
-                        <InputLabel for="curriculumn_id" value="Curriculum" required />
-                        <ListBox
-                            id="curriculumn_id"
-                            :items="curriculum_array"
-                            v-on:update:model-value="form.curriculum_id = $event.id"
-                            :model-value="form.curriculum_id"
-                        />
-                        <InputError class="mt-2" :message="form.errors.curriculumn_id" />
-                    </div>
-                </div>
-
-                <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                    <div>
                         <InputLabel for="course_code" value="Course Code" />
 
                         <TextInput
@@ -102,18 +89,18 @@
                     </div>
 
                     <div>
-                        <InputLabel for="prerequisite_subject_id" value="Prerequisite Subject ID" />
+                        <InputLabel for="prerequisite_subject_ids" value="Prerequisite Subject ID" />
 
                         <TextInput
-                            id="prerequisite_subject_id"
+                            id="prerequisite_subject_ids"
                             type="text"
                             class="tw-mt-1 tw-block tw-w-full"
-                            v-model="form.prerequisite_subject_id"
+                            v-model="form.prerequisite_subject_ids"
                             required
-                            autocomplete="prerequisite_subject_id"
+                            autocomplete="prerequisite_subject_ids"
                         />
 
-                        <InputError class="tw-mt-2" :message="form.errors.prerequisite_subject_id" />
+                        <InputError class="tw-mt-2" :message="form.errors.prerequisite_subject_ids" />
                     </div>
                 </div>
 
@@ -220,33 +207,20 @@
 
     const props = defineProps({
         model: Object,
-        curriculums: Array,
     });
 
     const url = 'subjects'
 
-    const curriculum_array = ref([])
-
     const form = useForm({
-        curriculum_id: props.model.curriculum_id,
         course_code: props.model.course_code,
         descriptive_title: props.model.descriptive_title,
         unit: props.model.unit,
         lecture: props.model.lecture,
         laboratory: props.model.laboratory,
-        prerequisite_subject_id: props.model.prerequisite_subject_id,
+        prerequisite_subject_ids: props.model.prerequisite_subject_ids,
         year: props.model.year,
         semester: props.model.semester,
     });
-
-    onMounted(() => {
-        props.curriculums.forEach((item) => {
-                curriculum_array.value.push({
-                    id: item.id,
-                    name: item.name
-                })
-            });
-    })
 
     function submitForm() {
         form.patch(route(url + '.update', props.model.id), {

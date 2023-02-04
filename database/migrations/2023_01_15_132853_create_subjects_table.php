@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('curriculum_id');
             $table->string('course_code');
             $table->string('descriptive_title');
             $table->tinyInteger('unit')->nullable();
             $table->tinyInteger('lecture')->nullable();
             $table->tinyInteger('laboratory')->nullable();
-            $table->foreignId('prerequisite_subject_id')->nullable();
+            $table->string('prerequisite_subject_ids')->nullable();
             $table->tinyInteger('year');
             $table->tinyInteger('semester');
             $table->timestamps();

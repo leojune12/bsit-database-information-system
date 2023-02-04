@@ -18,7 +18,7 @@ class Subject extends Model
         'unit',
         'laboratory',
         'lecture',
-        'prerequisite_subject_id',
+        'prerequisite_subject_ids',
         'year',
         'semester',
     ];

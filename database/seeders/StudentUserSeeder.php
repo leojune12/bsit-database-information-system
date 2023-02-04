@@ -17,37 +17,39 @@ class StudentUserSeeder extends Seeder
      */
     public function run()
     {
-        $student = User::firstOrCreate([
-            "first_name" => "Student",
-            "last_name" => "Student",
-            "email" => "student@test.com",
-            "email_verified_at" => now(),
-            "password" => Hash::make("pw@12345"),
-            "remember_token" => Str::random(10),
-        ]);
+        if (!User::find(2)) {
+            $student = User::firstOrCreate([
+                "first_name" => "Student",
+                "last_name" => "Student",
+                "email" => "student@test.com",
+                "email_verified_at" => now(),
+                "password" => Hash::make("pw@12345"),
+                "remember_token" => Str::random(10),
+            ]);
 
-        $student->assignRole('Student');
+            $student->assignRole('Student');
 
-        $faculty = User::firstOrCreate([
-            "first_name" => "Faculty",
-            "last_name" => "Faculty",
-            "email" => "faculty@test.com",
-            "email_verified_at" => now(),
-            "password" => Hash::make("pw@12345"),
-            "remember_token" => Str::random(10),
-        ]);
+            $faculty = User::firstOrCreate([
+                "first_name" => "Faculty",
+                "last_name" => "Faculty",
+                "email" => "faculty@test.com",
+                "email_verified_at" => now(),
+                "password" => Hash::make("pw@12345"),
+                "remember_token" => Str::random(10),
+            ]);
 
-        $faculty->assignRole('Faculty');
+            $faculty->assignRole('Faculty');
 
-        $alumnus = User::firstOrCreate([
-            "first_name" => "Alumnus",
-            "last_name" => "Alumnus",
-            "email" => "alumnus@test.com",
-            "email_verified_at" => now(),
-            "password" => Hash::make("pw@12345"),
-            "remember_token" => Str::random(10),
-        ]);
+            $alumnus = User::firstOrCreate([
+                "first_name" => "Alumnus",
+                "last_name" => "Alumnus",
+                "email" => "alumnus@test.com",
+                "email_verified_at" => now(),
+                "password" => Hash::make("pw@12345"),
+                "remember_token" => Str::random(10),
+            ]);
 
-        $alumnus->assignRole('Alumnus');
+            $alumnus->assignRole('Alumnus');
+        }
     }
 }

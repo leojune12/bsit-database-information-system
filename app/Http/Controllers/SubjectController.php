@@ -44,10 +44,7 @@ class SubjectController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
-        $curriculums = Curriculum::all();
-
         return Inertia::render('Subject/Create', [
-            'curriculums' => $curriculums,
         ]);
     }
 
@@ -56,7 +53,6 @@ class SubjectController extends Controller
         RoleService::checkAuthority(['Admin']);
 
         $request->validate([
-            'curriculum_id' => 'required',
             'course_code' => [
                 'required',
                 'max:255',
@@ -66,10 +62,8 @@ class SubjectController extends Controller
             'unit' => 'nullable|integer|max:100',
             'lecture' => 'nullable|integer|max:100',
             'laboratory' => 'nullable|integer|max:100',
-            'prerequisite_subject_id' => [
+            'prerequisite_subject_ids' => [
                 'nullable',
-                'integer',
-                'exists:subjects',
             ],
             'year' => 'required',
             'semester' => 'required',
@@ -110,13 +104,10 @@ class SubjectController extends Controller
     {
         RoleService::checkAuthority(['Admin']);
 
-        $curriculums = Curriculum::all();
-
         $model = Subject::findOrFail($id);
 
         return Inertia::render('Subject/Edit', [
             'model' => $model,
-            'curriculums' => $curriculums,
         ]);
     }
 
@@ -136,10 +127,8 @@ class SubjectController extends Controller
             'unit' => 'nullable|integer|max:100',
             'lecture' => 'nullable|integer|max:100',
             'laboratory' => 'nullable|integer|max:100',
-            'prerequisite_subject_id' => [
+            'prerequisite_subject_ids' => [
                 'nullable',
-                'integer',
-                'exists:subjects',
             ],
         ]);
 

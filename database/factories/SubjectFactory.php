@@ -26,7 +26,7 @@ class SubjectFactory extends Factory
             'unit' => $unit,
             'laboratory' => $laboratory,
             'lecture' => $unit - $laboratory,
-            'prerequisite_subject_id' => rand(1, 100),
+            'prerequisite_subject_ids' => rand(1, 100),
             'year' => rand(1, 4),
             'semester' => rand(1, 2),
         ];

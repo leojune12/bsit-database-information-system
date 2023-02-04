@@ -62,7 +62,13 @@
                             {{ item.id }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                            {{ item.curriculum.name }}
+                            <ul>
+                                <li v-for="curriculum in item.curriculums">
+                                    <Link :href="'/curriculums/' + curriculum.id" class="tw-text-blue-600 hover:tw-underline tw-whitespace-nowrap">
+                                        {{ curriculum.name }}
+                                    </Link>
+                                </li>
+                            </ul>
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
                             {{ item.course_code }}
@@ -70,9 +76,9 @@
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
                             {{ item.descriptive_title }}
                         </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
-                            {{ item.prerequisite_subject_id }}
-                        </td>
+                        <!-- <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
+                            {{ item.prerequisite_subject_ids }}
+                        </td> -->
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
                             {{ item.year }}
                         </td>
@@ -180,10 +186,10 @@
         //     title: 'Lab',
         //     class: 'tw-py-3 tw-px-6 tw-text-left',
         // },
-        {
-            title: 'Prerequisite Subject ID',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
-        },
+        // {
+        //     title: 'Prerequisite Subject ID',
+        //     class: 'tw-py-3 tw-px-6 tw-text-left',
+        // },
         {
             title: 'Year',
             class: 'tw-py-3 tw-px-6 tw-text-left',

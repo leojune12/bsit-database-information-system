@@ -11,18 +11,6 @@
 
                     <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
                         <div>
-                            <InputLabel for="curriculum_id" value="Curriculum" required />
-                            <ListBox
-                                id="curriculum_id"
-                                :items="curriculum_array"
-                                v-on:update:model-value="form.curriculum_id = $event.id"
-                                :model-value="form.curriculum_id"
-                            />
-                            <InputError class="mt-2" :message="form.errors.curriculum_id" />
-                        </div>
-                    </div>
-                    <div class="md:tw-grid md:tw-grid-cols-2 md:tw-gap-x-6 tw-space-y-6 md:tw-space-y-0">
-                        <div>
                             <InputLabel for="course_code" value="Course Code" required />
 
                             <TextInput
@@ -59,7 +47,7 @@
 
                             <TextInput
                                 id="unit"
-                                type="text"
+                                type="number"
                                 class="tw-mt-1 tw-block tw-w-full"
                                 v-model="form.unit"
                                 required
@@ -74,7 +62,7 @@
 
                             <TextInput
                                 id="lecture"
-                                type="text"
+                                type="number"
                                 class="tw-mt-1 tw-block tw-w-full"
                                 v-model="form.lecture"
                                 required
@@ -91,7 +79,7 @@
 
                             <TextInput
                                 id="laboratory"
-                                type="text"
+                                type="number"
                                 class="tw-mt-1 tw-block tw-w-full"
                                 v-model="form.laboratory"
                                 required
@@ -102,17 +90,17 @@
                         </div>
 
                         <div>
-                            <InputLabel for="prerequisite_subject_id" value="Prerequisite Subject ID" />
+                            <InputLabel for="prerequisite_subject_ids" value="Prerequisite Subject ID" />
 
                             <TextInput
-                                id="prerequisite_subject_id"
+                                id="prerequisite_subject_ids"
                                 type="text"
                                 class="tw-mt-1 tw-block tw-w-full"
-                                v-model="form.prerequisite_subject_id"
-                                autocomplete="prerequisite_subject_id"
+                                v-model="form.prerequisite_subject_ids"
+                                autocomplete="prerequisite_subject_ids"
                             />
 
-                            <InputError class="tw-mt-2" :message="form.errors.prerequisite_subject_id" />
+                            <InputError class="tw-mt-2" :message="form.errors.prerequisite_subject_ids" />
                         </div>
                     </div>
 
@@ -220,32 +208,16 @@
 
     const url = 'subjects'
 
-    const props = defineProps({
-        curriculums: Array,
-    })
-
-    const curriculum_array = ref([])
-
     const form = useForm({
-        curriculum_id: [],
         course_code: null,
         descriptive_title: null,
         unit: null,
         lecture: null,
         laboratory: null,
-        prerequisite_subject_id: null,
+        prerequisite_subject_ids: null,
         year: null,
         semester: null,
     });
-
-    onMounted(() => {
-        props.curriculums.forEach((item) => {
-                curriculum_array.value.push({
-                    id: item.id,
-                    name: item.name
-                })
-            });
-    })
 
     function submitForm() {
         form.post(route(url + '.store'), {
