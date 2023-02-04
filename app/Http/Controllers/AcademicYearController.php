@@ -23,7 +23,7 @@ class AcademicYearController extends Controller
 
     private function getData($request)
     {
-        return AcademicYear::orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC')
+        return AcademicYear::with('sections')->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'DESC')
                 ->when($request->search != 'null', function ($query) use ($request) {
                     return $query->orWhere('name', 'like', '%' . $request->search . '%');
                 })

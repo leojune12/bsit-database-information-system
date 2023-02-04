@@ -15,6 +15,11 @@ class AcademicYear extends Model
         'name',
     ];
 
+    public function sections()
+    {
+        return $this->hasMany(Section::class);
+    }
+
     public function first_year_sections()
     {
         return $this->hasMany(Section::class)->where('year', 1);

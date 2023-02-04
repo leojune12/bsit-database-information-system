@@ -88,7 +88,7 @@
             <div>
                 <div class="tw-overflow-x-auto tw-mb-4">
                     <table class="tw-min-w-full">
-                        <thead class="tw-border tw-bg-rose-700 tw-text-sm tw-font-medium tw-text-white">
+                        <thead class="tw-border-b tw-text-sm tw-font-medium tw-text-gray-800">
                             <tr>
                                 <th
                                     v-for="header in tableHeader"

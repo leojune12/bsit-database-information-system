@@ -61,16 +61,26 @@
                             {{ item.id }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                            {{ item.academic_year.name }}
-                        </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
-                            {{ item.curriculum.name }}
-                        </td>
-                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             {{ item.name }}
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             {{ item.year }}
+                        </td>
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
+                            <Link
+                                class="tw-text-blue-600 hover:tw-underline"
+                                :href="'/academic-years/' + item.academic_year_id"
+                            >
+                                {{ item.academic_year.name }}
+                            </Link>
+                        </td>
+                        <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
+                            <Link
+                                class="tw-text-blue-600 hover:tw-underline"
+                                :href="'/curriculums/' + item.curriculum_id"
+                            >
+                                {{ item.curriculum.name }}
+                            </Link>
                         </td>
                         <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3 tw-whitespace-nowrap">
                             <div class="tw-flex tw-gap-2">
@@ -139,19 +149,19 @@
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
         {
-            title: 'Academic Year',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
-        },
-        {
-            title: 'Curriculum',
-            class: 'tw-py-3 tw-px-6 tw-text-left',
-        },
-        {
             title: 'Name',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
         {
             title: 'Year',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
+        {
+            title: 'Academic Year',
+            class: 'tw-py-3 tw-px-6 tw-text-left',
+        },
+        {
+            title: 'Curriculum',
             class: 'tw-py-3 tw-px-6 tw-text-left',
         },
         {
