@@ -12,7 +12,7 @@ class RoleService
 
     public static function checkAuthority($approved_roles = [], $text = "")
     {
-        if(!!count($approved_roles)) {
+        if(Auth::check() && !!count($approved_roles)) {
             abort_unless(in_array(Auth::user()->roles[0]->name, $approved_roles), 403, $text);
         }
     }
