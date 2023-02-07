@@ -96,7 +96,6 @@
                             type="text"
                             class="tw-mt-1 tw-block tw-w-full"
                             v-model="form.prerequisite_subject_ids"
-                            required
                             autocomplete="prerequisite_subject_ids"
                         />
 

@@ -59,9 +59,9 @@ class SubjectController extends Controller
                 Rule::unique('subjects'),
             ],
             'descriptive_title' => 'required|max:255',
-            'unit' => 'nullable|integer|max:100',
-            'lecture' => 'nullable|integer|max:100',
-            'laboratory' => 'nullable|integer|max:100',
+            'unit' => 'nullable|integer',
+            'lecture' => 'nullable|integer',
+            'laboratory' => 'nullable|integer',
             'prerequisite_subject_ids' => [
                 'nullable',
             ],
