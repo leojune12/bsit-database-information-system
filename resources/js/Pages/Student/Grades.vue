@@ -3,14 +3,15 @@
 
     <AuthenticatedLayout>
         <div
-            v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'"
             class="tw-bg-white tw-shadow-lg tw-border sm:tw-rounded-lg tw-mb-5"
         >
             <div>
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <h3 class="tw-text-lg tw-font-black tw-leading-6 tw-text-gray-900">Student Information</h3>
                 </dl>
-                <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
+                <dl
+                    v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'"
+                    class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Name</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
                         <Link
@@ -30,37 +31,52 @@
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Section</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
-                        <Link
-                            v-if="props.model.sections[0]"
-                            :href="'/sections/' + props.model.sections[0].id"
-                            class="tw-text-blue-500 tw-underline hover:tw-text-blue-700"
-                        >
+                        <div v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'">
+                            <Link
+                                v-if="props.model.sections[0]"
+                                :href="'/sections/' + props.model.sections[0].id"
+                                class="tw-text-blue-500 tw-underline hover:tw-text-blue-700"
+                            >
+                                {{ props.model.sections[0].name }}
+                            </Link>
+                        </div>
+                        <div v-else>
                             {{ props.model.sections[0].name }}
-                        </Link>
+                        </div>
                     </dd>
                 </dl>
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Academic Year</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
-                        <Link
-                            v-if="props.model.sections[0]"
-                            :href="'/academic-years/' + props.model.sections[0].academic_year.id"
-                            class="tw-text-blue-500 tw-underline hover:tw-text-blue-700"
-                        >
+                        <div v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'">
+                            <Link
+                                v-if="props.model.sections[0]"
+                                :href="'/academic-years/' + props.model.sections[0].academic_year.id"
+                                class="tw-text-blue-500 tw-underline hover:tw-text-blue-700"
+                            >
+                                {{ props.model.sections[0].academic_year.name }}
+                            </Link>
+                        </div>
+                        <div v-else>
                             {{ props.model.sections[0].academic_year.name }}
-                        </Link>
+                        </div>
                     </dd>
                 </dl>
                 <dl class="tw-px-4 tw-py-5 sm:tw-grid sm:tw-grid-cols-3 sm:tw-gap-4 sm:tw-px-6 tw-border-b-2">
                     <dt class="tw-text-sm tw-font-medium tw-text-gray-500">Curriculum</dt>
                     <dd class="tw-mt-1 tw-text-sm tw-text-gray-900 sm:tw-col-span-2 sm:tw-mt-0">
-                        <Link
-                            v-if="props.model.sections[0]"
-                            :href="'/curriculums/' + props.model.sections[0].curriculum.id"
-                            class="tw-text-blue-500 tw-underline hover:tw-text-blue-700"
-                        >
+                        <div v-if="usePage().props.value.auth.user.roles[0].name == 'Admin' || usePage().props.value.auth.user.roles[0].name == 'Faculty'">
+                            <Link
+                                v-if="props.model.sections[0]"
+                                :href="'/curriculums/' + props.model.sections[0].curriculum.id"
+                                class="tw-text-blue-500 tw-underline hover:tw-text-blue-700"
+                            >
+                                {{ props.model.sections[0].curriculum.name }}
+                            </Link>
+                        </div>
+                        <div v-else>
                             {{ props.model.sections[0].curriculum.name }}
-                        </Link>
+                        </div>
                     </dd>
                 </dl>
             </div>
