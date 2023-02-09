@@ -152,7 +152,7 @@
             for: ['Admin', 'Faculty']
         },
         {
-            name: 'Grades',
+            name: 'Grade',
             href: '/grades',
             for: ['Student', 'Alumnus']
         },

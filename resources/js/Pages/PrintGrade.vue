@@ -5,7 +5,10 @@
             <div class="tw-flex tw-w-28 tw-h-28 tw-justify-center tw-items-center">
                 <img src="/capsu_logo.png" alt="" class="tw-h-16">
             </div>
-            <h1 class="tw-text-xl tw-font-extrabold tw-tracking-tight tw-leading-none tw-text-gray-700 dark:tw-text-white tw-flex tw-items-center">Database Information System for BSIT Student</h1>
+            <div class="tw-flex tw-flex-col tw-justify-center tw-items-center tw-font-bold tw-text-gray-700">
+                <h1 class="tw-text-xl tw-font-extrabold tw-tracking-tight tw-leading-none tw-flex tw-items-center">Database Information System for BSIT Student</h1>
+                <h3>Grade Query</h3>
+            </div>
             <div class="tw-flex tw-w-28 tw-h-28 tw-justify-center tw-items-center">
                 <img src="/it_logo.png" alt="" class="tw-h-16">
             </div>

@@ -83,6 +83,8 @@ Route::group(['middleware' => ['auth', 'verified','role:Admin|Faculty|Student']]
     Route::get('students/{id}/grades', [StudentController::class, 'showGrades']);
     Route::get('alumni/{id}/grades', [StudentController::class, 'showGrades']);
     Route::resource('students', StudentController::class);
+
+    Route::get('curriculums/{id}', [CurriculumController::class, 'show']);
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Faculty']], function () {

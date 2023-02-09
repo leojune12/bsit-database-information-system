@@ -23,6 +23,7 @@
             </div>
             <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-4 tw-py-6 sm:tw-px-6 tw-px-4">
                 <LinkComponent
+                    v-if="['Admin', 'Faculty'].includes($page.props.auth.user.roles[0].name)"
                     :href="'/' + url"
                     type="secondary"
                 >
@@ -114,10 +115,18 @@
                                             <td class="tw-px-6 tw-py-3 tw-text-sm tw-font-medium tw-text-gray-900">
                                                 {{ item.id }}
                                             </td>
-                                            <td class="tw-text-sm tw-text-blue-600 hover:tw-underline tw-font-light tw-px-6 tw-py-3">
-                                                <Link :href="'/subjects/' + item.id">
-                                                    {{ item.course_code }}
-                                                </Link>
+                                            <td>
+                                                <div :class="[['Admin', 'Faculty'].includes($page.props.auth.user.roles[0].name) ? 'tw-text-blue-600 hover:tw-underline' : '', 'tw-text-sm tw-font-light tw-px-6 tw-py-3']">
+                                                    <Link
+                                                        v-if="['Admin', 'Faculty'].includes($page.props.auth.user.roles[0].name)"
+                                                        :href="'/subjects/' + item.id"
+                                                    >
+                                                        {{ item.course_code }}
+                                                    </Link>
+                                                    <div v-else>
+                                                        {{ item.course_code }}
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td class="tw-text-sm tw-text-gray-900 tw-font-light tw-px-6 tw-py-3">
                                                 {{ item.descriptive_title }}
